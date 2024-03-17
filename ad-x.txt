@@ -7,6 +7,8 @@ OrionLib:MakeNotification({ 	Name = "Admin-x", 	Content = "Welcome to Admin-x", 
 
 local Tab = Window:MakeTab({ 	Name = "Main", 	Icon = "rbxassetid://1632674502", 	PremiumOnly = false })
 
+
+
 Tab:AddParagraph("Alert","Some script and gui are currently not working right now i am on a fix")
 
 
@@ -141,6 +143,15 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/EasyPSX/pet-simulator
 end})
 
 Tab:AddParagraph("imformation","does not work proprely")
+
+local Tab = Window:MakeTab({ 	Name = "U Attack on Titens", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "U Attack on Titens 1", 	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/zhanzheng666/Roblox/main/Untitled%20Attack%20On%20Titan.lua"))()
+
+end })
+
+Tab:AddParagraph("imformation","Is an Untitled Attack on titen script")
 
 local Tab = Window:MakeTab({ 	Name = "Blox fruits", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
 
@@ -337,6 +348,27 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/SandaFrosty/Dino-Scri
 end})
 
 Tab:AddParagraph("imformation","is a build a boat script")
+
+
+local Tab = Window:MakeTab({ Name = "Push Dummies", Icon = "rbxassetid://4431164390", PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Push Dummies 1", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ADSKerOffical/Push-Dummies-In-The-Sparta-Hole/main/FireInTheHole"))()
+
+end})
+
+Tab:AddParagraph("imformation","is a Push Dummies Down The Sparta Hole script")
+
+local Tab = Window:MakeTab({ Name = "Hide and seek", Icon = "rbxassetid://4431164390", PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Hide and seek 1", 	Callback = function()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Hide%20And%20Seek%20Extreme'))()
+
+end})
+
+Tab:AddParagraph("imformation","is a Hide and Seek Extreme script")
 
 local Tab = Window:MakeTab({ Name = "Muscle legends", Icon = "rbxassetid://4431164390", PremiumOnly = false })
 
