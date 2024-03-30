@@ -206,7 +206,7 @@ end })
 Tab:AddParagraph("imformation","blox fruit script that is old")
 
 local Section = Tab:AddSection({
-	Name = "Scripts"
+  Name = "Scripts"
 })
 
 Tab:AddButton({ 	Name  = "Blox fruits Esp Script", 	Callback = function()
@@ -322,6 +322,14 @@ end})
 
 Tab:AddParagraph("imformation","is a area 51 script")
 
+Tab:AddButton({ 	Name = "Darkrai X", 	Callback = function()
+
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Saktk-In-Area51/main/Area51", true))()
+
+end})
+
+Tab:AddParagraph("imformation","is a area 51 script")
+
 local Tab = Window:MakeTab({ 	Name = "shark bite 2", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
 
 Tab:AddButton({ 	Name = "sharkbite 2 auto farm", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Sw1ndlerScripts/RobloxScripts/main/Misc%20Scripts/sharkbite2.lua",true))()
@@ -409,6 +417,24 @@ Tab:AddButton({ 	Name = "Piggy Peppa", 	Callback = function() loadstring(game:Ht
 end })
 
 Tab:AddParagraph("imformation","is a piggy script")
+
+local Tab = Window:MakeTab({ 	Name = "Barrys prison run", 	Icon = "rbxassetid://1632674502", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Barrys prison 1", 	Callback = function() 
+      loadstring(game:HttpGet(('https://pastebin.com/raw/8eqS0bAQ')))()
+
+end })
+
+Tab:AddParagraph("imformation","is a Barrys prison run script")
+
+local Tab = Window:MakeTab({ 	Name = "Natural Disaster", 	Icon = "rbxassetid://1632674502", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Natural Disaster 1", 	Callback = function() 
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/JustAP1ayer/PlayerHubOther/main/PlayerHubLoader.lua"))()
+
+end })
+
+Tab:AddParagraph("imformation","is a Natural Disaster script")
 
 OrionLib:Init()
 
