@@ -256,6 +256,14 @@ end })
 
 Tab:AddParagraph("imformation","is a break in script")
 
+Tab:AddButton({ 	Name = "break in 2", 	Callback = function() 
+game:HttpGet("https://getexploits.com/cexecution/669295117747900416")
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/memejames/Hide/main/Break%20in%202"))()
+end })
+
+Tab:AddParagraph("imformation","is a break in script")
+
 local Tab = Window:MakeTab({ 	Name = "doors", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
 
 Tab:AddButton({ 	Name = "Doors", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Darkrai-X/main/Games/Doors"))()
