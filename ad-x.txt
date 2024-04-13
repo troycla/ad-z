@@ -15,8 +15,7 @@ Tab:AddParagraph("Alert","Some script and gui are currently not working right no
 
 local Tab = Window:MakeTab({ 	Name = "Other hub's", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
 
-Tab:AddButton({ 	Name = "Dreadz hub2", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/DreadzHub2/DreadzHub-Scripts-FR/main/Loader"))()
-
+Tab:AddButton({ 	Name = "v online", 	Callback = function() loadstring(game:HttpGet('https://raw.githubusercontent.com/BruhSoundEffect2081/BruhScripts/main/velocityshit.lua'))()
 end })
 
 Tab:AddParagraph("imformation","is ment for shooting game ")
