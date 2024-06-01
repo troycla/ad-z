@@ -135,6 +135,12 @@ Tab:AddButton({ 	Name = "Pet Simulator X", 	Callback = function() loadstring(gam
 
 Tab:AddParagraph("imformation","???")
 
+Tab:AddButton({ 	Name = "Pet Simulator X test", 	Callback = function() loadstring(game:HttpGet("https://pastebin.com/raw/BdvUGb2q"))()
+
+ end })
+
+Tab:AddParagraph("imformation","???")
+
 Tab:AddButton({ 	Name = "Pet Simulator X tag", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/IlllIlIIIlllIlIlllIIlIlllIlIIlllI/PartnerPSX/main/FakePartnerTag", true))()
 
 end})
