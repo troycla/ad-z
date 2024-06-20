@@ -1,4 +1,4 @@
-
+Change your start page? … Currently it's set to Home. You can change it anytime in Settings.
 local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
 
 local Window = OrionLib:MakeWindow({IntroText = "Admin-x", IntroIcon ="rbxassetid://1632674502", Name = "Admin-x", HidePremium = false, SaveConfig = true, ConfigFolder = "Admin-x"})
@@ -7,11 +7,458 @@ OrionLib:MakeNotification({ 	Name = "Admin-x", 	Content = "Welcome to Admin-x", 
 
 local Tab = Window:MakeTab({ 	Name = "Main", 	Icon = "rbxassetid://1632674502", 	PremiumOnly = false })
 
-
-
 Tab:AddParagraph("Alert","Some script and gui are currently not working right now i am on a fix")
 
+local Tab = Window:MakeTab({ 	Name = "Teleports", 	Icon = "rbxassetid://1632674502", 	PremiumOnly = false })
 
+local Section = Tab:AddSection({
+	Name = "Ro Bio Virus injection"
+})
+
+Tab:AddButton({ 	Name = "Center", 	Callback = function() 
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(211.6832275390625, 3562.519287109375, 1623.7923583984375)
+local speed = 30 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+
+
+Tab:AddButton({ 	Name = "Virus Block", 	Callback = function() 
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(163.5572509765625, 3562.519287109375, 1579.9520263671875)
+local speed = 30 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Weapons", 	Callback = function() 
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(242.10726928710938, 3562.519287109375, 1578.9796142578125)
+local speed = 30 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Research Lab", 	Callback = function() 
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(255.30068969726562, 3562.519287109375, 1626.4541015625)
+local speed = 30 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Locker Room", 	Callback = function() 
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(306.3703918457031, 3562.519287109375, 1623.65771484375)
+local speed = 30 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Hidden Viruses 1", 	Callback = function() 
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(95.10549926757812, 3562.419189453125, 1601.4613037109375)
+local speed = 30 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+
+end })
+
+Tab:AddButton({ 	Name = "Hidden Viruses 2", 	Callback = function() 
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(154.2515869140625, 3582.169189453125, 1564.4342041015625)
+local speed = 30 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 1", 	Callback = function() 
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(164.75814819335938, 3562.628662109375, 1521.6563720703125)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 2", 	Callback = function() 
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(164.43077087402344, 3562.628662109375, 1480.641845703125)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 3", 	Callback = function() 
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(164.00987243652344, 3562.628662109375, 1441.1241455078125)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 4", 	Callback = function() 
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(166.44119262695312, 3562.628662109375, 1401.00390625)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 5", 	Callback = function() 
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(167.13162231445312, 3562.628662109375, 1363.0992431640625)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 6", 	Callback = function() 
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(161.49288940429688, 3562.628662109375, 1323.4228515625)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 7", 	Callback = function() 
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(259.8353576660156, 3562.628662109375, 1515.7197265625)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 8", 	Callback = function() 
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(258.7364196777344, 3562.628662109375, 1476.36669921875)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 9", 	Callback = function() 
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(261.1194763183594, 3562.628662109375, 1438.4344482421875)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 10", 	Callback = function() 
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(262.2147521972656, 3562.628662109375, 1399.98046875)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 11", 	Callback = function() 
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(255.81324768066406, 3562.628662109375, 1359.0853271484375)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 12", 	Callback = function() 
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(258.9114990234375, 3562.628662109375, 1319.8447265625)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+local Section = Tab:AddSection({
+	Name = "Cook Burger"
+})
 
 local Tab = Window:MakeTab({ 	Name = "Other hub's", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
 
@@ -184,7 +631,8 @@ end })
 
 Tab:AddParagraph("imformation","blox fruit script that is old ")
 
-Tab:AddButton({ 	Name  = "Blox fruits speed hub", 	Callback = function()  loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/ahmadsgamer2/Script--Game/main/Script%20Game"))()
+Tab:AddButton({ 	Name  = "Blox fruits speed hub", 	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()
 
  end })
 
