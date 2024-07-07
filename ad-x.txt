@@ -1,4 +1,4 @@
-Change your start page? … Currently it's set to Home. You can change it anytime in Settings.
+
 local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
 
 local Window = OrionLib:MakeWindow({IntroText = "Admin-x", IntroIcon ="rbxassetid://1632674502", Name = "Admin-x", HidePremium = false, SaveConfig = true, ConfigFolder = "Admin-x"})
