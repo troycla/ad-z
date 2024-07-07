@@ -460,7 +460,7 @@ local Section = Tab:AddSection({
 	Name = "Cook Burger"
 })
 
-local Tab = Window:MakeTab({ 	Name = "Script's", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+local Tab = Window:MakeTab({ 	Name = "Scripts", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
 
 Tab:AddButton({ 	Name  = "player Esp Script", 	Callback = function()
 
