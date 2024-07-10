@@ -10,18 +10,19 @@ local Section = Tab:AddSection({
 	Name = "Local Player"
 })
 local CoolSlider = Tab:AddSlider({
-	Name = "Slider",
-	Min = 0,
-	Max = 20,
-	Default = 5,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 2,
-        Flag = "Speed Slider",
-	ValueName = "Speed",
-	Callback = function(Value)
-	   game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Default
-	end,    
+    Name = "Slider",
+    Min = 0,
+    Max = 20,
+    Default = 5,
+    Color = Color3.fromRGB(255, 255, 255),
+    Increment = 2,
+    Flag = "Speed Slider",
+    ValueName = "Speed",
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+    end,
 })
+
 Tab:AddParagraph("Alert","Some script and gui are currently not working right now i am on a fix")
 
 local Tab = Window:MakeTab({ 	Name = "Teleports", 	Icon = "rbxassetid://1632674502", 	PremiumOnly = false })
