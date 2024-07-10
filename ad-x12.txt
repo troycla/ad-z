@@ -54,6 +54,22 @@ local CoolSlider = Tab:AddSlider({
         game.Players.LocalPlayer.PlayerGui.Gravity = Value
     end,
 })
+local Section = Tab:AddSection({
+	Name = "Tools"
+})
+Tab:AddButton({ 	Name  = "Dex Explorer", 	Callback = function()
+
+loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Dex%20Explorer.txt"))()
+
+
+end })
+
+Tab:AddButton({ 	Name  = "Inf Yeld", 	Callback = function()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+
+end })
+
 
 Tab:AddParagraph("Alert","Some script and gui are currently not working right now i am on a fix")
 
