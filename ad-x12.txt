@@ -64,45 +64,6 @@ loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Dex%20Explorer.txt"))
 
 end })
 
-Tab:AddButton({ 	Name  = "Inf Yeld", 	Callback = function()
-
-loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
-
-end })
-
-Tab:AddDropdown({
-    Name = "Fling",
-    Default = "off",
-    Options = {"off", "on",},
-    Callback = function(Value)
-        selectedOptionone = Value -- Update the selected option
-    end
-})
-
-Tab:AddToggle({
-    Name = "toggle on and off for fling",
-    Default = false,
-    Callback = function(Value)
-        if Value then
-            
-            if selectedOption == "off" then
-     local flingPart = "LowerTorso" -- The part that will be used to fling local antiragdoll = false -- Set to true to enable fling, false to disable local player = game.Players.LocalPlayer local character = player.Character local humanoid = character:WaitForChild("Humanoid") local function onTouch(otherPart) local otherCharacter = otherPart.Parent if otherCharacter and otherCharacter:IsA("Model") and otherCharacter ~= character then if antiragdoll then humanoid:Move(Vector3.new(0, 1000, 0)) -- Adjust the fling force as needed end end end character[flingPart].Touched:Connect(onTouch) if antiragdoll then for _, part in pairs(character:GetDescendants()) do if part:IsA("HingeConstraint") or part:IsA("BallSocketConstraint") then part:Destroy() end end end
-    end
-end            
-
-elseif selectedOptionone == "on" then
-         
-
-local flingPart = "LowerTorso" -- The part that will be used to fling local antiragdoll = true -- Set to true to enable fling, false to disable local player = game.Players.LocalPlayer local character = player.Character local humanoid = character:WaitForChild("Humanoid") local function onTouch(otherPart) local otherCharacter = otherPart.Parent if otherCharacter and otherCharacter:IsA("Model") and otherCharacter ~= character then if antiragdoll then humanoid:Move(Vector3.new(0, 1000, 0)) -- Adjust the fling force as needed end end end character[flingPart].Touched:Connect(onTouch) if antiragdoll then for _, part in pairs(character:GetDescendants()) do if part:IsA("HingeConstraint") or part:IsA("BallSocketConstraint") then part:Destroy() end end end
-    end
-end
-  
-            end
-        else
-            -- Handle the case when the toggle button is not active
-        end
-    end
-})
 
 Tab:AddParagraph("Alert","Some script and gui are currently not working right now i am on a fix")
 
