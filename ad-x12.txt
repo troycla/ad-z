@@ -6,29 +6,1133 @@ local Window = redzlib:MakeWindow({
   SaveFolder = "Admin-x 1 Config"
 })
 
---Tabs
+local Tab = Window:MakeTab({ 	Name = "Main", 	Icon = "rbxassetid://1632674502", 	PremiumOnly = false })
+local Section = Tab:AddSection({
+	Name = "Local Player"
+})
+local player = game.Players.LocalPlayer
+local humanoid = player.Character:WaitForChild("Humanoid")
 
-local Tab1 = Window:MakeTab({"Tab 1", "cool"})
+local CoolSlider = Tab:AddSlider({
+    Name = "Slider",
+    Min = 0,
+    Max = 20,
+    Default = 5,
+    Color = Color3.fromRGB(255, 255, 255),
+    Increment = 2,
+    Flag = "Speed Slider",
+    ValueName = "Speed",
+    Callback = function(Value)
+        humanoid.WalkSpeed = Value
+    end,
+})
 
---Buttons
 
-Tab1:AddButton({"Print", function()
-print("Hello World!")
+Tab:AddParagraph("Alert","Some script and gui are currently not working right now i am on a fix")
+
+local Tab = Window:MakeTab({ 	Name = "Teleports", 	Icon = "rbxassetid://1632674502", 	PremiumOnly = false })
+
+local Section = Tab:AddSection({
+	Name = "Ro Bio Virus injection"
+})
+
+
+Tab:AddButton({ 	Name = "Center", 	Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(211.6832275390625, 3562.519287109375, 1623.7923583984375)
+local speed = 30 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+
+
+Tab:AddButton({ 	Name = "Virus Block", 	Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(163.5572509765625, 3562.519287109375, 1579.9520263671875)
+local speed = 30 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Weapons", 	Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(242.10726928710938, 3562.519287109375, 1578.9796142578125)
+local speed = 30 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Research Lab", 	Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(255.30068969726562, 3562.519287109375, 1626.4541015625)
+local speed = 30 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Locker Room", 	Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(306.3703918457031, 3562.519287109375, 1623.65771484375)
+local speed = 30 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Hidden Viruses 1", 	Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(95.10549926757812, 3562.419189453125, 1601.4613037109375)
+local speed = 30 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+
+end })
+
+Tab:AddButton({ 	Name = "Hidden Viruses 2", 	Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(154.2515869140625, 3582.169189453125, 1564.4342041015625)
+local speed = 30 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 1", 	Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(164.75814819335938, 3562.628662109375, 1521.6563720703125)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 2", 	Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(164.43077087402344, 3562.628662109375, 1480.641845703125)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 3", 	Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(164.00987243652344, 3562.628662109375, 1441.1241455078125)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 4", 	Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(166.44119262695312, 3562.628662109375, 1401.00390625)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 5", 	Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(167.13162231445312, 3562.628662109375, 1363.0992431640625)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 6", 	Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(161.49288940429688, 3562.628662109375, 1323.4228515625)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 7", 	Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(259.8353576660156, 3562.628662109375, 1515.7197265625)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 8", 	Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(258.7364196777344, 3562.628662109375, 1476.36669921875)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 9", 	Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(261.1194763183594, 3562.628662109375, 1438.4344482421875)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 10", 	Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(262.2147521972656, 3562.628662109375, 1399.98046875)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 11", 	Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(255.81324768066406, 3562.628662109375, 1359.0853271484375)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+Tab:AddButton({ 	Name = "Cell Block 12", 	Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(258.9114990234375, 3562.628662109375, 1319.8447265625)
+local speed = 40 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+end })
+
+local Section = Tab:AddSection({
+	Name = "Cook Burger"
+})
+
+local Tab = Window:MakeTab({ 	Name = "Scripts", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name  = "player Esp Script", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/main/TbaoHubEsp"))()
+
+
+end })
+
+Tab:AddParagraph("imformation","some what usfull but buggy")
+
+Tab:AddButton({ 	Name  = "player Hitbox expander Script", 	Callback = function()
+
+local InfiniteJumpEnabled = false
+game:GetService("UserInputService").JumpRequest:connect(function()
+    if InfiniteJumpEnabled then
+        game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+    end
+end)
+
+local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+    vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+    wait(1)
+    vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+ 
+game.StarterGui:SetCore("SendNotification", {
+    Title = "made by JN HH Gaming";
+ 
+   
+})
+wait(1)
+game.StarterGui:SetCore("SendNotification", {
+    Title = "have fun killing murderer";
+    Text = "Enjoy"; -- what the text says (ofc)
+    Duration = 60;
+})
+_G.HeadSize = 20
+_G.Disabled = true
+
+game:GetService('RunService').RenderStepped:connect(function()
+if _G.Disabled then
+for i,v in next, game:GetService('Players'):GetPlayers() do
+if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+pcall(function()
+v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize)
+v.Character.HumanoidRootPart.Transparency = 0.7
+v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really black")
+v.Character.HumanoidRootPart.Material = "Neon"
+v.Character.HumanoidRootPart.CanCollide = false
+end)
+end
+end
+end
+end)
+
+
+end })
+
+local Tab = Window:MakeTab({ 	Name = "Testing", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "vector ", 	Callback = function()
+-- Made by TheXploiter
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local title = Instance.new("TextLabel")
+local copy = Instance.new("TextButton")
+local pos = Instance.new("TextBox")
+local find = Instance.new("TextButton")
+
+--Properties:
+
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.639646292, 0, 0.399008662, 0)
+Frame.Size = UDim2.new(0, 387, 0, 206)
+Frame.Active = true
+
+title.Name = "title"
+title.Parent = Frame
+title.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+title.BorderSizePixel = 0
+title.Size = UDim2.new(0, 387, 0, 50)
+title.Font = Enum.Font.GothamBold
+title.Text = "Position Finder"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextSize = 30.000
+title.TextWrapped = true
+
+copy.Name = "copy"
+copy.Parent = Frame
+copy.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+copy.BorderSizePixel = 0
+copy.Position = UDim2.new(0.527131796, 0, 0.635922313, 0)
+copy.Size = UDim2.new(0, 148, 0, 50)
+copy.Font = Enum.Font.GothamSemibold
+copy.Text = "Copy"
+copy.TextColor3 = Color3.fromRGB(255, 255, 255)
+copy.TextSize = 20.000
+
+pos.Name = "pos"
+pos.Parent = Frame
+pos.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+pos.BorderSizePixel = 0
+pos.Position = UDim2.new(0.0904392749, 0, 0.305825233, 0)
+pos.Size = UDim2.new(0, 317, 0, 50)
+pos.Font = Enum.Font.GothamSemibold
+pos.Text = ""
+pos.TextColor3 = Color3.fromRGB(255, 255, 255)
+pos.TextSize = 14.000
+pos.TextWrapped = true
+
+find.Name = "find"
+find.Parent = Frame
+find.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+find.BorderSizePixel = 0
+find.Position = UDim2.new(0.0904392898, 0, 0.635922313, 0)
+find.Size = UDim2.new(0, 148, 0, 50)
+find.Font = Enum.Font.GothamSemibold
+find.Text = "Find"
+find.TextColor3 = Color3.fromRGB(255, 255, 255)
+find.TextSize = 20.000
+
+-- Scripts:
+
+local function UMTQ_fake_script() -- copy.LocalScript 
+	local script = Instance.new('LocalScript', copy)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		setclipboard(script.Parent.Parent.pos.Text)
+	end)
+end
+coroutine.wrap(UMTQ_fake_script)()
+local function KJAYG_fake_script() -- Frame.Dragify 
+	local script = Instance.new('LocalScript', Frame)
+
+	local UIS = game:GetService("UserInputService")
+	function dragify(Frame)
+	    dragToggle = nil
+	    local dragSpeed = 0
+	    dragInput = nil
+	    dragStart = nil
+	    local dragPos = nil
+	    function updateInput(input)
+	        local Delta = input.Position - dragStart
+	        local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+	        game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.25), {Position = Position}):Play()
+	    end
+	    Frame.InputBegan:Connect(function(input)
+	        if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+	            dragToggle = true
+	            dragStart = input.Position
+	            startPos = Frame.Position
+	            input.Changed:Connect(function()
+	                if input.UserInputState == Enum.UserInputState.End then
+	                    dragToggle = false
+	                end
+	            end)
+	        end
+	    end)
+	    Frame.InputChanged:Connect(function(input)
+	        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+	            dragInput = input
+	        end
+	    end)
+	    game:GetService("UserInputService").InputChanged:Connect(function(input)
+	        if input == dragInput and dragToggle then
+	            updateInput(input)
+	        end
+	    end)
+	end
+	
+	dragify(script.Parent)
+end
+coroutine.wrap(KJAYG_fake_script)()
+local function EKBNYI_fake_script() -- find.LocalScript 
+	local script = Instance.new('LocalScript', find)
+
+	script.Parent.MouseButton1Down:Connect(function()
+		script.Parent.Parent.pos.Text = tostring(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+	end)
+end
+coroutine.wrap(EKBNYI_fake_script)()
+end })
+
+Tab:AddButton({ 	Name = "ultimate town sandbox", 	Callback = function()
+loadstring(game:HttpGet("https://gitverse.ru/api/repos/stonifam/scripts/raw/branch/master/UltimateTownSandbox.lua"))()
+end })
+
+Tab:AddParagraph("imformation","????")
+
+Tab:AddButton({ 	Name = "ice hub", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMael7/NewIceHub/main/Brookhaven"))()	end })
+
+Tab:AddParagraph("imformation","this is ment for role playing games")
+
+Tab:AddButton({ 	Name = "V hub", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/On-Discord/Created/VexHub"))()
+
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/On-Discord/Created/Nerd-Settings"))()	end })
+Tab:AddParagraph("imformation","open platform gui with mulitple scripts and gui")
+
+Tab:AddButton({ 	Name = "Moon hub", 	Callback = function()  loadstring(game:HttpGet('https://raw.githubusercontent.com/IlikeyocutgHAH12/MoonUI-v10-/main/MoonUI%20v10'))()	end })
+
+Tab:AddParagraph("imformation","fe and more")
+
+local Tab = Window:MakeTab({ 	Name = "Car Crushers 2", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name  = "Car Crushers 2 script", 	Callback = function()
+
+loadstring(game:HttpGet('https://whimper.xyz/kitty'))()
+
+end })
+Tab:AddParagraph("imformation","is a car crusher script")
+
+local Tab = Window:MakeTab({ 	Name = "guis", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "fling gui", 	Callback = function() 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/0Ben1/fe./main/Fling%20GUI"))()
+end })
+
+Tab:AddButton({ 	Name = "invisible gui", 	Callback = function() loadstring(game:HttpGet('https://pastebin.com/raw/AYtzGEPb'))()
+
+end })
+
+Tab:AddParagraph("imformation","make you invisible to other people but in some game it will have diffrent effects")
+
+
+Tab:AddButton({ 	Name = "Fly gui", 	Callback = function() loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\40\39\104\116\116\112\115\58\47\47\103\105\115\116\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\109\101\111\122\111\110\101\89\84\47\98\102\48\51\55\100\102\102\57\102\48\97\55\48\48\49\55\51\48\52\100\100\100\54\55\102\100\99\100\51\55\48\47\114\97\119\47\101\49\52\101\55\52\102\52\50\53\98\48\54\48\100\102\53\50\51\51\52\51\99\102\51\48\98\55\56\55\48\55\52\101\98\51\99\53\100\50\47\97\114\99\101\117\115\37\50\53\50\48\120\37\50\53\50\48\102\108\121\37\50\53\50\48\50\37\50\53\50\48\111\98\102\108\117\99\97\116\111\114\39\41\44\116\114\117\101\41\41\40\41\10\10")()
+
 end})
 
-local Toggle1 = Tab1:AddToggle({
-  Name = "Speed",
-  Description = "Idk",
-  Default = false
+Tab:AddParagraph("imformation","This Gui will give You the power to fly")
+
+
+Tab:AddButton({ 	Name = "RTX gui", 	Callback = function() loadstring(game:HttpGet('https://pastebin.com/raw/Bkf0BJb3'))()
+
+end})
+Tab:AddParagraph("imformation","Has shader will change the look of the game")
+
+Tab:AddButton({ 	Name = "keyboard script", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+
+end})
+
+Tab:AddParagraph("imformation","Helps with gui that are ment for pc so that you can use them on mobile")
+
+Tab:AddButton({ 	Name = "chat troll", 	Callback = function() loadstring(game:HttpGet('https://pastebin.com/raw/MBpnp3yS'))()
+
+end })
+
+Tab:AddParagraph("imformation","work but on some people")
+
+Tab:AddButton({ 	Name = "chat breaker", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/BidoSkinsYT/BidoSkinsYT/main/Fe%20lag%20chat%20Gui"))()
+
+end})
+Tab:AddParagraph("imformation","does not work")
+
+Tab:AddButton({ 	Name = "server sound", 	Callback = function() loadstring(game:HttpGet(('https://pastebin.com/raw/ssbUfEbh'),true))()
+
+end})
+Tab:AddParagraph("imformation","only works in some games")
+
+local Tab = Window:MakeTab({ 	Name = "Adopt me", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "AdoptMe luner event auto farm", 	Callback = function() loadstring(game:HttpGet('https://raw.githubusercontent.com/KodaLINEN/LFAM/main/auto'))()
+
+end})
+Tab:AddParagraph("imformation","just an adopt me hub")
+
+local Tab = Window:MakeTab({ 	Name = "Bed Wars", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+
+Tab:AddButton({ 	Name = "bed wars Vape V4", 	Callback = function()
+
+loadstring(game:HttpGet("https://scriptblox.com/raw/Vape-V4-For-Roblox_316"))()
+
+end})
+
+Tab:AddParagraph("imformation","is one of the best gui for bedwars")
+
+Tab:AddButton({ 	Name = "bed wars God sploit", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AlSploit/GodSploit/main/LoadString"))()
+
+end})
+
+Tab:AddParagraph("imformation","i dont recommend does not work properly")
+
+Tab:AddButton({ 	Name = "bed war", 	Callback = function() loadstring(game:HttpGet("https://pastebin.com/raw/UmimGRRG",true))()
+
+end})
+
+Tab:AddParagraph("imformation","???")
+
+Tab:AddButton({ 	Name = "bed wars infinity", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/bojoexploitz/yooo/main/itsobfuscated/InfinityHubTooOP", true))()
+end})
+
+Tab:AddParagraph("imformation","yet i do not want to use this")
+
+Tab:AddButton({ 	Name = "bed wars jhh", 	Callback = function()loadstring(game:HttpGet("https://raw.githubusercontent.com/JNHHGaming/JN-HH-Gaming-Pro/main/JN%20HH%20Gaming%20Pro",true))()
+end})
+
+Tab:AddParagraph("imformation","and old but work bed war gui")
+
+Tab:AddButton({ 	Name = "bed wars flame", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/FlamingDrey/Flame-X-v2/main/Flame%20X%20Bedwars%20V2"))()
+
+end})
+
+Tab:AddParagraph("imformation","old but steal works")
+
+local Tab = Window:MakeTab({ 	Name = "Pet Simulator X", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Pet Simulator X", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Rafacasari/roblox-scripts/main/psx.lua"))()
+
+ end })
+
+Tab:AddParagraph("imformation","???")
+
+Tab:AddButton({ 	Name = "Pet Simulator X test", 	Callback = function() loadstring(game:HttpGet("https://pastebin.com/raw/BdvUGb2q"))()
+
+ end })
+
+Tab:AddParagraph("imformation","???")
+
+Tab:AddButton({ 	Name = "Pet Simulator X tag", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/IlllIlIIIlllIlIlllIIlIlllIlIIlllI/PartnerPSX/main/FakePartnerTag", true))()
+
+end})
+
+Tab:AddParagraph("imformation","just another attment at a trade scam")
+
+Tab:AddButton({ 	Name = "psx tradescam", 	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/EasyPSX/pet-simulator-x-scam-trade/main/scam%20psx.txt"))()
+
+end})
+
+Tab:AddParagraph("imformation","does not work proprely")
+
+local Tab = Window:MakeTab({ 	Name = "U Attack on Titens", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "U Attack on Titens 1", 	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/zhanzheng666/Roblox/main/Untitled%20Attack%20On%20Titan.lua"))()
+
+end })
+
+Tab:AddParagraph("imformation","Is an Untitled Attack on titen script")
+
+local Tab = Window:MakeTab({ 	Name = "Blox fruits", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Blox fruit Spectrum hub", 	Callback = function() 	
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xZPUHigh/Project-Spectrum/main/SpectrumX.lua"))()
+	end })
+
+Tab:AddButton({ 	Name = "Blox fruit Neva hub", 	Callback = function() 	loadstring(game:HttpGet('https://raw.githubusercontent.com/VEZ2/NEVAHUB/main/2'))()	end })
+
+Tab:AddParagraph("imformation","blox fruit script that is old")
+
+Tab:AddButton({ 	Name = "Blox fruit Ghost hub", 	Callback = function() 	loadstring(game:HttpGet('https://raw.githubusercontent.com/GGhostVN/GhostLord/main/Main'))()	end })
+
+Tab:AddParagraph("imformation","blox fruit script that is old")
+
+Tab:AddButton({ 	Name = "Blox-fruits-HOHOHUB", 	Callback = function()  loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
+ end })
+
+Tab:AddParagraph("imformation","blox fruit script that is updated")
+
+Tab:AddButton({ 	Name  = "Blox fruits black trap", 	Callback = function()  loadstring(game:HttpGet("https://pastebin.com/raw/jmRUdL17"))()
+
+end })
+
+Tab:AddParagraph("imformation","blox fruit script that is old ")
+
+Tab:AddButton({ 	Name  = "Blox fruits speed hub", 	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()
+
+ end })
+
+Tab:AddParagraph("imformation","blox fruit script is and updated script")
+
+Tab:AddParagraph("imformation","blox fruit script")
+
+Tab:AddButton({ 	Name  = "Blox fruits grim sim", 	Callback = function()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/premium/main/PadoHub'))()
+
+end })
+
+Tab:AddParagraph("imformation","blox fruit script that has been recently updated")
+
+Tab:AddButton({ 	Name  = "Blox fruits makori", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Domadicoof/Domadicoof/main/NewHubX.txt"))()
+
+end })
+
+Tab:AddParagraph("imformation","blox fruit script that is old")
+
+Tab:AddButton({ 	Name  = "Blox fruits Black hub", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/1f0yt/community/main/BLCK"))()
+end })
+
+Tab:AddParagraph("imformation","blox fruit script that is old")
+
+local Section = Tab:AddSection({
+  Name = "Scripts"
 })
 
-Tab1:AddSlider({
-  Name = "Speed",
-  Min = 1,
-  Max = 100,
-  Increase = 1,
-  Default = 16,
-  Callback = function(Value)
-  game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
-  end
-})
+Tab:AddButton({ 	Name  = "Blox fruits Esp Script", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/main/TbaoHubEsp"))()
+
+
+end })
+
+Tab:AddParagraph("imformation","blox fruit script that is old")
+
+local Tab = Window:MakeTab({ 	Name = "lumber tycoon 2", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "lumbertycoon", 	Callback = function() game:HttpGet("https://getexploits.com/cexecution/694139985821192192")
+
+loadstring(game:HttpGet"https://raw.githubusercontent.com/darkxwin/darkxsourcethinkyoutousedarkx/main/darkx")()
+
+end })
+
+Tab:AddParagraph("imformation","is a lumber tycoon 2 script")
+
+local Tab = Window:MakeTab({ 	Name = "mm2", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "mm2 small", 	Callback = function() loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Drifter0507/GUIS/main/MURDER%20MYSTERY%202", true))();
+
+end })
+
+Tab:AddParagraph("imformation","is an mm2 script")
+
+Tab:AddButton({ 	Name = "mm2 shub hub", 	Callback = function() local a,b,c,d=loadstring,request or http_request or (http and http.request) or (syn and syn.request),assert,"https://itsjidy.github.io/SymphonyHub/Loader.html"c(a and b, "Your Executor does not support.")a(b({Url=d,Method="GET"}).Body)()
+
+end })
+
+Tab:AddParagraph("imformation","is a mm2 script")
+
+local Tab = Window:MakeTab({ 	Name = "prison life", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Prison ware v3", 	Callback = function() 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Denverrz/scripts/master/PRISONWARE_v1.3.txt"))();	end })
+
+Tab:AddParagraph("imformation","is an prison life script")
+
+local Tab = Window:MakeTab({ 	Name = "break in", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "break in", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Bebo-Mods/XHub/main/HubLoader.lua", true))()
+
+end })
+
+Tab:AddParagraph("imformation","is a break in script")
+
+Tab:AddButton({ 	Name = "break in 2", 	Callback = function()
+game:HttpGet("https://getexploits.com/cexecution/669295117747900416")
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/memejames/Hide/main/Break%20in%202"))()
+end })
+
+Tab:AddParagraph("imformation","is a break in script")
+
+local Tab = Window:MakeTab({ 	Name = "doors", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Doors", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Darkrai-X/main/Games/Doors"))()
+
+end })
+
+Tab:AddParagraph("imformation","is a doors script")
+
+local Tab = Window:MakeTab({ 	Name = "age of hero's", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name ="age of hero ", 	Callback = function() loadstring(game:HttpGet(("https://raw.githubusercontent.com/icuck/AgeofHeroesAutofarm/master/main.lua"), true))()
+
+end})
+
+Tab:AddParagraph("imformation","is a age of hero script")
+
+local Tab = Window:MakeTab({ 	Name = "cook burger", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "cook buger 1", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/eeeerrrrf3/cook-burger/main/coke%20borgers.lua"))()
+
+end })
+
+Tab:AddParagraph("imformation","is a cook burger script")
+
+Tab:AddButton({ 	Name = "cook buger 2", 	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NOOBARMYSCRIPTER/NOOBARMYSCRIPTER/main/cook%20burgers", true))()
+end })
+
+Tab:AddParagraph("imformation","is a cook burger script")
+
+local Tab = Window:MakeTab({ 	Name = "pop it trading", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "popit gui", 	Callback = function()
+
+loadstring(game:HttpGet("https://pastebin.com/raw/0h2eAbfi"))()
+
+end})
+
+Tab:AddParagraph("imformation","")
+
+Tab:AddParagraph("info","it just a trading scam but you have to reset after using also it will let you see value's")
+
+local Tab = Window:MakeTab({ 	Name = "brookhaven", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Brookhaven", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMael7/NewIceHub/main/Brookhaven"))()	end })
+
+Tab:AddParagraph("imformation","is a brookhaven script")
+
+local Tab = Window:MakeTab({ 	Name = "legends of speed", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Legends Of Speed", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/fareljr1/Hub/main/Loader"))()	end })
+
+Tab:AddParagraph("imformation","is a legend of speed gui")
+
+Tab:AddParagraph("LegendsOfSpeedkey","key:SUBSCRIBERELZBLOX")
+
+local Tab = Window:MakeTab({ 	Name = "area 51", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Area 51", 	Callback = function() --Subcribe To Kyojean
+
+--Credits To Owner
+
+loadstring(game:HttpGet('https://pastebin.com/raw/TtdvYAKU'))()
+
+end})
+
+Tab:AddParagraph("imformation","is a area 51 script")
+
+Tab:AddButton({ 	Name = "Darkrai X", 	Callback = function()
+
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Saktk-In-Area51/main/Area51", true))()
+
+end})
+
+Tab:AddParagraph("imformation","is a area 51 script")
+
+local Tab = Window:MakeTab({ 	Name = "shark bite 2", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "sharkbite 2 auto farm", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Sw1ndlerScripts/RobloxScripts/main/Misc%20Scripts/sharkbite2.lua",true))()
+
+end})
+
+Tab:AddParagraph("imformation","is a shark bit 2 script")
+
+local Tab = Window:MakeTab({ 	Name = "find the marker", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "find the marker gui", 	Callback = function()
+
+loadstring(game:HttpGet('https://pastebin.com/raw/7gu2ztpP'))()
+
+end})
+Tab:AddParagraph("imformation","is a find the marker gui")
+
+local Tab = Window:MakeTab({ 	Name = "Build a boat", 	Icon = "rbxassetid://4431164390", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Build a boat", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/SandaFrosty/Dino-Script/main/Build-Boat-For-Treasure"))()
+
+end})
+
+Tab:AddParagraph("imformation","is a build a boat script")
+
+
+local Tab = Window:MakeTab({ Name = "Push Dummies", Icon = "rbxassetid://4431164390", PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Push Dummies 1", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ADSKerOffical/Push-Dummies-In-The-Sparta-Hole/main/FireInTheHole"))()
+
+end})
+
+Tab:AddParagraph("imformation","is a Push Dummies Down The Sparta Hole script")
+
+local Tab = Window:MakeTab({ Name = "Hide and seek", Icon = "rbxassetid://4431164390", PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Hide and seek 1", 	Callback = function()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Hide%20And%20Seek%20Extreme'))()
+
+end})
+
+Tab:AddParagraph("imformation","is a Hide and Seek Extreme script")
+
+local Tab = Window:MakeTab({ Name = "Muscle legends", Icon = "rbxassetid://4431164390", PremiumOnly = false })
+
+
+Tab:AddButton({ 	Name = "Muscle legends", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/SandaFrosty/Dino-Script/main/Build-Boat-For-Treasure"))()
+
+end})
+
+Tab:AddParagraph("imformation","is a muscle legends script")
+
+local Tab = Window:MakeTab({ Name = "Envade", Icon = "rbxassetid://4431164390", PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Envade", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xdevslasher/xyz.evade/main/xyz.evade.lua",true))()
+
+end})
+
+Tab:AddParagraph("imformation","is an evade script")
+
+local Tab = Window:MakeTab({ Name = "Blade Ball", Icon = "rbxassetid://4431164390", PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Neo. c hub", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Neoncat765/Neon.C-Hub-V5/main/UpdatedVersion"))();
+
+end})
+
+Tab:AddParagraph("imformation","is an blade ball script")
+
+local Tab = Window:MakeTab({ 	Name = "Piggy", 	Icon = "rbxassetid://1632674502", 	PremiumOnly = false })
+
+
+Tab:AddButton({ 	Name = "Piggy Peppa", 	Callback = function() loadstring(game:HttpGet("https://scriptblox.com/raw/Piggy-Peppa-script-8586"))()
+
+end })
+
+Tab:AddParagraph("imformation","is a piggy script")
+
+local Tab = Window:MakeTab({ 	Name = "Barrys prison run", 	Icon = "rbxassetid://1632674502", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Barrys prison 1", 	Callback = function()
+      loadstring(game:HttpGet(('https://pastebin.com/raw/8eqS0bAQ')))()
+
+end })
+
+Tab:AddParagraph("imformation","is a Barrys prison run script")
+
+local Tab = Window:MakeTab({ 	Name = "Natural Disaster", 	Icon = "rbxassetid://1632674502", 	PremiumOnly = false })
+
+Tab:AddButton({ 	Name = "Natural Disaster 1", 	Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/JustAP1ayer/PlayerHubOther/main/PlayerHubLoader.lua"))()
+
+end })
+
+Tab:AddParagraph("imformation","is a Natural Disaster script")
+local Tab = Window:MakeTab({ 	Name = "break in 2", 	Icon = "rbxassetid://1632674502", 	PremiumOnly = false })
+Tab:AddButton({ 	Name = "breaking bliz", 	Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/JustAP1ayer/PlayerHubOther/main/PlayerHubLoader.lua"))()
+
+end })
