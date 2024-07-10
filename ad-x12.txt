@@ -23,7 +23,7 @@ local CoolSlider = Tab:AddSlider({
     Flag = "Speed Slider",
     ValueName = "Speed",
     Callback = function(Value)
-        humanoid.WalkSpeed = Value
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
     end,
 })
 
