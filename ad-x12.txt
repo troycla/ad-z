@@ -14,7 +14,7 @@ local player = game.Players.LocalPlayer
 local humanoid = player.Character:WaitForChild("Humanoid")
 
 local CoolSlider = Tab:AddSlider({
-    Name = "Slider",
+    Name = "Player Speed",
     Min = 0,
     Max = 20,
     Default = 5,
@@ -30,7 +30,42 @@ local CoolSlider = Tab:AddSlider({
 
 Tab:AddParagraph("Alert","Some script and gui are currently not working right now i am on a fix")
 
-local Tab = Window:MakeTab({ 	Name = "Teleports", 	Icon = "rbxassetid://1632674502", 	PremiumOnly = false })
+local Tab = Window:MakeTab({"Teleports"})
+Tab:AddDropdown({
+	Name = "Dropdown",
+	Default = "1",
+	Options = {"Center", "Virus Block"},
+	Callback = function(Value)
+		print(Value)
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Tween To place",
+	Default = false,
+	Callback = function(Value)
+	Center = local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
+
+local targetPosition = Vector3.new(211.6832275390625, 3562.519287109375, 1623.7923583984375)
+local speed = 30 -- Adjust the flying speed
+
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
+
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
+
+flyToTarget()
+	end    
+})
 
 local Section = Tab:AddSection({
 	Name = "Ro Bio Virus injection"
