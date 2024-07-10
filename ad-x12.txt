@@ -6,7 +6,7 @@ local Window = redzlib:MakeWindow({
   SaveFolder = "Admin-x 1 Config"
 })
 
-local Tab = Window:MakeTab({ 	Name = "Main", 	Icon = "rbxassetid://1632674502", 	PremiumOnly = false })
+local Tab = Window:MakeTab({"Main"})
 local Section = Tab:AddSection({
 	Name = "Local Player"
 })
