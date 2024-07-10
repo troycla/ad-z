@@ -13,7 +13,7 @@ Tab:AddTextbox({
 	Name = "Speed",
 	Default = "10",
 	TextDisappear = false,
-	Callback = function(text)
+	Callback = function(txt)
 		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = txt
 	end	  
 })
