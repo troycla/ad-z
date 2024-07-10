@@ -33,7 +33,7 @@ Tab:AddParagraph("Alert","Some script and gui are currently not working right no
 local Tab = Window:MakeTab({"Teleports"})
 Tab:AddDropdown({
 	Name = "Dropdown",
-	Default = "1",
+	Default = "Center",
 	Options = {"Center", "Virus Block"},
 	Callback = function(Value)
 		print(Value)
