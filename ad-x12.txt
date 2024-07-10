@@ -70,6 +70,52 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/
 
 end })
 
+Tab:AddToggle({
+    Name = "fling",
+    Default = false,
+    Callback = function(Value)
+function Fling()
+    local toggleState = Tab:GetToggleState("This is a toggle!") -- Get the current state of the toggle
+    if toggleState then
+   local player = game.Players.LocalPlayer
+local humanoidRootPart = player.Character:WaitForChild("HumanoidRootPart")
+local active = true
+
+local function onTouched(other)
+    if other:IsA("Model") and other.Parent and other.Parent:FindFirstChild("Humanoid") then
+        -- Player touched another player
+        local target = other.Parent.HumanoidRootPart
+        local direction = (target.Position - humanoidRootPart.Position).unit
+        local force = 1000 -- Adjust this value as needed
+
+        humanoidRootPart.Velocity = direction * force
+    end
+end
+
+humanoidRootPart.Touched:Connect(onTouched)
+    else
+    local player = game.Players.LocalPlayer
+local humanoidRootPart = player.Character:WaitForChild("HumanoidRootPart")
+local active = false 
+
+local function onTouched(other)
+    if other:IsA("Model") and other.Parent and other.Parent:FindFirstChild("Humanoid") then
+        -- Player touched another player
+        local target = other.Parent.HumanoidRootPart
+        local direction = (target.Position - humanoidRootPart.Position).unit
+        local force = 1000 -- Adjust this value as needed
+
+        humanoidRootPart.Velocity = direction * force
+    end
+end
+
+humanoidRootPart.Touched:Connect(onTouched)
+    end
+end
+
+    end
+})
+
 
 Tab:AddParagraph("Alert","Some script and gui are currently not working right now i am on a fix")
 
