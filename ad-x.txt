@@ -6,19 +6,17 @@ local Window = OrionLib:MakeWindow({IntroText = "Admin-x", IntroIcon ="rbxasseti
 OrionLib:MakeNotification({ 	Name = "Admin-x", 	Content = "Welcome to Admin-x", 	Image = "rbxassetid://6961018899", 	Time = 5 })
 
 local Tab = Window:MakeTab({ 	Name = "Main", 	Icon = "rbxassetid://1632674502", 	PremiumOnly = false })
-
- Tab:AddSlider({
+local Section = Tab:AddSection({
+	Name = "Local Player"
+})
+Tab:AddTextbox({
 	Name = "Speed",
-	Min = 1,
-	Max = 150,
-	Default = 5,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 1,
-	ValueName = "Speed",
-	Callback = function(Speed)
-	  game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Speed
-	end})
-
+	Default = "10",
+	TextDisappear = false,
+	Callback = function(text)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = txt
+	end	  
+})
 Tab:AddParagraph("Alert","Some script and gui are currently not working right now i am on a fix")
 
 local Tab = Window:MakeTab({ 	Name = "Teleports", 	Icon = "rbxassetid://1632674502", 	PremiumOnly = false })
