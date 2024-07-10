@@ -7,7 +7,7 @@ OrionLib:MakeNotification({ 	Name = "Admin-x", 	Content = "Welcome to Admin-x", 
 
 local Tab = Window:MakeTab({ 	Name = "Main", 	Icon = "rbxassetid://1632674502", 	PremiumOnly = false })
 
-Tab:AddSlider({
+local CoolSlider = Tab:AddSlider({
 	Name = "Speed",
 	Min = 0,
 	Max = 20,
