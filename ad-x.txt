@@ -9,6 +9,9 @@ local Tab = Window:MakeTab({ 	Name = "Main", 	Icon = "rbxassetid://1632674502", 
 local Section = Tab:AddSection({
 	Name = "Local Player"
 })
+local player = game.Players.LocalPlayer
+local humanoid = player.Character:WaitForChild("Humanoid")
+
 local CoolSlider = Tab:AddSlider({
     Name = "Slider",
     Min = 0,
@@ -19,9 +22,10 @@ local CoolSlider = Tab:AddSlider({
     Flag = "Speed Slider",
     ValueName = "Speed",
     Callback = function(Value)
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+        humanoid.WalkSpeed = Value
     end,
 })
+
 
 Tab:AddParagraph("Alert","Some script and gui are currently not working right now i am on a fix")
 
