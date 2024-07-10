@@ -77,12 +77,12 @@ Tab:AddToggle({
 function Fling()
     local toggleState = Tab:GetToggleState("This is a toggle!") -- Get the current state of the toggle
     if toggleState then
-   local player = game.Players.LocalPlayer
+      local player = game.Players.LocalPlayer
 local humanoidRootPart = player.Character:WaitForChild("HumanoidRootPart")
-local active = true
+local active = true -- Set to true to activate the fling
 
 local function onTouched(other)
-    if other:IsA("Model") and other.Parent and other.Parent:FindFirstChild("Humanoid") then
+    if active and other:IsA("Model") and other.Parent and other.Parent:FindFirstChild("Humanoid") then
         -- Player touched another player
         local target = other.Parent.HumanoidRootPart
         local direction = (target.Position - humanoidRootPart.Position).unit
@@ -93,13 +93,15 @@ local function onTouched(other)
 end
 
 humanoidRootPart.Touched:Connect(onTouched)
+
+        print("Flinging with toggle ON")
     else
-    local player = game.Players.LocalPlayer
+        local player = game.Players.LocalPlayer
 local humanoidRootPart = player.Character:WaitForChild("HumanoidRootPart")
-local active = false 
+local active = false -- Set to true to activate the fling
 
 local function onTouched(other)
-    if other:IsA("Model") and other.Parent and other.Parent:FindFirstChild("Humanoid") then
+    if active and other:IsA("Model") and other.Parent and other.Parent:FindFirstChild("Humanoid") then
         -- Player touched another player
         local target = other.Parent.HumanoidRootPart
         local direction = (target.Position - humanoidRootPart.Position).unit
@@ -110,9 +112,10 @@ local function onTouched(other)
 end
 
 humanoidRootPart.Touched:Connect(onTouched)
+
+        print("Flinging with toggle OFF")
     end
 end
-
     end
 })
 
