@@ -7,7 +7,7 @@ local Window = redzlib:MakeWindow({
 })
 
 local Tab = Window:MakeTab({"Main"})
-local Section = Tab:AddSection({
+local Section = Tab:AddSection({ 
 	Name = "Local Player"
 })
 local player = game.Players.LocalPlayer
