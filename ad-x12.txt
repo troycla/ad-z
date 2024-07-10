@@ -88,7 +88,9 @@ Tab:AddToggle({
             if selectedOption == "off" then
      local flingPart = "LowerTorso" -- The part that will be used to fling local antiragdoll = false -- Set to true to enable fling, false to disable local player = game.Players.LocalPlayer local character = player.Character local humanoid = character:WaitForChild("Humanoid") local function onTouch(otherPart) local otherCharacter = otherPart.Parent if otherCharacter and otherCharacter:IsA("Model") and otherCharacter ~= character then if antiragdoll then humanoid:Move(Vector3.new(0, 1000, 0)) -- Adjust the fling force as needed end end end character[flingPart].Touched:Connect(onTouch) if antiragdoll then for _, part in pairs(character:GetDescendants()) do if part:IsA("HingeConstraint") or part:IsA("BallSocketConstraint") then part:Destroy() end end end
     end
-end            elseif selectedOptionone == "on" then
+end            
+
+elseif selectedOptionone == "on" then
          
 
 local flingPart = "LowerTorso" -- The part that will be used to fling local antiragdoll = true -- Set to true to enable fling, false to disable local player = game.Players.LocalPlayer local character = player.Character local humanoid = character:WaitForChild("Humanoid") local function onTouch(otherPart) local otherCharacter = otherPart.Parent if otherCharacter and otherCharacter:IsA("Model") and otherCharacter ~= character then if antiragdoll then humanoid:Move(Vector3.new(0, 1000, 0)) -- Adjust the fling force as needed end end end character[flingPart].Touched:Connect(onTouch) if antiragdoll then for _, part in pairs(character:GetDescendants()) do if part:IsA("HingeConstraint") or part:IsA("BallSocketConstraint") then part:Destroy() end end end
