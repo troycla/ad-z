@@ -14,11 +14,10 @@ local CoolSlider = Tab:AddSlider({
 	Default = 5,
 	Color = Color3.fromRGB(255,255,255),
 	Increment = 1,
-	ValueName = "speed",
-	Callback = function(speed)
-	  game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speed
-	end
-})
+	ValueName = "Speed",
+	Callback = function(Speed)
+	  game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Speed
+	end})
 
 Tab:AddParagraph("Alert","Some script and gui are currently not working right now i am on a fix")
 
