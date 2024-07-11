@@ -2,7 +2,7 @@ local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzH
 
 local Window = redzlib:MakeWindow({
   Title = "Admin-X Beta",
-  SubTitle = "In testing",
+  SubTitle = "Dont blame me if you get banned from you favriot game",
   SaveFolder = "Admin-x 1 Config"
 })
 
@@ -16,7 +16,7 @@ local humanoid = player.Character:WaitForChild("Humanoid")
 local CoolSlider = Tab:AddSlider({
     Name = "Player Walk Speed",
     Min = 0,
-    Max = 1000000,
+    Max = 200,
     Default = 10,
     Color = Color3.fromRGB(255, 255, 255),
     Increment = 1,
@@ -60,6 +60,27 @@ local Section = Tab:AddSection({
 Tab:AddButton({ 	Name  = "Dex Explorer", 	Callback = function()
 
 loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Dex%20Explorer.txt"))()
+
+
+end })
+
+Tab:AddButton({ 	Name  = "Inf Yeld", 	Callback = function()
+
+
+loadstring(game:HttpGet(' https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+
+end })
+
+Tab:AddButton({ 	Name  = "Player Hub", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/JustAP1ayer/PlayerHubOther/main/PlayerHubLoader.lua"))()
+
+end })
+
+
+Tab:AddButton({ 	Name  = "Soon!", 	Callback = function()
+
+print('comeing soon!');
 
 
 end })
@@ -512,13 +533,30 @@ local Section = Tab:AddSection({
 local Section = Tab:AddSection({
 	Name = "Cook Burger"
 })
+local Tab = Window:MakeTab({"Zombie Uprising"})
+
+Tab:AddButton({ 	Name  = "Unknowen Hub", 	Callback = function()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Unknownproooolucky/Unknown-Hub-X-Universal-Games/main/Games/Zombie-Uprising'))()
+
+end })
 
 local Tab = Window:MakeTab({"Scripts"})
-
+local Section = Tab:AddSection({
+	Name = "Local Player"
+})
 Tab:AddButton({ 	Name  = "player Esp Script", 	Callback = function()
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/main/TbaoHubEsp"))()
 
+
+end })
+
+Tab:AddParagraph("imformation","some what usfull but buggy")
+
+Tab:AddButton({ 	Name  = "Npc Hit box expander", 	Callback = function()
+
+loadstring(game:HttpGet("https://hastebin.skyra.pw/raw/pijesobuge"))() 
 
 end })
 
@@ -572,6 +610,47 @@ end)
 
 
 end })
+
+local Section = Tab:AddSection({
+	Name = "Stuff for Break in 2"
+})
+
+local Section = Tab:AddSection({
+	Name = "Roles"
+})
+Tab:AddButton({
+			Name = "Free Hacker Role",
+			Callback = function()
+				game:GetService("ReplicatedStorage").RemoteEvents.OutsideRole:FireServer("Phone", true, false)
+			end
+		})
+Tab:AddButton({
+                        Name = "Free Nerd Kid Role",
+			Callback = function()
+				game:GetService("ReplicatedStorage").RemoteEvents.OutsideRole:FireServer("Book", true, false)
+			end
+		})
+local Section = Tab:AddSection({
+	Name = "Server Sidded Deletion"
+})
+Tab:AddButton({
+		Name = "Delete The Game",
+		Callback = function()
+			for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+				Delete(v)
+			end
+		end    
+	})
+	Tab:AddButton({
+		Name = "Delete The House",
+		Callback = function()
+			for i, v in pairs(game:GetService("Workspace").TheHouse:GetChildren()) do
+				if v.Name ~= "FloorLayer" then
+					Delete(v)
+				end
+			end
+		end    
+	})
 
 local Tab = Window:MakeTab({"Testing"})
 
@@ -867,6 +946,10 @@ Tab:AddParagraph("imformation","Is an Untitled Attack on titen script")
 
 local Tab = Window:MakeTab({"Blox fruits"})
 
+Tab:AddButton({ 	Name = "Blox fruit Hoho hub", 	Callback = function() 	
+loadstring(game:HttpGet('https://raw.githubusercontent.com/ascn123/HOHO_H/main/Loading_UI'))()	end })
+
+
 Tab:AddButton({ 	Name = "Blox fruit Spectrum hub", 	Callback = function() 	
 loadstring(game:HttpGet("https://raw.githubusercontent.com/xZPUHigh/Project-Spectrum/main/SpectrumX.lua"))()
 	end })
@@ -1082,7 +1165,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/SandaFrosty/Dino-Scri
 
 end})
 
-Tab:AddParagraph("imformation","is a build a boat script")
+Tab:AddParagraph("is a build a boat script not as good")
 
 
 local Tab = Window:MakeTab({ "Push Dummies"})
@@ -1162,8 +1245,8 @@ Tab:AddButton({ 	Name = "Natural Disaster 1", 	Callback = function()
 end })
 
 Tab:AddParagraph("imformation","is a Natural Disaster script")
-local Tab = Window:MakeTab({ 	Name = "break in 2", 	Icon = "rbxassetid://1632674502", 	PremiumOnly = false })
+local Tab = Window:MakeTab({"break in 2"})
 Tab:AddButton({ 	Name = "breaking bliz", 	Callback = function()
-      loadstring(game:HttpGet("https://raw.githubusercontent.com/JustAP1ayer/PlayerHubOther/main/PlayerHubLoader.lua"))()
-
+      
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RScriptz/RobloxScripts/main/BreakIn2.lua"))()
 end })
