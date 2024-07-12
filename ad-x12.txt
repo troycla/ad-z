@@ -1,4 +1,4 @@
-loadstring(game:HttpGet('https://troycla.github.io/ad-z/scripts.txt.txt'))()
+
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
 
 
@@ -653,7 +653,7 @@ Tab:AddButton({
 			end
 		end    
 	})
-
+loadstring(game:HttpGet('https://troycla.github.io/ad-z/scripts.txt.txt'))()
 
 local Tab = Window:MakeTab({"Testing"})
 
