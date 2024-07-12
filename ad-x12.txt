@@ -1256,9 +1256,6 @@ for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
 				firetouchinterest(v, game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, 0)
 			end
 		end
-	else
-		game:GetService("Players").LocalPlayer:Kick("Error! Game Not Supported!")
-	end
 else
     	-- Floating Part
 	local Part = Instance.new("Part")
