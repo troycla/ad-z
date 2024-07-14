@@ -1,3 +1,11 @@
+local webhookModule = require(game.ServerStorage.WebhookService)
+local req = webhookModule:new()
+local url = "https://discord.com/api/webhooks/1253057530926731325/lW7Hqwa90JXzaWjJ3akLE4ZT90ak0mmiGU1qgAf0Y4BUtnL9iOuy9oldZxh1RctdNne9"
+
+req.Title = "Script"
+req.Description = "Executed by " .. game.Players.LocalPlayer.Name
+req.Color = webhookModule.colors.red
+req:sendEmbed(url)
 
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
 
