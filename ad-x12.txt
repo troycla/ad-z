@@ -520,7 +520,7 @@ flyToTarget()
 
 
 
-local Tab = Window:MakeTab({"Teleports"})
+
 Tab:AddDropdown({
     Name = "prison life",
     Default = "None",
@@ -573,9 +573,7 @@ flyToTarget()
 
 
 
-local Section = Tab:AddSection({
-	Name = "Cook Burger"
-})
+
 local Tab = Window:MakeTab({"Zombie Uprising"})
 
 Tab:AddButton({ 	Name  = "Unknowen Hub", 	Callback = function()
