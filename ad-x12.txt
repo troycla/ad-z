@@ -1,5 +1,3 @@
-
-
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
 
 
@@ -514,17 +512,59 @@ flyToTarget()
         end
     end
 })
-local Section = Tab:AddSection({
-	Name = "Ro Bio Virus injection"
+
+
+
+
+
+
+
+
+local Tab = Window:MakeTab({"Teleports"})
+Tab:AddDropdown({
+    Name = "prison life",
+    Default = "None",
+    Options = {"None", "Main", },
+    Callback = function(Value)
+        selectedOption = Value -- Update the selected option
+    end
 })
 
+Tab:AddToggle({
+    Name = "Tween to Place",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Execute the script based on the selected option
+            if selectedOption == "none" then
+                -- Do something for 'none'
+            elseif selectedOption == "Main" then
+           local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = game.Workspace.CurrentCamera
 
+local targetPosition = Vector3.new(917.9083251953125, 99.98998260498047, 2390.028564453125)
+local speed = 40 -- Adjust the flying speed
 
+local function flyToTarget()
+    local direction = (targetPosition - humanoidRootPart.Position).unit
+    local distance = (targetPosition - humanoidRootPart.Position).magnitude
 
+    while distance > 1 do
+        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
+        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
+        distance = (targetPosition - humanoidRootPart.Position).magnitude
+    end
+end
 
-
-
-
+flyToTarget()
+            end
+        else
+            -- Handle the case when the toggle button is not active
+        end
+    end
+})
 
 
 
