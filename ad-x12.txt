@@ -72,6 +72,14 @@ loadstring(game:HttpGet(' https://raw.githubusercontent.com/EdgeIY/infiniteyield
 
 end })
 
+Tab:AddButton({ 	Name  = "stream sniper", 	Callback = function()
+
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/FFJ1/Roblox-Exploits/main/scripts/Sniper.lua"))()
+
+
+end })
+
 Tab:AddButton({ 	Name  = "Player Hub", 	Callback = function()
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/JustAP1ayer/PlayerHubOther/main/PlayerHubLoader.lua"))()
