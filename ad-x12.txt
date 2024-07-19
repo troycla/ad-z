@@ -814,13 +814,13 @@ end})
 local Tab = Window:MakeTab({"other hubs"})
 
 
-Tab:AddButton({ name = "Game Hub", Callback = function()
+Tab:AddButton({ Name = "Game Hub", Callback = function()
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter/Game-Hub/main/loader"))()
 
 end})
 
-Tab:AddButton({ name = "soon!", Callback = function()
+Tab:AddButton({ Name = "soon!", Callback = function()
 
 print("script here")
 
