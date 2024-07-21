@@ -1,4 +1,4 @@
-local adminxlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/troycla/ad-z/main/adlib.lua"))()
+local adminxlib = loadstring(game:HttpGet("https://troycla.github.io/ad-z/adlib.lua"))()
 
 
 local Window = adminxlib:MakeWindow({
