@@ -231,6 +231,7 @@ Tab:AddToggle({
 		DevilFruitESP = value
         while DevilFruitESP do wait()
             UpdateBfEsp() 
+            end
         end})
 
 
