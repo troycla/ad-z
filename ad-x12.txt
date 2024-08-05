@@ -1,79 +1,3 @@
-player.Chatted:Connect(function(message)
-    print("Received message: " .. message) -- Debugging line
-    local args = string.split(message, " ")
-    
-    if args[1] == "/tp" and args[2] == "t" and args[3] then
-        local targetUsername = args[3]
-        local targetPlayer = game.Players:FindFirstChild(targetUsername)
-        if targetPlayer then
-            player.Character:SetPrimaryPartCFrame(targetPlayer.Character.PrimaryPart.CFrame)
-            print("Teleported to " .. targetUsername)
-        else
-            print("Player not found: " .. targetUsername)
-            -- Create a badge notification
-            local badge = Instance.new("TextLabel")
-            badge.Size = UDim2.new(0, 200, 0, 50)
-            badge.Position = UDim2.new(0.5, -100, 0.5, -25)
-            badge.Text = "Player not found: " .. targetUsername
-            badge.Parent = player.PlayerGui
-            wait(3)
-            badge:Destroy()
-        end
-    elseif args[1] == "/bring n mobs" then
-        -- Execute script for command1
-        print("bring nearest mobs")
-        -- Blox Fruits Script to Hit All Mobs and Bring Them to You
-
-_G.HitAllMobs = true
-_G.BringMobs = true
-
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-
-function bringMobs()
-    for _, mob in pairs(game.Workspace.Enemies:GetChildren()) do
-        if mob:FindFirstChild("HumanoidRootPart") then
-            mob.HumanoidRootPart.CFrame = humanoidRootPart.CFrame
-        end
-    end
-end
-
-function hitMobs()
-    while _G.HitAllMobs do
-        for _, mob in pairs(game.Workspace.Enemies:GetChildren()) do
-            if mob:FindFirstChild("HumanoidRootPart") then
-                local args = {
-                    [1] = mob.HumanoidRootPart.Position,
-                    [2] = mob
-                }
-                game:GetService("ReplicatedStorage").Remotes.Combat:FireServer(unpack(args))
-            end
-        end
-        wait(0.1)
-    end
-end
-
-if _G.BringMobs then
-    bringMobs()
-end
-
-if _G.HitAllMobs then
-    hitMobs()
-end
-    elseif args[1] == "/command2" then
-        -- Execute script for command2
-        print("Executing command2")
-        -- Add your script here
-    elseif args[1] == "/command3" then
-        -- Execute script for command3
-        print("Executing command3")
-        -- Add your script here
-    end
-end)
-
-
-
 
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
 
@@ -297,7 +221,9 @@ end })
 
 
 Tab:AddParagraph("Some script and gui are currently not working right now i am on a fix")
-
+local Section = Tab:AddSection({
+	Name = "Blox Fruits Esp"
+})
 local Tab = Window:MakeTab({"Teleports"})
 Tab:AddDropdown({
     Name = "Ro-Bio Virus injection",
