@@ -1,8 +1,7 @@
---command one
-
 player.Chatted:Connect(function(message)
     print("Received message: " .. message) -- Debugging line
     local args = string.split(message, " ")
+    
     if args[1] == "/tp" and args[2] == "t" and args[3] then
         local targetUsername = args[3]
         local targetPlayer = game.Players:FindFirstChild(targetUsername)
@@ -20,36 +19,27 @@ player.Chatted:Connect(function(message)
             wait(3)
             badge:Destroy()
         end
-    end
-end)
+    elseif args[1] == "/bring n mobs" then
+        -- Execute script for command1
+        print("bring nearest mobs")
+        -- Blox Fruits Script to Hit All Mobs and Bring Them to You
 
---command two
-
-_G.HitAllMobs = false
-_G.BringMobs = false
+_G.HitAllMobs = true
+_G.BringMobs = true
 
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 
-local function bringNearestMobs()
-    local mobs = {}
+function bringMobs()
     for _, mob in pairs(game.Workspace.Enemies:GetChildren()) do
         if mob:FindFirstChild("HumanoidRootPart") then
-            table.insert(mobs, mob)
+            mob.HumanoidRootPart.CFrame = humanoidRootPart.CFrame
         end
-    end
-
-    table.sort(mobs, function(a, b)
-        return (a.HumanoidRootPart.Position - humanoidRootPart.Position).Magnitude < (b.HumanoidRootPart.Position - humanoidRootPart.Position).Magnitude
-    end)
-
-    for _, mob in ipairs(mobs) do
-        mob.HumanoidRootPart.CFrame = humanoidRootPart.CFrame
     end
 end
 
-local function hitMobs()
+function hitMobs()
     while _G.HitAllMobs do
         for _, mob in pairs(game.Workspace.Enemies:GetChildren()) do
             if mob:FindFirstChild("HumanoidRootPart") then
@@ -64,18 +54,25 @@ local function hitMobs()
     end
 end
 
--- Listen for chat messages
-player.Chatted:Connect(function(message)
-    print("Received message: " .. message) -- Debugging line
-    local args = string.split(message, " ")
-    if args[1] == "/bring" and args[2] == "n" and args[3] == "mobs" then
-        print("Executing bringNearestMobs and hitMobs") -- Debugging line
-        _G.BringMobs = true
-        _G.HitAllMobs = true
-        bringNearestMobs()
-        hitMobs()
+if _G.BringMobs then
+    bringMobs()
+end
+
+if _G.HitAllMobs then
+    hitMobs()
+end
+    elseif args[1] == "/command2" then
+        -- Execute script for command2
+        print("Executing command2")
+        -- Add your script here
+    elseif args[1] == "/command3" then
+        -- Execute script for command3
+        print("Executing command3")
+        -- Add your script here
     end
 end)
+
+
 
 
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
