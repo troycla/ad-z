@@ -1218,7 +1218,7 @@ Tab:AddParagraph("info","it just a trading scam but you have to reset after usin
 
 local Tab = Window:MakeTab({"brookhaven"})
 
-Tab:AddButton({ 	Name = "Brookhaven", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMael7/NewIceHub/main/Brookhaven"))()	end })
+Tab:AddButton({ 	Name = "Brookhaven", 	Callback = function() loadstring(game:HttpGet(('https://raw.githubusercontent.com/sXPiterXs1111/Sanderxv3.30/main/sanderx3.30')))()	end })
 
 Tab:AddParagraph("imformation","is a brookhaven script")
 
