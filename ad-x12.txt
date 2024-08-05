@@ -1,3 +1,81 @@
+--command one
+
+player.Chatted:Connect(function(message)
+    print("Received message: " .. message) -- Debugging line
+    local args = string.split(message, " ")
+    if args[1] == "/tp" and args[2] == "t" and args[3] then
+        local targetUsername = args[3]
+        local targetPlayer = game.Players:FindFirstChild(targetUsername)
+        if targetPlayer then
+            player.Character:SetPrimaryPartCFrame(targetPlayer.Character.PrimaryPart.CFrame)
+            print("Teleported to " .. targetUsername)
+        else
+            print("Player not found: " .. targetUsername)
+            -- Create a badge notification
+            local badge = Instance.new("TextLabel")
+            badge.Size = UDim2.new(0, 200, 0, 50)
+            badge.Position = UDim2.new(0.5, -100, 0.5, -25)
+            badge.Text = "Player not found: " .. targetUsername
+            badge.Parent = player.PlayerGui
+            wait(3)
+            badge:Destroy()
+        end
+    end
+end)
+
+--command two
+
+_G.HitAllMobs = false
+_G.BringMobs = false
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local function bringNearestMobs()
+    local mobs = {}
+    for _, mob in pairs(game.Workspace.Enemies:GetChildren()) do
+        if mob:FindFirstChild("HumanoidRootPart") then
+            table.insert(mobs, mob)
+        end
+    end
+
+    table.sort(mobs, function(a, b)
+        return (a.HumanoidRootPart.Position - humanoidRootPart.Position).Magnitude < (b.HumanoidRootPart.Position - humanoidRootPart.Position).Magnitude
+    end)
+
+    for _, mob in ipairs(mobs) do
+        mob.HumanoidRootPart.CFrame = humanoidRootPart.CFrame
+    end
+end
+
+local function hitMobs()
+    while _G.HitAllMobs do
+        for _, mob in pairs(game.Workspace.Enemies:GetChildren()) do
+            if mob:FindFirstChild("HumanoidRootPart") then
+                local args = {
+                    [1] = mob.HumanoidRootPart.Position,
+                    [2] = mob
+                }
+                game:GetService("ReplicatedStorage").Remotes.Combat:FireServer(unpack(args))
+            end
+        end
+        wait(0.1)
+    end
+end
+
+-- Listen for chat messages
+player.Chatted:Connect(function(message)
+    print("Received message: " .. message) -- Debugging line
+    local args = string.split(message, " ")
+    if args[1] == "/bring" and args[2] == "n" and args[3] == "mobs" then
+        print("Executing bringNearestMobs and hitMobs") -- Debugging line
+        _G.BringMobs = true
+        _G.HitAllMobs = true
+        bringNearestMobs()
+        hitMobs()
+    end
+end)
 
 
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
