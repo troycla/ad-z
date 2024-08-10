@@ -13,8 +13,7 @@ local Tab = Window:MakeTab({"Main"})
 local Section = Tab:AddSection({
 	Name = "Local Player"
 })
-local player = game.Players.LocalPlayer
-local humanoid = player.Character:WaitForChild("Humanoid")
+
 
 local CoolSlider = Tab:AddSlider({
     Name = "Player Walk Speed",
