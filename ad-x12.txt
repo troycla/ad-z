@@ -59,32 +59,30 @@ local CoolSlider = Tab:AddSlider({
 
 
 
-Tab:AddToggle({
-    Name = "Infinite Jump",
-    Default = false,
-    Callback = function(value)
-        local jumpEnabled = value
-        if jumpEnabled then
-            print("Infinite Jump Enabled")
-        else
-            print("Infinite Jump Disabled")
-        end
 
-        
-        player.CharacterAdded:Connect(function(character)
-            local humanoid = character:WaitForChild("Humanoid")
-            userInputService.JumpRequest:Connect(function()
-                if jumpEnabled then
-                    humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
-                end
-            end)
-        end)
-    end    
-})
 
 local Section = Tab:AddSection({
 	Name = "Tools"
 })
+
+Tab:AddButton({ 	Name  = "Teleoport tool", 	Callback = function()
+
+  local plr = game:GetService("Players").LocalPlayer
+        local mouse = plr:GetMouse()
+        local tool = Instance.new("Tool")
+        tool.RequiresHandle = false
+        tool.Name = "Teleport Tool"
+        tool.Activated:Connect(function()
+        local root = plr.Character.HumanoidRootPart
+        local pos = mouse.Hit.Position+Vector3.new(0,2.5,0)
+        local offset = pos-root.Position
+        root.CFrame = root.CFrame+offset
+        end)
+        tool.Parent = plr.Backpack
+
+
+end })
+
 Tab:AddButton({ 	Name  = "Dex Explorer", 	Callback = function()
 
 loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Dex%20Explorer.txt"))()
@@ -864,50 +862,7 @@ end)
 
 end })
 
-local Section = Tab:AddSection({
-	Name = "Blox Fruits Stuff"
-})
-local Section = Tab:AddSection({
-	Name = "Sea Teleport"
-})
-Tab:AddButton({
-	Name = "Teleport To First Sea",
-	Callback = function()
-      	  game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain")
-  	end    
-})
-Tab:AddButton({
-	Name = "Teleport To Second Sea",
-	Callback = function()
-      	 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
-  	end    
-})
-Tab:AddButton({
-	Name = "Teleport To Third Sea",
-	Callback = function()
-      	 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
-  	end    
-})
-local Section = Tab:AddSection({
-	Name = "Ui Misc"
-})
 
-Tab:AddButton({
-	Name = "Titles",
-	Callback = function()
-      	  local args = {
-        [1] = "getTitles"
-    }
-    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-    game.Players.localPlayer.PlayerGui.Main.Titles.Visible = true
-end})
-
-Tab:AddButton({
-	Name = "Devil Fruits Shop",
-	Callback = function()
-       game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("GetFruits")
-        game:GetService("Players").LocalPlayer.PlayerGui.Main.FruitShop.Visible = true
-end})
 
 local Section = Tab:AddSection({
 	Name = "Stuff for Break in 2"
@@ -1186,13 +1141,72 @@ local Section = Tab:AddSection({
   Name = "Scripts"
 })
 
-Tab:AddButton({ 	Name  = "Blox fruits Esp Script", 	Callback = function()
+local Section = Tab:AddSection({
+	Name = "Sea Teleport"
+})
+Tab:AddButton({
+	Name = "Teleport To First Sea",
+	Callback = function()
+      	  game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain")
+  	end    
+})
+Tab:AddButton({
+	Name = "Teleport To Second Sea",
+	Callback = function()
+      	 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
+  	end    
+})
+Tab:AddButton({
+	Name = "Teleport To Third Sea",
+	Callback = function()
+      	 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
+  	end    
+})
+local Section = Tab:AddSection({
+	Name = "Ui Misc"
+})
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/main/TbaoHubEsp"))()
+Tab:AddButton({
+	Name = "Titles",
+	Callback = function()
+      	  local args = {
+        [1] = "getTitles"
+    }
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+    game.Players.localPlayer.PlayerGui.Main.Titles.Visible = true
+end})
 
+Tab:AddButton({
+	Name = "Devil Fruits Shop",
+	Callback = function()
+       game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("GetFruits")
+        game:GetService("Players").LocalPlayer.PlayerGui.Main.FruitShop.Visible = true
+end})
 
-end })
-
+local Section = Tab:AddSection({
+	Name = "Frags"
+})
+Tab:AddButton({
+	Name = "Stats Refund",
+	Callback = function()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Buy",1,2)
+   print('stat refund active')
+end})
+Tab:AddButton({
+	Name = "Race Reroll",
+	Callback = function()
+ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Buy",1,3)
+       print('race reroll active')
+end})
+local Section = Tab:AddSection({
+	Name = "Money"
+})
+Tab:AddButton({
+	Name = "Roll a Random Fruit",
+	Callback = function()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
+       print('rolling random fruit active')
+end})
 Tab:AddParagraph("imformation","blox fruit script that is old")
 
 local Tab = Window:MakeTab({"lumber tycoon 2"})
