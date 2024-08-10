@@ -57,6 +57,34 @@ local CoolSlider = Tab:AddSlider({
         game.Players.LocalPlayer.PlayerGui.Gravity = Value
     end,
 })
+
+local player = game.Players.LocalPlayer
+local userInputService = game:GetService("UserInputService")
+
+
+Tab:AddToggle({
+    Name = "Infinite Jump",
+    Default = false,
+    Callback = function(value)
+        local jumpEnabled = value
+        if jumpEnabled then
+            print("Infinite Jump Enabled")
+        else
+            print("Infinite Jump Disabled")
+        end
+
+        
+        player.CharacterAdded:Connect(function(character)
+            local humanoid = character:WaitForChild("Humanoid")
+            userInputService.JumpRequest:Connect(function()
+                if jumpEnabled then
+                    humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+                end
+            end)
+        end)
+    end    
+})
+
 local Section = Tab:AddSection({
 	Name = "Tools"
 })
