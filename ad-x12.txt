@@ -57,8 +57,6 @@ local CoolSlider = Tab:AddSlider({
     end,
 })
 
-local player = game.Players.LocalPlayer
-local userInputService = game:GetService("UserInputService")
 
 
 Tab:AddToggle({
