@@ -1043,6 +1043,14 @@ Tab:AddButton({ 	Name = "bed wars flame", 	Callback = function() loadstring(game
 end})
 
 Tab:AddParagraph("imformation","old but steal works")
+local Tab = Window:MakeTab({"Pet Simulator 99"})
+
+
+Tab:AddButton({ 	Name  = "zap hub", 	Callback = function()
+
+loadstring(game:HttpGet('https://zaphub.xyz/Exec'))()
+
+end })
 
 local Tab = Window:MakeTab({"Pet Simulator X"})
 
@@ -1140,6 +1148,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/1f0yt/community/main/
 end })
 
 Tab:AddParagraph("imformation","blox fruit script that is old")
+
+
+Tab:AddButton({ 	Name  = "Blox fruits Redz Hub", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/main/redz9999"))()
+
+end })
 
 local Section = Tab:AddSection({
   Name = "Scripts"
