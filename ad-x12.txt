@@ -1294,7 +1294,7 @@ Tab:AddParagraph("imformation","is a age of hero script")
 
 local Tab = Window:MakeTab({"cook burger"})
 
-Tab:AddButton({ 	Name = "cook buger 1", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/eeeerrrrf3/cook-burger/main/coke%20borgers.lua"))()
+Tab:AddButton({ 	Name = "cook buger 1", 	Callback = function() loadstring(game:HttpGet("https://pastebin.com/raw/bRzAYkYZ"))()
 
 end })
 
