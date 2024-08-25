@@ -65,6 +65,10 @@ local Section = Tab:AddSection({
 	Name = "Tools"
 })
 
+Tab:AddButton({ 	Name  = "Arceus x", 	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/Arceus%20X%20V3"))()
+end })
+
 Tab:AddButton({ 	Name  = "aim lock", 	Callback = function()
 loadstring(game:HttpGet("https://rentry.co/n55gmtpi/raw", true))()
 end })
