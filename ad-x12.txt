@@ -1236,10 +1236,8 @@ Tab:AddParagraph("imformation","blox fruit script that is old")
 
 local Tab = Window:MakeTab({"lumber tycoon 2"})
 
-Tab:AddButton({ 	Name = "lumbertycoon", 	Callback = function() game:HttpGet("https://getexploits.com/cexecution/694139985821192192")
-
-loadstring(game:HttpGet"https://raw.githubusercontent.com/darkxwin/darkxsourcethinkyoutousedarkx/main/darkx")()
-
+Tab:AddButton({ 	Name = "lumber tycoon 2 butter", 	Callback = function() 
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Butterisgood/Butter/main/Root2.lua'))("")
 end })
 
 Tab:AddParagraph("imformation","is a lumber tycoon 2 script")
