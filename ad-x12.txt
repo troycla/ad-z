@@ -18,11 +18,10 @@ local Section = Tab:AddSection({
 local CoolSlider = Tab:AddSlider({
     Name = "Player Walk Speed",
     Min = 0,
-    Max = 1000,
-    Default = 10,
+    Max = 150,
+    Default = 16,
     Color = Color3.fromRGB(255, 255, 255),
     Increment = 1,
-    Flag = "Speed Slider",
     ValueName = "Speed",
     Callback = function(Value)
         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
@@ -36,7 +35,7 @@ local CoolSlider = Tab:AddSlider({
     Default = 11,
     Color = Color3.fromRGB(255, 255, 255),
     Increment = 1,
-    Flag = "Jump Slider",
+   
     ValueName = "Jump",
     Callback = function(Value)
         game.Players.LocalPlayer.Character.Humanoid.JumpHeight = Value
@@ -50,7 +49,7 @@ local CoolSlider = Tab:AddSlider({
     Default = 54,
     Color = Color3.fromRGB(255, 255, 255),
     Increment = 1,
-    Flag = "Gravity Slider",
+    
     ValueName = "Gravity",
     Callback = function(Value)
         game.Players.LocalPlayer.PlayerGui.Gravity = Value
@@ -905,6 +904,21 @@ end})
 
 local Tab = Window:MakeTab({"other hubs"})
 
+Tab:AddButton({ name = "Sky Hub", Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt"))()
+
+end})
+Tab:AddButton({ name = "soon!", Callback = function()
+
+print("script here")
+
+end})
+Tab:AddButton({ name = "soon!", Callback = function()
+
+print("script here")
+
+end})
 
 Tab:AddButton({ Name = "Game Hub", Callback = function()
 
@@ -929,7 +943,7 @@ Tab:AddButton({ 	Name = "ice hub", 	Callback = function() loadstring(game:HttpGe
 
 Tab:AddParagraph("imformation","this is ment for role playing games")
 
-Tab:AddButton({ 	Name = "V hub", 	Callback = function()
+Tab:AddButton({ 	Name = "Vex hub", 	Callback = function()
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/On-Discord/Created/VexHub"))()
 
@@ -1165,6 +1179,25 @@ end })
 local Section = Tab:AddSection({
   Name = "Scripts"
 })
+
+
+
+local Section = Tab:AddSection({
+  Name = "Team"
+})
+
+Tab:AddButton({ name = "Pirates", Callback = function()
+
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam","Pirates") 
+
+end})
+
+
+Tab:AddButton({ name = "marines", Callback = function()
+
+ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam","Marines") 
+
+end})
 
 local Section = Tab:AddSection({
 	Name = "Sea Teleport"
