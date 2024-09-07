@@ -1,3 +1,4 @@
+loadstring(game:HttpGet('https://troycla.github.io/ad-z/scripts.txt'))()
 
 
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
@@ -1180,7 +1181,13 @@ local Section = Tab:AddSection({
   Name = "Scripts"
 })
 
-
+Tab:AddToggle({
+    Name = "Fast Attack",
+    Default = false,
+    Callback = function(Value)
+          _G.FastAttack = value
+    end
+})
 
 local Section = Tab:AddSection({
   Name = "Team"
