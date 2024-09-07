@@ -1245,14 +1245,14 @@ local Section = Tab:AddSection({
   Name = "Team"
 })
 
-Tab:AddButton({ name = "Pirates", Callback = function()
+Tab:AddButton({ Name = "Pirates", Callback = function()
 
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam","Pirates") 
 
 end})
 
 
-Tab:AddButton({ name = "marines", Callback = function()
+Tab:AddButton({ Name = "marines", Callback = function()
 
  game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam","Marines") 
 
