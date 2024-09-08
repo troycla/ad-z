@@ -10,6 +10,8 @@ local Window = redzlib:MakeWindow({
   SaveFolder = "Admin-x 1 Config"
 })
 
+
+
 local Tab = Window:MakeTab({"Main"})
 local Section = Tab:AddSection({
 	Name = "Local Player"
@@ -33,7 +35,7 @@ local CoolSlider = Tab:AddSlider({
     Name = "Player Jump Height",
     Min = 0,
     Max = 100,
-    Default = 11,
+    Default = 7.2,
     Color = Color3.fromRGB(255, 255, 255),
     Increment = 1,
    
