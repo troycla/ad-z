@@ -1179,7 +1179,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/ma
 
 end })
 
-
 local Section = Tab:AddSection({
   Name = "Scripts"
 })
