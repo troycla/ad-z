@@ -1262,7 +1262,7 @@ Tab:AddButton({
 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
        print('rolling random fruit active')
 end})
-Tab:AddParagraph("imformation","blox fruit script that is old")
+
 local Section = AddSection({"Scripts"})
 
 local CameraShaker = require(game.ReplicatedStorage.Util.CameraShaker)
@@ -1273,6 +1273,9 @@ local Toggle = Tab:AddToggle({
     Name = "Fast Attack",
     Default = false,
     Callback = function(Value)
+     local CameraShaker = require(game.ReplicatedStorage.Util.CameraShaker)
+     local CombatFrameworkR = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
+     local y = debug.getupvalues(CombatFrameworkR)[2]
         _G.FastAttack = Value
         if Value then
             spawn(function()
@@ -1319,7 +1322,8 @@ local Toggle = Tab:AddToggle({
                 end
             end)
         end
-    end})
+    end
+})
 local Tab = Window:MakeTab({"lumber tycoon 2"})
 
 Tab:AddButton({ 	Name = "lumber tycoon 2 butter", 	Callback = function() 
