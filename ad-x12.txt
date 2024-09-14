@@ -1187,7 +1187,6 @@ local Toggle = Tab:AddToggle({
     Name = "Toggle",
     Default = false,
     Callback = function(Value)
-        _G.FastAttack = Value
         if Value then
             spawn(function()
                 game:GetService("RunService").RenderStepped:Connect(function()
