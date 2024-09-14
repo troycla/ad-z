@@ -775,7 +775,60 @@ end })
 
 Tab:AddParagraph("imformation","some what usfull but buggy")
 
+Tab:AddButton({ Name = "blox fruits cmb p2", Callback = function()
 
+_G.HitAllMobs = true
+_G.BringMobs = true
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local bringDistance = 100 -- Adjust this value to set the distance threshold
+
+function bringMobs()
+    for _, mob in pairs(game.Workspace.Enemies:GetChildren()) do
+        if mob:FindFirstChild("HumanoidRootPart") then
+            local distance = (mob.HumanoidRootPart.Position - humanoidRootPart.Position).Magnitude
+            if distance <= bringDistance then
+                mob.HumanoidRootPart.CFrame = humanoidRootPart.CFrame
+            end
+        end
+    end
+end
+
+function hitMobs()
+    while _G.HitAllMobs do
+        for _, mob in pairs(game.Workspace.Enemies:GetChildren()) do
+            if mob:FindFirstChild("HumanoidRootPart") then
+                local args = {
+                    [1] = mob.HumanoidRootPart.Position,
+                    [2] = mob
+                }
+                game:GetService("ReplicatedStorage").Remotes.Combat:FireServer(unpack(args))
+            end
+        end
+        wait(0.1)
+    end
+end
+
+if _G.BringMobs then
+    while true do
+        bringMobs()
+        wait(0.1)
+    end
+end
+
+if _G.HitAllMobs then
+    hitMobs()
+end
+
+end})
+
+Tab:AddButton({ Name = "bring mob other", Callback = function()
+
+print("script here")
+
+end})
 
 Tab:AddButton({ 	Name  = "blox fruits cmb", 	Callback = function()
 
