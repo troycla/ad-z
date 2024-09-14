@@ -1263,11 +1263,11 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
        print('rolling random fruit active')
 end})
 
-local Section = AddSection({"Scripts"})
+local Section = Tab:AddSection({
+	Name = "Scripts"
+})
 
-local CameraShaker = require(game.ReplicatedStorage.Util.CameraShaker)
-local CombatFrameworkR = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
-local y = debug.getupvalues(CombatFrameworkR)[2]
+
 
 local Toggle = Tab:AddToggle({
     Name = "Fast Attack",
