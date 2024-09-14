@@ -1178,10 +1178,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/ma
 
 end })
 
-local Section = Tab:AddSection({
-    Name = "Scripts"
-})
-
 
 local CameraShaker = require(game.ReplicatedStorage.Util.CameraShaker)
 local CombatFrameworkR = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
