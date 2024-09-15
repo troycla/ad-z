@@ -1651,7 +1651,7 @@ local Tab = Window:MakeTab({"Ro-Bio Virus Injection"})
 Tab:AddDropdown({
     Name = "Select Virus",
     Default = "None",
-    Options = {"None", "GrimaceVirus", },
+    Options = {"None", "Grimace", "Toilet", "SuperSpeed", "Tall", "Blockshield", "Chainsaw", "C-01", "Explode", "Cough", "Red Discharge", "Firemella", "Bionesis", "Boomosis", "Balox", "Marblex", "Ultrax"},
     Callback = function(Value)
         selectedOption = Value
     end
@@ -1665,7 +1665,7 @@ Tab:AddToggle({
             --for muilt script
             if selectedOption == "none" then
                 --main selection for nothing
-            elseif selectedOption == "GrimaceVirus" then
+            elseif selectedOption == "Grimace" then
 
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
@@ -1690,13 +1690,68 @@ teleportToModule()
 wait(1)
 teleportBack()
 fireproximityprompt(workspace.GrimaceVirus.Grimace.ProximityPrompt)
-            elseif selectedOption == "soon" then
+            elseif selectedOption == "Toilet" then
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 
-            elseif selectedOption == "soon" then
+local originalPosition = humanoidRootPart.Position
 
+local modulePosition = workspace.Map.Decoration.VirusTable.Viruses.Toilet.Union
+
+
+local function teleportToModule()
+    humanoidRootPart.CFrame = CFrame.new(modulePosition)
+end
+
+local function teleportBack()
+    humanoidRootPart.CFrame = CFrame.new(originalPosition)
+end
+
+
+teleportToModule()
+
+wait(1)
+teleportBack()
+fireproximityprompt(workspace.Map.Decoration.VirusTable.Viruses.Toilet.Toilet.ProximityPrompt)
+            elseif selectedOption == "SuperSpeed" then
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local originalPosition = humanoidRootPart.Position
+
+local modulePosition = workspace.Map.Decoration.VirusTable.Viruses.Speed.Union
+
+
+local function teleportToModule()
+    humanoidRootPart.CFrame = CFrame.new(modulePosition)
+end
+
+local function teleportBack()
+    humanoidRootPart.CFrame = CFrame.new(originalPosition)
+end
+
+
+teleportToModule()
+
+wait(1)
+teleportBack()
+fireproximityprompt(workspace.Map.Decoration.VirusTable.Viruses.Speed.SuperSpeed.ProximityPrompt)
             end
         else
-            --default
+           game.StarterGui:SetCore("SendNotification", {
+    Title = "Rio Bio Virus inJection";
+ 
+   
+})
+wait(1)
+game.StarterGui:SetCore("SendNotification", {
+    Title = "note";
+    Text = "Not fully added";
+    Duration = 20;
+})
+
         end
     end
 })
