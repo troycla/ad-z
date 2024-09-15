@@ -1651,23 +1651,13 @@ local Tab = Window:MakeTab({"Ro-Bio Virus Injection"})
 Tab:AddDropdown({
     Name = "Select Virus",
     Default = "None",
-    Options = {"None", "Grimace", "Toilet", "SuperSpeed", "Tall", "Blockshield", "Chainsaw", "C-01", "Explode", "Cough", "Red Discharge", "Firemella", "Bionesis", "Boomosis", "Balox", "Marblex", "Ultrax", },
+    Options = {"None", "Grimace", "Toilet", "SuperSpeed", },
     Callback = function(Value)
         selectedOption = Value
     end
 })
 
 
-
-
-Tab:AddDropdown({
-    Name = "Select Virus",
-    Default = "None",
-    Options = {"None", "Grimace", "Toilet", "SuperSpeed", "Tall", "Blockshield", "Chainsaw", "C-01", "Explode", "Cough", "Red Discharge", "Firemella", "Bionesis", "Boomosis", "Balox", "Marblex", "Ultrax", },
-    Callback = function(Value)
-        selectedOption = Value
-    end
-})
 
 Tab:AddToggle({
     Name = "Get Virus",
