@@ -1692,6 +1692,7 @@ teleportToModule()
 wait(1)
 teleportBack()
 fireproximityprompt(workspace.GrimaceVirus.Grimace.ProximityPrompt)
+       end
             elseif selectedOption == "Toilet" then
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
@@ -1716,6 +1717,7 @@ teleportToModule()
 wait(1)
 teleportBack()
 fireproximityprompt(workspace.Map.Decorations.VirusTable.Viruses.Toilet.Toilet.ProximityPrompt)
+        end
             elseif selectedOption == "SuperSpeed" then
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
