@@ -1740,18 +1740,7 @@ teleportBack()
 fireproximityprompt(workspace.Map.Decoration.VirusTable.Viruses.Speed.SuperSpeed.ProximityPrompt)
             end
         else
-           game.StarterGui:SetCore("SendNotification", {
-    Title = "Rio Bio Virus inJection";
- 
-   
-})
-wait(1)
-game.StarterGui:SetCore("SendNotification", {
-    Title = "note";
-    Text = "Not fully added";
-    Duration = 20;
-})
-
+         
         end
     end
 })
