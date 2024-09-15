@@ -1648,6 +1648,7 @@ local Tab = Window:MakeTab({"Ro-Bio Virus Injection"})
 
 
 
+
 Tab:AddDropdown({
     Name = "Select Virus",
     Default = "None",
@@ -1697,7 +1698,7 @@ local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 
 local originalPosition = humanoidRootPart.Position
 
-local modulePosition = workspace.Map.Decoration.VirusTable.Viruses.Toilet.Union
+local modulePosition = workspace.Map.Decorations.VirusTable.Viruses.Toilet.Union
 
 
 local function teleportToModule()
@@ -1713,7 +1714,7 @@ teleportToModule()
 
 wait(1)
 teleportBack()
-fireproximityprompt(workspace.Map.Decoration.VirusTable.Viruses.Toilet.Toilet.ProximityPrompt)
+fireproximityprompt(workspace.Map.Decorations.VirusTable.Viruses.Toilet.Toilet.ProximityPrompt)
             elseif selectedOption == "SuperSpeed" then
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
@@ -1721,7 +1722,7 @@ local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 
 local originalPosition = humanoidRootPart.Position
 
-local modulePosition = workspace.Map.Decoration.VirusTable.Viruses.Speed.Union
+local modulePosition = workspace.Map.Decorations.VirusTable.Viruses.Speed.Union
 
 
 local function teleportToModule()
@@ -1737,13 +1738,15 @@ teleportToModule()
 
 wait(1)
 teleportBack()
-fireproximityprompt(workspace.Map.Decoration.VirusTable.Viruses.Speed.SuperSpeed.ProximityPrompt)
+fireproximityprompt(workspace.Map.Decorations.VirusTable.Viruses.Speed.SuperSpeed.ProximityPrompt)
             end
         else
-         
+            --default
         end
     end
 })
+
+
 
 local Tab = Window:MakeTab({"Horrors RNG"})
 
