@@ -1645,29 +1645,7 @@ end})
 
 local Tab = Window:MakeTab({"Ro-Bio Virus Injection"})
 
-
-
-
-Tab:AddDropdown({
-    Name = "Select Virus",
-    Default = "None",
-    Options = {"None", "Grimace", "Toilet", "SuperSpeed", },
-    Callback = function(Value)
-        selectedOption = Value
-    end
-})
-
-
-
-Tab:AddToggle({
-    Name = "Get Virus",
-    Default = false,
-    Callback = function(Value)
-        if Value then
-            --for muilt script
-            if selectedOption == "none" then
-                --main selection for nothing
-            elseif selectedOption == "Grimace" then
+Tab:AddButton({ 	Name = "Grimace", 	Callback = function()
 
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
@@ -1692,8 +1670,9 @@ teleportToModule()
 wait(1)
 teleportBack()
 fireproximityprompt(workspace.GrimaceVirus.Grimace.ProximityPrompt)
-       end
-            elseif selectedOption == "Toilet" then
+end})
+
+Tab:AddButton({ 	Name = "Toilet", 	Callback = function()
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -1717,8 +1696,12 @@ teleportToModule()
 wait(1)
 teleportBack()
 fireproximityprompt(workspace.Map.Decorations.VirusTable.Viruses.Toilet.Toilet.ProximityPrompt)
-        end
-            elseif selectedOption == "SuperSpeed" then
+
+
+end})
+
+Tab:AddButton({ 	Name = "SuperSpeed", 	Callback = function()
+
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -1742,12 +1725,40 @@ teleportToModule()
 wait(1)
 teleportBack()
 fireproximityprompt(workspace.Map.Decorations.VirusTable.Viruses.Speed.SuperSpeed.ProximityPrompt)
-            end
-        else
-            --default
-        end
-    end
-})
+
+end})
+
+Tab:AddButton({ 	Name = "Soon", 	Callback = function()
+
+
+
+end})
+
+Tab:AddButton({ 	Name = "Soon", 	Callback = function()
+
+
+
+end})
+
+Tab:AddButton({ 	Name = "Soon", 	Callback = function()
+
+
+
+end})
+
+Tab:AddButton({ 	Name = "Soon", 	Callback = function()
+
+
+
+end})
+
+Tab:AddButton({ 	Name = "Soon", 	Callback = function()
+
+
+
+end})
+
+
 local Tab = Window:MakeTab({"Horrors RNG"})
 
 Tab:AddButton({ name = "Luck Giver", Callback = function()
