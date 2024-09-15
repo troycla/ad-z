@@ -1636,15 +1636,72 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/RScriptz/RobloxScript
 end })
 
 local Tab = Window:MakeTab({"The Chosen one"})
-Tab:AddButton({ name = "The Lazy One", Callback = function()
+Tab:AddButton({ Name = "The Lazy One", Callback = function()
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/FlavorYT/The-lazy-ONE/main/Made%20by%20leakz%20and%20EvilAlienWare"))()
 
 
 end})
 
+local Tab = Window:MakeTab({"Ro-Bio Virus Injection"})
 
-local Tab = Window:Maketab({"Horrors RNG"})
+
+
+
+Tab:AddDropdown({
+    Name = "Select Virus",
+    Default = "None",
+    Options = {"None", "GrimaceVirus", },
+    Callback = function(Value)
+        selectedOption = Value
+    end
+})
+
+Tab:AddToggle({
+    Name = "Get Virus",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            --for muilt script
+            if selectedOption == "none" then
+                --main selection for nothing
+            elseif selectedOption == "GrimaceVirus" then
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local originalPosition = humanoidRootPart.Position
+
+local modulePosition = Vector3.new(-559.7681884765625, 227.59332275390625, 324.9228515625)
+
+
+local function teleportToModule()
+    humanoidRootPart.CFrame = CFrame.new(modulePosition)
+end
+
+local function teleportBack()
+    humanoidRootPart.CFrame = CFrame.new(originalPosition)
+end
+
+
+teleportToModule()
+
+wait(1)
+teleportBack()
+fireproximityprompt(workspace.GrimaceVirus.Grimace.ProximityPrompt)
+            elseif selectedOption == "soon" then
+
+            elseif selectedOption == "soon" then
+
+            end
+        else
+            --default
+        end
+    end
+})
+
+local Tab = Window:MakeTab({"Horrors RNG"})
 
 Tab:AddButton({ name = "Luck Giver", Callback = function()
 
