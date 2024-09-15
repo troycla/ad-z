@@ -1673,7 +1673,7 @@ local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 
 local originalPosition = humanoidRootPart.Position
 
-local modulePosition = Vector3.new(-559.7681884765625, 227.59332275390625, 324.9228515625)
+local modulePosition = workspace.GrimaceVirus.Grimace.Union
 
 
 local function teleportToModule()
