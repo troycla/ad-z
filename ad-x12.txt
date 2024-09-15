@@ -1657,6 +1657,18 @@ Tab:AddDropdown({
     end
 })
 
+
+
+
+Tab:AddDropdown({
+    Name = "Select Virus",
+    Default = "None",
+    Options = {"None", "Grimace", "Toilet", "SuperSpeed", "Tall", "Blockshield", "Chainsaw", "C-01", "Explode", "Cough", "Red Discharge", "Firemella", "Bionesis", "Boomosis", "Balox", "Marblex", "Ultrax", },
+    Callback = function(Value)
+        selectedOption = Value
+    end
+})
+
 Tab:AddToggle({
     Name = "Get Virus",
     Default = false,
@@ -1673,7 +1685,7 @@ local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 
 local originalPosition = humanoidRootPart.Position
 
-local modulePosition = workspace.GrimaceVirus.Grimace.Union
+local modulePosition = workspace.GrimaceVirus.Union
 
 
 local function teleportToModule()
@@ -1744,7 +1756,6 @@ fireproximityprompt(workspace.Map.Decorations.VirusTable.Viruses.Speed.SuperSpee
         end
     end
 })
-
 local Tab = Window:MakeTab({"Horrors RNG"})
 
 Tab:AddButton({ name = "Luck Giver", Callback = function()
