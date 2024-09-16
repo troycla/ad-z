@@ -1678,7 +1678,7 @@ local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 
 local originalPosition = humanoidRootPart.Position
 
-local modulePosition = Vector3.new(-548.7681884765625, 176.14337158203125, 365.1478271484375)
+local modulePosition = Vector3.new(-566.5393676757812, 180.35699462890625, 343.861572265625)
 
 
 local function teleportToModule()
