@@ -1694,7 +1694,7 @@ teleportToModule()
 
 wait(0.2)
 teleportBack()
-fireproximityprompt(toiletworkspace.Map.Decorations:GetChildren()[25].Viruses.Toilet.Toilet.ProximityPrompt)
+fireproximityprompt(tworkspace.Map.Decorations:GetChildren()[25].Viruses.Toilet.Toilet.ProximityPrompt)
 
 
 end})
