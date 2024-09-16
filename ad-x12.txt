@@ -1644,7 +1644,9 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/FlavorYT/The-lazy-ONE
 end})
 
 local Tab = Window:MakeTab({"Ro-Bio Virus Injection"})
-
+local Section = Tab:AddSection({
+	Name = "Event Viruses"
+})
 Tab:AddButton({ 	Name = "Grimace", 	Callback = function()
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
@@ -1670,6 +1672,216 @@ wait(0.2)
 teleportBack()
 fireproximityprompt(workspace.GrimaceVirus.Grimace.ProximityPrompt)
 end})
+
+Tab:AddButton({ 	Name = "Santa", 	Callback = function()
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local originalPosition = humanoidRootPart.Position
+
+local modulePosition = Vector3.new(-561.6045532226562, 210.31768798828125, 324.4326171875)
+
+
+local function teleportToModule()
+    humanoidRootPart.CFrame = CFrame.new(modulePosition)
+end
+
+local function teleportBack()
+    humanoidRootPart.CFrame = CFrame.new(originalPosition)
+end
+
+
+teleportToModule()
+
+wait(0.2)
+teleportBack()
+fireproximityprompt(workspace.Map.Decorations:GetChildren()[19].Viruses.Santa.Santa.ProximityPrompt)
+
+end})
+
+
+ 
+
+Tab:AddButton({ 	Name = "Candy Cane", 	Callback = function()
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local originalPosition = humanoidRootPart.Position
+
+local modulePosition = Vector3.new(-559.798583984375, 210.31768798828125, 324.4091796875)
+
+
+local function teleportToModule()
+    humanoidRootPart.CFrame = CFrame.new(modulePosition)
+end
+
+local function teleportBack()
+    humanoidRootPart.CFrame = CFrame.new(originalPosition)
+end
+
+
+teleportToModule()
+
+wait(0.2)
+teleportBack()
+fireproximityprompt(workspace.Map.Decorations:GetChildren()[19].Viruses.CandyCane.CandyCane.ProximityPrompt)
+
+end})
+
+
+
+Tab:AddButton({ 	Name = "Gift", 	Callback = function()
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local originalPosition = humanoidRootPart.Position
+
+local modulePosition = Vector3.new(-558.1112060546875, 210.31768798828125, 324.387451171875)
+
+
+local function teleportToModule()
+    humanoidRootPart.CFrame = CFrame.new(modulePosition)
+end
+
+local function teleportBack()
+    humanoidRootPart.CFrame = CFrame.new(originalPosition)
+end
+
+
+teleportToModule()
+
+wait(0.2)
+teleportBack()
+fireproximityprompt(workspace.Map.Decorations:GetChildren()[19].Viruses.Gift.Gift.ProximityPrompt)
+
+end})
+
+
+
+Tab:AddButton({ 	Name = "Vampire", 	Callback = function()
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local originalPosition = humanoidRootPart.Position
+
+local modulePosition = Vector3.new(-562.4117431640625, 200.25689697265625, 324.4429931640625)
+
+
+local function teleportToModule()
+    humanoidRootPart.CFrame = CFrame.new(modulePosition)
+end
+
+local function teleportBack()
+    humanoidRootPart.CFrame = CFrame.new(originalPosition)
+end
+
+
+teleportToModule()
+
+wait(0.2)
+teleportBack()
+fireproximityprompt(workspace.Map.Decorations:GetChildren()[15].Viruses.Vampire.Vampire.ProximityPrompt)
+
+end})
+
+
+
+Tab:AddButton({ 	Name = "Pumpkin", 	Callback = function()
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local originalPosition = humanoidRootPart.Position
+
+local modulePosition = Vector3.new(-560.6494140625, 200.25689697265625, 324.420166015625)
+
+
+local function teleportToModule()
+    humanoidRootPart.CFrame = CFrame.new(modulePosition)
+end
+
+local function teleportBack()
+    humanoidRootPart.CFrame = CFrame.new(originalPosition)
+end
+
+
+teleportToModule()
+
+wait(0.2)
+teleportBack()
+fireproximityprompt(workspace.Map.Decorations:GetChildren()[15].Viruses.Pumpkin.Pumpkin.ProximityPrompt)
+
+end})
+
+
+Tab:AddButton({ 	Name = "Sweet", 	Callback = function()
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local originalPosition = humanoidRootPart.Position
+
+local modulePosition = Vector3.new(-558.8995361328125, 200.25689697265625, 324.3975830078125)
+
+
+local function teleportToModule()
+    humanoidRootPart.CFrame = CFrame.new(modulePosition)
+end
+
+local function teleportBack()
+    humanoidRootPart.CFrame = CFrame.new(originalPosition)
+end
+
+
+teleportToModule()
+
+wait(0.2)
+teleportBack()
+fireproximityprompt(workspace.Map.Decorations:GetChildren()[15].Viruses.Sweetieidklol.Sweet.ProximityPrompt)
+
+end})
+
+
+
+Tab:AddButton({ 	Name = "Witch", 	Callback = function()
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local originalPosition = humanoidRootPart.Position
+
+local modulePosition = Vector3.new(-557.212158203125, 200.25689697265625, 324.3758544921875)
+
+
+local function teleportToModule()
+    humanoidRootPart.CFrame = CFrame.new(modulePosition)
+end
+
+local function teleportBack()
+    humanoidRootPart.CFrame = CFrame.new(originalPosition)
+end
+
+
+teleportToModule()
+
+wait(0.2)
+teleportBack()
+fireproximityprompt(workspace.Map.Decorations:GetChildren()[15].Viruses.Witch.Witch.ProximityPrompt)
+
+end})
+
+
 
 Tab:AddButton({ 	Name = "Toilet", 	Callback = function()
 local player = game.Players.LocalPlayer
