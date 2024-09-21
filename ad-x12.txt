@@ -1,9 +1,8 @@
 
 
-local adminlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/troycla/ad-z/main/Source.Lua"))()
+local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
 
-
-local Window = adminlib:MakeWindow({
+local Window = redzlib:MakeWindow({
   Title = "Admin-X Beta",
   SubTitle = "Dont blame me if you get banned from you favriot game",
   SaveFolder = "Admin-x 1 Config"
