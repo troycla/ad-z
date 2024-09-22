@@ -1450,6 +1450,38 @@ end })
 
 Tab:AddParagraph("imformation","is a cook burger script")
 
+
+Tab:AddButton({ 	Name = "become a rat", 	Callback = function()
+workspace.Entities.Items.Potion.ContextAction:FireServer()
+end})
+
+
+
+Tab:AddButton({ 	Name = "trigger a costumer response", 	Callback = function()
+local args = {
+    [1] = workspace.Entities.Characters.Humans.Customers.Customer
+}
+
+game:GetService("ReplicatedStorage").Systems.NetworkOwnershipsSystem.Network3:InvokeServer(unpack(args))
+end})
+
+Tab:AddButton({ 	Name = "trigger all fire extinguishers", 	Callback = function()
+workspace.Entities.Items:GetChildren()[5].Extinguisher.ContextAction:FireServer()
+
+workspace.Entities.Items.Extinguisher.Extinguisher.ContextAction:FireServer()
+
+workspace.Entities.Items:GetChildren()[6].Extinguisher.ContextAction:FireServer()
+
+workspace.Entities.Items:GetChildren()[4].Extinguisher.ContextAction:FireServer()
+
+workspace.Restaurant.IngredientsOrderScreens.FreezerScreen.OrderButton4.ContextAction:FireServer()
+end})
+Tab:AddButton({ 	Name = "open all boxs", 	Callback = function()
+workspace.Entities.Items.Box.ContextAction:FireServer()
+end})
+Tab:AddButton({ 	Name = "soon", 	Callback = function()
+end})
+
 local Tab = Window:MakeTab({"pop it trading"})
 
 Tab:AddButton({ 	Name = "popit gui", 	Callback = function()
