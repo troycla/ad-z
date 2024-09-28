@@ -1319,6 +1319,106 @@ local Section = Tab:AddSection({
 	Name = "Scripts"
 })
 
+local Toggle = Tab:AddToggle({
+    Name = "nearest mob farm - you have to be active",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+         _G.HitAllMobs = true
+_G.BringMobs = true
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local bringDistance = 55 -- Adjust this value to set the distance threshold
+local offset = CFrame.new(0, -5, -6) 
+
+function bringMobs()
+    for _, mob in pairs(game.Workspace.Enemies:GetChildren()) do
+        if mob:FindFirstChild("HumanoidRootPart") then
+            local distance = (mob.HumanoidRootPart.Position - humanoidRootPart.Position).Magnitude
+            if distance <= bringDistance then
+                mob.HumanoidRootPart.CFrame = humanoidRootPart.CFrame * offset
+            end
+        end
+    end
+end
+
+function hitMobs()
+    while _G.HitAllMobs do
+        for _, mob in pairs(game.Workspace.Enemies:GetChildren()) do
+            if mob:FindFirstChild("HumanoidRootPart") then
+                local args = {
+                    [1] = mob.HumanoidRootPart.Position,
+                    [2] = mob
+                }
+                game:GetService("ReplicatedStorage").Remotes.Combat:FireServer(unpack(args))
+            end
+        end
+        wait(0)
+    end
+end
+
+if _G.BringMobs then
+    while true do
+        bringMobs()
+        wait(0)
+    end
+end
+
+if _G.HitAllMobs then
+    hitMobs()
+end
+        else
+ _G.HitAllMobs = false
+_G.BringMobs = false
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local bringDistance = 55 -- Adjust this value to set the distance threshold
+local offset = CFrame.new(0, -5, -6) 
+
+function bringMobs()
+    for _, mob in pairs(game.Workspace.Enemies:GetChildren()) do
+        if mob:FindFirstChild("HumanoidRootPart") then
+            local distance = (mob.HumanoidRootPart.Position - humanoidRootPart.Position).Magnitude
+            if distance <= bringDistance then
+                mob.HumanoidRootPart.CFrame = humanoidRootPart.CFrame * offset
+            end
+        end
+    end
+end
+
+function hitMobs()
+    while _G.HitAllMobs do
+        for _, mob in pairs(game.Workspace.Enemies:GetChildren()) do
+            if mob:FindFirstChild("HumanoidRootPart") then
+                local args = {
+                    [1] = mob.HumanoidRootPart.Position,
+                    [2] = mob
+                }
+                game:GetService("ReplicatedStorage").Remotes.Combat:FireServer(unpack(args))
+            end
+        end
+        wait(0)
+    end
+end
+
+if _G.BringMobs then
+    while true do
+        bringMobs()
+        wait(0)
+    end
+end
+
+if _G.HitAllMobs then
+    hitMobs()
+end
+        end
+    end
+})
+
 
 
 local Toggle = Tab:AddToggle({
