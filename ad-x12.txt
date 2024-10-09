@@ -1584,31 +1584,7 @@ Tab:AddButton({ 	Name = "open all boxs", 	Callback = function()
 workspace.Entities.Items.Box.ContextAction:FireServer()
 end})
 
-local Toggle = Tab:AddToggle({
-    Name = "auto spawn plates",
-    Default = false,
-    Callback = function(Value)
-        if (Value) do
-workspace.Restaurant.PlateDispenser.DispenserButton.ContextAction:FireServer()
-wait(0)
-end
-        else
-         --local function is false
-        end
-    end})
 
-local Toggle = Tab:AddToggle({
-    Name = "auto become a rat",
-    Default = false,
-    Callback = function(Value)
-        if (Value) do
-workspace.Entities.Items.Potion.ContextAction:FireServer()
-wait(0)
-end
-        else
-         --local function is false
-        end
-    end})
 
 Tab:AddButton({ 	Name = "soon", 	Callback = function()
 end})
