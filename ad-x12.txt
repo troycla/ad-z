@@ -3,7 +3,7 @@
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
 
 local Window = redzlib:MakeWindow({
-  Title = "Admin-X Beta",
+  Title = "Admin-X",
   SubTitle = "Dont blame me if you get banned from you favriot game",
   SaveFolder = "Admin-x 1 Config"
 })
@@ -11,11 +11,49 @@ local Window = redzlib:MakeWindow({
 
 
 local Tab = Window:MakeTab({"Main"})
+
+local Section = Tab:AddSection({"Teleport To Select Player"})
+-- Local Script
+local Players = game:GetService("Players")
+local dropdown
+
+-- Function to update the dropdown options
+local function updateDropdown()
+    local playerNames = {}
+    for _, player in ipairs(Players:GetPlayers()) do
+        table.insert(playerNames, player.Name)
+    end
+
+    if not dropdown then
+        dropdown = Tab:AddDropdown({
+            Name = "Players",
+            Default = playerNames[1] or "",
+            Options = playerNames,
+            Callback = function(Value)
+                local selectedPlayer = Players:FindFirstChild(Value)
+                if selectedPlayer and selectedPlayer.Character and selectedPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = selectedPlayer.Character.HumanoidRootPart.CFrame
+                end
+            end    
+        })
+    else
+        dropdown:SetOptions(playerNames)
+    end
+end
+
+-- Connect the function to player added and removed events
+Players.PlayerAdded:Connect(updateDropdown)
+Players.PlayerRemoving:Connect(updateDropdown)
+
+-- Initial update
+updateDropdown()
+
+
+
 local Section = Tab:AddSection({
 	Name = "Local Player"
 })
-
-
+local Section = Tab:AddSection({"Set Options"})
 local CoolSlider = Tab:AddSlider({
     Name = "Player Walk Speed",
     Min = 0,
@@ -26,6 +64,7 @@ local CoolSlider = Tab:AddSlider({
     ValueName = "Speed",
     Callback = function(Value)
         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+        
     end,
 })
 
@@ -91,12 +130,20 @@ Tab:AddButton({ 	Name  = "Teleoport tool", 	Callback = function()
 
 end })
 
+
 Tab:AddButton({ 	Name  = "Dex Explorer", 	Callback = function()
 
 loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Dex%20Explorer.txt"))()
 
 
 end })
+
+local Button = Tab:AddButton({
+  Name = "dex explorer keyless",
+  Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/DEX-Explorer/main/Mobile.lua"))()
+  end
+})
 
 Tab:AddButton({ 	Name  = "Inf Yeld", 	Callback = function()
 
@@ -2245,6 +2292,5 @@ elseif Mode == "Safe" then
 end
 
 end})
-
 
 
