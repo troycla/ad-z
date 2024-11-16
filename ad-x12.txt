@@ -1,13 +1,135 @@
 
-
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
 
 local Window = redzlib:MakeWindow({
   Title = "Admin-X",
-  SubTitle = "Dont blame me if you get banned from you favriot game",
+  SubTitle = "Dont expect it to be perfect",
   SaveFolder = "Admin-x 1 Config"
 })
 
+
+
+local Tab = Window:MakeTab({"Ai made"})
+
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local PathfindingService = game:GetService("PathfindingService")
+
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local targetPosition = Vector3.new(100, 0, 100) -- Set your target position here
+
+local Toggle = Tab:AddToggle({
+    Name = "Auto Walk",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Create a path to the target position
+            local path = PathfindingService:CreatePath({
+                AgentRadius = 2,
+                AgentHeight = 5,
+                AgentCanJump = true,
+                AgentJumpHeight = 7,
+                AgentMaxSlope = 45,
+            })
+            path:ComputeAsync(character.PrimaryPart.Position, targetPosition)
+            local waypoints = path:GetWaypoints()
+
+            -- Move along the path
+            local function moveToNextWaypoint(index)
+                if index > #waypoints then return end
+                local waypoint = waypoints[index]
+                humanoid:MoveTo(waypoint.Position)
+                humanoid.MoveToFinished:Wait()
+                moveToNextWaypoint(index + 1)
+            end
+
+            -- Start moving
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+                moveToNextWaypoint(1)
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
+
+local RunService = game:GetService("RunService")
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local dodgeDistance = 2 -- Distance to dodge side to side
+local moveRight = true -- Toggle to switch direction
+
+local Toggle = Tab:AddToggle({
+    Name = "Auto Dodge",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+                local dodgeDirection
+                if moveRight then
+                    dodgeDirection = Vector3.new(1, 0, 0) -- Move right
+                else
+                    dodgeDirection = Vector3.new(-1, 0, 0) -- Move left
+                    
+                    
+                end
+                
+                moveRight = not moveRight -- Switch direction for next dodge
+                local dodgePosition = character.PrimaryPart.Position + dodgeDirection * dodgeDistance
+                character:SetPrimaryPartCFrame(CFrame.new(dodgePosition))
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
+
+local RunService = game:GetService("RunService")
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local dodgeDistance = 2 -- Distance to dodge side to side
+local moveRight = true -- Toggle to switch direction
+
+local Toggle = Tab:AddToggle({
+    Name = "Auto Dodge 2.0",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+                local camera = workspace.CurrentCamera
+                local dodgeDirection
+                if moveRight then
+                    dodgeDirection = Vector3.new(1, 0, 0) -- Move right
+                else
+                    dodgeDirection = Vector3.new(-1, 0, 0) -- Move left
+                end
+                moveRight = not moveRight -- Switch direction for next dodge
+                local dodgePosition = character.PrimaryPart.Position + dodgeDirection * dodgeDistance
+                character:SetPrimaryPartCFrame(CFrame.new(dodgePosition) * CFrame.Angles(0, math.rad(camera.CFrame:ToEulerAnglesYXZ()), 0))
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
 
 
 local Tab = Window:MakeTab({"Main"})
@@ -34,7 +156,46 @@ local function updateDropdown()
                 if selectedPlayer and selectedPlayer.Character and selectedPlayer.Character:FindFirstChild("HumanoidRootPart") then
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = selectedPlayer.Character.HumanoidRootPart.CFrame
                 end
-            end    
+            end
+        })
+    else
+        dropdown:SetOptions(playerNames)
+    end
+end
+
+-- Connect the function to player added and removed events
+Players.PlayerAdded:Connect(updateDropdown)
+Players.PlayerRemoving:Connect(updateDropdown)
+
+-- Initial update
+updateDropdown()
+local Section = Tab:AddSection({"Tween To Select Player"})
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local dropdown
+
+-- Function to update the dropdown options
+local function updateDropdown()
+    local playerNames = {}
+    for _, player in ipairs(Players:GetPlayers()) do
+        table.insert(playerNames, player.Name)
+    end
+
+    if not dropdown then
+        dropdown = Tab:AddDropdown({
+            Name = "Players",
+            Default = playerNames[1] or "",
+            Options = playerNames,
+            Callback = function(Value)
+                local selectedPlayer = Players:FindFirstChild(Value)
+                if selectedPlayer and selectedPlayer.Character and selectedPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    local targetCFrame = selectedPlayer.Character.HumanoidRootPart.CFrame
+                    local humanoidRootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+                    local tweenInfo = TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
+                    local tween = TweenService:Create(humanoidRootPart, tweenInfo, {CFrame = targetCFrame})
+                    tween:Play()
+                end
+            end
         })
     else
         dropdown:SetOptions(playerNames)
@@ -53,7 +214,15 @@ updateDropdown()
 local Section = Tab:AddSection({
 	Name = "Local Player"
 })
-local Section = Tab:AddSection({"Set Options"})
+
+
+
+
+local Section = Tab:AddSection({
+	Name = "Set Speed"
+})
+local lastSpeed = 16 -- Default speed
+
 local CoolSlider = Tab:AddSlider({
     Name = "Player Walk Speed",
     Min = 0,
@@ -62,38 +231,108 @@ local CoolSlider = Tab:AddSlider({
     Color = Color3.fromRGB(255, 255, 255),
     Increment = 1,
     ValueName = "Speed",
-    Callback = function(Value)
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
-        
+    Callback = function(value)
+        lastSpeed = value
+        if Toggle.Enabled then
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = value
+        end
     end,
 })
 
-local CoolSlider = Tab:AddSlider({
+local Toggle = Tab:AddToggle({
+    Name = "Set Speed",
+    Default = false,
+    Callback = function(Value)
+        Toggle.Enabled = Value
+        if Value then
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = lastSpeed
+        else
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16 -- Reset to default speed
+        end
+    end
+})
+
+
+local Section = Tab:AddSection({
+	Name = "Set jump"
+})
+
+
+local lastJumpHeight = 7.2 -- Default jump height
+
+
+-- Jump Height Slider
+local JumpSlider = Tab:AddSlider({
     Name = "Player Jump Height",
     Min = 0,
     Max = 100,
     Default = 7.2,
     Color = Color3.fromRGB(255, 255, 255),
     Increment = 1,
-   
     ValueName = "Jump",
-    Callback = function(Value)
-        game.Players.LocalPlayer.Character.Humanoid.JumpHeight = Value
+    Callback = function(value)
+        lastJumpHeight = value
+        -- Apply jump height immediately if toggle is enabled
+        if JumpToggle.Enabled then
+            game.Players.LocalPlayer.Character.Humanoid.JumpHeight = value
+        end
     end,
 })
 
-local CoolSlider = Tab:AddSlider({
+-- Jump Height Toggle
+local JumpToggle = Tab:AddToggle({
+    Name = "Set Jump Height",
+    Default = false,
+    Callback = function(Value)
+        JumpToggle.Enabled = Value
+        if Value then
+            -- Apply the last chosen jump height when enabled
+            game.Players.LocalPlayer.Character.Humanoid.JumpHeight = lastJumpHeight
+        else
+            -- Reset to default jump height when disabled
+            game.Players.LocalPlayer.Character.Humanoid.JumpHeight = 7.2
+        end
+    end
+})
+
+local Section = Tab:AddSection({
+	Name = "Set Gravity"
+})
+
+local lastGravity = 54 -- Default gravity
+
+-- Gravity Slider
+local GravitySlider = Tab:AddSlider({
     Name = "Player Gravity",
     Min = 0,
     Max = 100,
     Default = 54,
     Color = Color3.fromRGB(255, 255, 255),
     Increment = 1,
-    
     ValueName = "Gravity",
-    Callback = function(Value)
-        game.Players.LocalPlayer.PlayerGui.Gravity = Value
+    Callback = function(value)
+        lastGravity = value
+        -- Apply gravity immediately if toggle is enabled
+        if GravityToggle.Enabled then
+            game.Workspace.Gravity = value
+        end
     end,
+})
+
+-- Gravity Toggle
+local GravityToggle = Tab:AddToggle({
+    Name = "Set Gravity",
+    Default = false,
+    Callback = function(Value)
+        GravityToggle.Enabled = Value
+        if Value then
+            -- Apply the last chosen gravity when enabled
+            game.Workspace.Gravity = lastGravity
+        else
+            -- Reset to default gravity when disabled
+            game.Workspace.Gravity = 54
+        end
+    end
 })
 
 
@@ -118,7 +357,7 @@ Tab:AddButton({ 	Name  = "Teleoport tool", 	Callback = function()
         local mouse = plr:GetMouse()
         local tool = Instance.new("Tool")
         tool.RequiresHandle = false
-        tool.Name = "Teleport Tool"
+        tool.Name = "[Teleport Tool]"
         tool.Activated:Connect(function()
         local root = plr.Character.HumanoidRootPart
         local pos = mouse.Hit.Position+Vector3.new(0,2.5,0)
@@ -126,6 +365,13 @@ Tab:AddButton({ 	Name  = "Teleoport tool", 	Callback = function()
         root.CFrame = root.CFrame+offset
         end)
         tool.Parent = plr.Backpack
+
+
+end })
+
+Tab:AddButton({ 	Name  = "remote spy", 	Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RS/main/SimpleSpyMobile"))()
 
 
 end })
@@ -318,441 +564,51 @@ end })
 Tab:AddParagraph("Some script and gui are currently not working right now i am on a fix")
 
 
+local Tab = Window:MakeTab({"Chat Logger"})
+
+
+
+-- Store all chat messages
+local chatLog = ""
+
+-- Function to log chat messages
+local function logChat(message)
+    chatLog = chatLog .. "\n" .. message
+    local Paragraph = Tab:AddParagraph({chatLog})
+end
+
+-- Connect the chat event to the log function
+game.Players.PlayerAdded:Connect(function(player)
+    player.Chatted:Connect(function(message)
+        logChat(player.Name .. ": " .. message)
+    end)
+end)
+
+-- Log messages from players already in the game
+for _, player in ipairs(game.Players:GetPlayers()) do
+    player.Chatted:Connect(function(message)
+        logChat(player.Name .. ": " .. message)
+    end)
+end
+
+
+
 
 local Tab = Window:MakeTab({"Teleports"})
+
+
+
+local Section = Tab:AddSection({"Soon"})
+
+
+
+
+
+local Tab = Window:MakeTab({"Broken Bones"})
+
+local Section = Tab:AddSection({"Tween Exploit"})
 Tab:AddDropdown({
-    Name = "Ro-Bio Virus injection",
-    Default = "None",
-    Options = {"None", "Center", "Virus Block", "Weapons", "Research Lab", "Locker Room", "Hidden Viruses 1","Hidden Viruses 2", "cell block 1", "cell block 2", "cell block 3", "cell block 4", "cell block 5", "cell block 6", "cell block 7", "cell block 8", "cell block 9", "cell block 10", "cell block 11","cell block 12", },
-    Callback = function(Value)
-        selectedOption = Value -- Update the selected option
-    end
-})
-
-Tab:AddToggle({
-    Name = "Tween to Place",
-    Default = false,
-    Callback = function(Value)
-        if Value then
-            -- Execute the script based on the selected option
-            if selectedOption == "none" then
-                -- Do something for 'none'
-            elseif selectedOption == "Center" then
-              local player = game.Players.LocalPlayer
-local character = player.Character
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-local camera = game.Workspace.CurrentCamera
-
-local targetPosition = Vector3.new(211.6832275390625, 3562.519287109375, 1623.7923583984375)
-local speed = 30 -- Adjust the flying speed
-
-local function flyToTarget()
-    local direction = (targetPosition - humanoidRootPart.Position).unit
-    local distance = (targetPosition - humanoidRootPart.Position).magnitude
-
-    while distance > 1 do
-        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
-        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
-        distance = (targetPosition - humanoidRootPart.Position).magnitude
-    end
-end
-
-flyToTarget()
-            elseif selectedOption == "Virus Block" then
-            local player = game.Players.LocalPlayer
-local character = player.Character
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-local camera = game.Workspace.CurrentCamera
-
-local targetPosition = Vector3.new(163.5572509765625, 3562.519287109375, 1579.9520263671875)
-local speed = 30 -- Adjust the flying speed
-
-local function flyToTarget()
-    local direction = (targetPosition - humanoidRootPart.Position).unit
-    local distance = (targetPosition - humanoidRootPart.Position).magnitude
-
-    while distance > 1 do
-        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
-        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
-        distance = (targetPosition - humanoidRootPart.Position).magnitude
-    end
-end
-
-flyToTarget()
-            elseif selectedOption == "Weapons" then
-local player = game.Players.LocalPlayer
-local character = player.Character
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-local camera = game.Workspace.CurrentCamera
-
-local targetPosition = Vector3.new(242.10726928710938, 3562.519287109375, 1578.9796142578125)
-local speed = 30 -- Adjust the flying speed
-
-local function flyToTarget()
-    local direction = (targetPosition - humanoidRootPart.Position).unit
-    local distance = (targetPosition - humanoidRootPart.Position).magnitude
-
-    while distance > 1 do
-        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
-        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
-        distance = (targetPosition - humanoidRootPart.Position).magnitude
-    end
-end
-
-flyToTarget()
-            elseif selectedOption == "Research Lab" then
-local player = game.Players.LocalPlayer
-local character = player.Character
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-local camera = game.Workspace.CurrentCamera
-
-local targetPosition = Vector3.new(255.30068969726562, 3562.519287109375, 1626.4541015625)
-local speed = 30 -- Adjust the flying speed
-
-local function flyToTarget()
-    local direction = (targetPosition - humanoidRootPart.Position).unit
-    local distance = (targetPosition - humanoidRootPart.Position).magnitude
-
-    while distance > 1 do
-        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
-        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
-        distance = (targetPosition - humanoidRootPart.Position).magnitude
-    end
-end
-
-flyToTarget()
-            elseif selectedOption == "Locker Room" then
-local player = game.Players.LocalPlayer
-local character = player.Character
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-local camera = game.Workspace.CurrentCamera
-
-local targetPosition = Vector3.new(306.3703918457031, 3562.519287109375, 1623.65771484375)
-local speed = 30 -- Adjust the flying speed
-
-local function flyToTarget()
-    local direction = (targetPosition - humanoidRootPart.Position).unit
-    local distance = (targetPosition - humanoidRootPart.Position).magnitude
-
-    while distance > 1 do
-        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
-        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
-        distance = (targetPosition - humanoidRootPart.Position).magnitude
-    end
-end
-
-flyToTarget()
-            elseif selectedOption == "Hidden Viruses 1" then
-local player = game.Players.LocalPlayer
-local character = player.Character
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-local camera = game.Workspace.CurrentCamera
-
-local targetPosition = Vector3.new(95.10549926757812, 3562.419189453125, 1601.4613037109375)
-local speed = 30 -- Adjust the flying speed
-
-local function flyToTarget()
-    local direction = (targetPosition - humanoidRootPart.Position).unit
-    local distance = (targetPosition - humanoidRootPart.Position).magnitude
-
-    while distance > 1 do
-        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
-        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
-        distance = (targetPosition - humanoidRootPart.Position).magnitude
-    end
-end
-
-flyToTarget()
-            elseif selectedOption == "Hidden Viruses 2" then
-local player = game.Players.LocalPlayer
-local character = player.Character
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-local camera = game.Workspace.CurrentCamera
-
-local targetPosition = Vector3.new(154.2515869140625, 3582.169189453125, 1564.4342041015625)
-local speed = 30 -- Adjust the flying speed
-
-local function flyToTarget()
-    local direction = (targetPosition - humanoidRootPart.Position).unit
-    local distance = (targetPosition - humanoidRootPart.Position).magnitude
-
-    while distance > 1 do
-        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
-        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
-        distance = (targetPosition - humanoidRootPart.Position).magnitude
-    end
-end
-
-flyToTarget()
-            elseif selectedOption == "cell block 1" then
-local player = game.Players.LocalPlayer
-local character = player.Character
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-local camera = game.Workspace.CurrentCamera
-
-local targetPosition = Vector3.new(164.75814819335938, 3562.628662109375, 1521.6563720703125)
-local speed = 40 -- Adjust the flying speed
-
-local function flyToTarget()
-    local direction = (targetPosition - humanoidRootPart.Position).unit
-    local distance = (targetPosition - humanoidRootPart.Position).magnitude
-
-    while distance > 1 do
-        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
-        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
-        distance = (targetPosition - humanoidRootPart.Position).magnitude
-    end
-end
-
-flyToTarget()
-            elseif selectedOption == "cell block 2" then
-local player = game.Players.LocalPlayer
-local character = player.Character
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-local camera = game.Workspace.CurrentCamera
-
-local targetPosition = Vector3.new(164.43077087402344, 3562.628662109375, 1480.641845703125)
-local speed = 40 -- Adjust the flying speed
-
-local function flyToTarget()
-    local direction = (targetPosition - humanoidRootPart.Position).unit
-    local distance = (targetPosition - humanoidRootPart.Position).magnitude
-
-    while distance > 1 do
-        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
-        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
-        distance = (targetPosition - humanoidRootPart.Position).magnitude
-    end
-end
-
-flyToTarget()
-            elseif selectedOption == "cell block 3" then
-local player = game.Players.LocalPlayer
-local character = player.Character
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-local camera = game.Workspace.CurrentCamera
-
-local targetPosition = Vector3.new(164.00987243652344, 3562.628662109375, 1441.1241455078125)
-local speed = 40 -- Adjust the flying speed
-
-local function flyToTarget()
-    local direction = (targetPosition - humanoidRootPart.Position).unit
-    local distance = (targetPosition - humanoidRootPart.Position).magnitude
-
-    while distance > 1 do
-        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
-        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
-        distance = (targetPosition - humanoidRootPart.Position).magnitude
-    end
-end
-
-flyToTarget()
-            elseif selectedOption == "cell block 4" then
-local player = game.Players.LocalPlayer
-local character = player.Character
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-local camera = game.Workspace.CurrentCamera
-
-local targetPosition = Vector3.new(166.44119262695312, 3562.628662109375, 1401.00390625)
-local speed = 40 -- Adjust the flying speed
-
-local function flyToTarget()
-    local direction = (targetPosition - humanoidRootPart.Position).unit
-    local distance = (targetPosition - humanoidRootPart.Position).magnitude
-
-    while distance > 1 do
-        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
-        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
-        distance = (targetPosition - humanoidRootPart.Position).magnitude
-    end
-end
-
-flyToTarget()
-            elseif selectedOption == "cell block 5" then
-local player = game.Players.LocalPlayer
-local character = player.Character
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-local camera = game.Workspace.CurrentCamera
-
-local targetPosition = Vector3.new(167.13162231445312, 3562.628662109375, 1363.0992431640625)
-local speed = 40 -- Adjust the flying speed
-
-local function flyToTarget()
-    local direction = (targetPosition - humanoidRootPart.Position).unit
-    local distance = (targetPosition - humanoidRootPart.Position).magnitude
-
-    while distance > 1 do
-        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
-        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
-        distance = (targetPosition - humanoidRootPart.Position).magnitude
-    end
-end
-
-flyToTarget()
-            elseif selectedOption == "cell block 6" then
-local player = game.Players.LocalPlayer
-local character = player.Character
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-local camera = game.Workspace.CurrentCamera
-
-local targetPosition = Vector3.new(161.49288940429688, 3562.628662109375, 1323.4228515625)
-local speed = 40 -- Adjust the flying speed
-
-local function flyToTarget()
-    local direction = (targetPosition - humanoidRootPart.Position).unit
-    local distance = (targetPosition - humanoidRootPart.Position).magnitude
-
-    while distance > 1 do
-        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
-        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
-        distance = (targetPosition - humanoidRootPart.Position).magnitude
-    end
-end
-
-flyToTarget()
-            elseif selectedOption == "cell block 7" then
-local player = game.Players.LocalPlayer
-local character = player.Character
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-local camera = game.Workspace.CurrentCamera
-
-local targetPosition = Vector3.new(259.8353576660156, 3562.628662109375, 1515.7197265625)
-local speed = 40 -- Adjust the flying speed
-
-local function flyToTarget()
-    local direction = (targetPosition - humanoidRootPart.Position).unit
-    local distance = (targetPosition - humanoidRootPart.Position).magnitude
-
-    while distance > 1 do
-        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
-        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
-        distance = (targetPosition - humanoidRootPart.Position).magnitude
-    end
-end
-
-flyToTarget()
-            elseif selectedOption == "cell block 8" then
-local player = game.Players.LocalPlayer
-local character = player.Character
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-local camera = game.Workspace.CurrentCamera
-
-local targetPosition = Vector3.new(258.7364196777344, 3562.628662109375, 1476.36669921875)
-local speed = 40 -- Adjust the flying speed
-
-local function flyToTarget()
-    local direction = (targetPosition - humanoidRootPart.Position).unit
-    local distance = (targetPosition - humanoidRootPart.Position).magnitude
-
-    while distance > 1 do
-        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
-        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
-        distance = (targetPosition - humanoidRootPart.Position).magnitude
-    end
-end
-
-flyToTarget()
-            elseif selectedOption == "cell block 9" then
-local player = game.Players.LocalPlayer
-local character = player.Character
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-local camera = game.Workspace.CurrentCamera
-
-local targetPosition = Vector3.new(261.1194763183594, 3562.628662109375, 1438.4344482421875)
-local speed = 40 -- Adjust the flying speed
-
-local function flyToTarget()
-    local direction = (targetPosition - humanoidRootPart.Position).unit
-    local distance = (targetPosition - humanoidRootPart.Position).magnitude
-
-    while distance > 1 do
-        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
-        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
-        distance = (targetPosition - humanoidRootPart.Position).magnitude
-    end
-end
-
-flyToTarget()
-            elseif selectedOption == "cell block 10" then
-local player = game.Players.LocalPlayer
-local character = player.Character
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-local camera = game.Workspace.CurrentCamera
-
-local targetPosition = Vector3.new(262.2147521972656, 3562.628662109375, 1399.98046875)
-local speed = 40 -- Adjust the flying speed
-
-local function flyToTarget()
-    local direction = (targetPosition - humanoidRootPart.Position).unit
-    local distance = (targetPosition - humanoidRootPart.Position).magnitude
-
-    while distance > 1 do
-        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
-        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
-        distance = (targetPosition - humanoidRootPart.Position).magnitude
-    end
-end
-
-flyToTarget()
-           elseif selectedOption == "cell block 11" then
-local player = game.Players.LocalPlayer
-local character = player.Character
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-local camera = game.Workspace.CurrentCamera
-
-local targetPosition = Vector3.new(255.81324768066406, 3562.628662109375, 1359.0853271484375)
-local speed = 40 -- Adjust the flying speed
-
-local function flyToTarget()
-    local direction = (targetPosition - humanoidRootPart.Position).unit
-    local distance = (targetPosition - humanoidRootPart.Position).magnitude
-
-    while distance > 1 do
-        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
-        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
-        distance = (targetPosition - humanoidRootPart.Position).magnitude
-    end
-end
-
-flyToTarget()
-            elseif selectedOption == "cell block 12" then
-local player = game.Players.LocalPlayer
-local character = player.Character
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-local camera = game.Workspace.CurrentCamera
-
-local targetPosition = Vector3.new(258.9114990234375, 3562.628662109375, 1319.8447265625)
-local speed = 40 -- Adjust the flying speed
-
-local function flyToTarget()
-    local direction = (targetPosition - humanoidRootPart.Position).unit
-    local distance = (targetPosition - humanoidRootPart.Position).magnitude
-
-    while distance > 1 do
-        local newPosition = humanoidRootPart.Position + direction * speed * game:GetService("RunService").RenderStepped:Wait()
-        humanoidRootPart.CFrame = CFrame.new(newPosition, targetPosition)
-        distance = (targetPosition - humanoidRootPart.Position).magnitude
-    end
-end
-
-flyToTarget()
-            end
-        else
-            -- Handle the case when the toggle button is not active
-        end
-    end
-})
-
-
-
-
-
-
-
-
-
-Tab:AddDropdown({
-    Name = "prison life",
+    Name = "Broken Bones Speed Exploit",
     Default = "None",
     Options = {"None", "Main", },
     Callback = function(Value)
@@ -761,7 +617,7 @@ Tab:AddDropdown({
 })
 
 Tab:AddToggle({
-    Name = "Tween to Place",
+    Name = "Tween Speed exploit",
     Default = false,
     Callback = function(Value)
         if Value then
@@ -775,7 +631,7 @@ local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 local camera = game.Workspace.CurrentCamera
 
 local targetPosition = Vector3.new(917.9083251953125, 99.98998260498047, 2390.028564453125)
-local speed = 40 -- Adjust the flying speed
+local speed = 20 -- Adjust the flying speed
 
 local function flyToTarget()
     local direction = (targetPosition - humanoidRootPart.Position).unit
@@ -795,13 +651,6 @@ flyToTarget()
         end
     end
 })
-
-
-
-
-
-
-
 
 
 local Tab = Window:MakeTab({"Zombie Uprising"})
@@ -1288,14 +1137,14 @@ local Section = Tab:AddSection({
 
 Tab:AddButton({ Name = "Pirates", Callback = function()
 
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam","Pirates") 
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam","Pirates")
 
 end})
 
 
 Tab:AddButton({ Name = "marines", Callback = function()
 
- game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam","Marines") 
+ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam","Marines")
 
 end})
 
@@ -1306,19 +1155,19 @@ Tab:AddButton({
 	Name = "Teleport To First Sea",
 	Callback = function()
       	  game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain")
-  	end    
+  	end
 })
 Tab:AddButton({
 	Name = "Teleport To Second Sea",
 	Callback = function()
       	 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
-  	end    
+  	end
 })
 Tab:AddButton({
 	Name = "Teleport To Third Sea",
 	Callback = function()
       	 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
-  	end    
+  	end
 })
 local Section = Tab:AddSection({
 	Name = "Ui Misc"
@@ -1382,7 +1231,7 @@ local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 local bringDistance = 55 -- Adjust this value to set the distance threshold
-local offset = CFrame.new(0, -5, -6) 
+local offset = CFrame.new(0, -5, -6)
 
 function bringMobs()
     for _, mob in pairs(game.Workspace.Enemies:GetChildren()) do
@@ -1428,7 +1277,7 @@ local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 local bringDistance = 55 -- Adjust this value to set the distance threshold
-local offset = CFrame.new(0, -5, -6) 
+local offset = CFrame.new(0, -5, -6)
 
 function bringMobs()
     for _, mob in pairs(game.Workspace.Enemies:GetChildren()) do
@@ -1527,9 +1376,36 @@ local Toggle = Tab:AddToggle({
         end
     end
 })
+
+local Section = Tab:AddSection({"Race"})
+
+local RunService = game:GetService("RunService")
+local Toggle = Tab:AddToggle({
+    Name = "Auto V3 Ability",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+                local args = {
+    [1] = "ActivateAbility"
+}
+
+game:GetService("ReplicatedStorage").Remotes.CommE:FireServer(unpack(args))
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
+
 local Tab = Window:MakeTab({"lumber tycoon 2"})
 
-Tab:AddButton({ 	Name = "lumber tycoon 2 butter", 	Callback = function() 
+Tab:AddButton({ 	Name = "lumber tycoon 2 butter", 	Callback = function()
 loadstring(game:HttpGet('https://raw.githubusercontent.com/Butterisgood/Butter/main/Root2.lua'))("")
 end })
 
@@ -1579,7 +1455,7 @@ end })
 
 Tab:AddParagraph("imformation","is a doors script")
 
-local Tab = Window:MakeTab({"age of hero's"})
+local Tab = Window:MakeTab({"age of heros"})
 
 Tab:AddButton({ 	Name ="age of hero ", 	Callback = function() loadstring(game:HttpGet(("https://raw.githubusercontent.com/icuck/AgeofHeroesAutofarm/master/main.lua"), true))()
 
@@ -1589,52 +1465,420 @@ Tab:AddParagraph("imformation","is a age of hero script")
 
 local Tab = Window:MakeTab({"cook burger"})
 
+local Section = Tab:AddSection({"Guis"})
+
 Tab:AddButton({ 	Name = "cook buger 1", 	Callback = function() loadstring(game:HttpGet("https://pastebin.com/raw/bRzAYkYZ"))()
 
 end })
 
 Tab:AddParagraph("imformation","is a cook burger script")
 
+
 Tab:AddButton({ 	Name = "cook buger 2", 	Callback = function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/NOOBARMYSCRIPTER/NOOBARMYSCRIPTER/main/cook%20burgers", true))()
 end })
 
-Tab:AddParagraph("imformation","is a cook burger script")
+
+local Section = Tab:AddSection({"Scripts"})
+
+local Section = Tab:AddSection({"Auto"})
+
+local RunService = game:GetService("RunService")
+local Toggle = Tab:AddToggle({
+    Name = "Auto Spawn Plates",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+                         workspace.Restaurant.PlateDispenser.DispenserButton.ContextAction:FireServer()
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
+
+local RunService = game:GetService("RunService")
+local Toggle = Tab:AddToggle({
+    Name = "Auto Open Boxs",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+                         workspace.Entities.Items.Box.ContextAction:FireServer()
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
+
+local RunService = game:GetService("RunService")
+local Toggle = Tab:AddToggle({
+    Name = "Auto Order Buns",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+                      workspace.Restaurant.IngredientsOrderScreens.MainScreen.OrderButton1.ContextAction:FireServer()
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
+local RunService = game:GetService("RunService")
+local Toggle = Tab:AddToggle({
+    Name = "Auto Order Meat & Cheese",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+              workspace.Restaurant.IngredientsOrderScreens.MainScreen.OrderButton2.ContextAction:FireServer()
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
+local RunService = game:GetService("RunService")
+local Toggle = Tab:AddToggle({
+    Name = "Auto Order Fries",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+                          workspace.Restaurant.IngredientsOrderScreens.FreezerScreen.OrderButton4.ContextAction:FireServer()
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
+local RunService = game:GetService("RunService")
+local Toggle = Tab:AddToggle({
+    Name = "Auto Order Lettuce",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+            workspace.Restaurant.IngredientsOrderScreens.MainScreen.OrderButton3.ContextAction:FireServer()
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
+
+local Section = Tab:AddSection({"Order"})
+
+local Button = Tab:AddButton({
+  Name = "Lettuce",
+  Callback = function()
+    workspace.Restaurant.IngredientsOrderScreens.MainScreen.OrderButton3.ContextAction:FireServer()
+  end
+})
+local Button = Tab:AddButton({
+  Name = "Meat & Cheese",
+  Callback = function()
+    workspace.Restaurant.IngredientsOrderScreens.MainScreen.OrderButton2.ContextAction:FireServer()
+  end
+})
+local Button = Tab:AddButton({
+  Name = "Top & Bottom Buns",
+  Callback = function()
+    workspace.Restaurant.IngredientsOrderScreens.MainScreen.OrderButton1.ContextAction:FireServer()
+  end
+})
+local Button = Tab:AddButton({
+  Name = "Fries",
+  Callback = function()
+    workspace.Restaurant.IngredientsOrderScreens.FreezerScreen.OrderButton4.ContextAction:FireServer()
+  end
+})
+
+local Section = Tab:AddSection({"Become"})
+
+local Button = Tab:AddButton({
+  Name = "Become A Rat",
+  Callback = function()
+    workspace.Entities.Items.Potion.ContextAction:FireServer()
+  end
+})
 
 
-Tab:AddButton({ 	Name = "become a rat", 	Callback = function()
-workspace.Entities.Items.Potion.ContextAction:FireServer()
-end})
 
+local Section = Tab:AddSection({"Doors"})
 
-
-Tab:AddButton({ 	Name = "trigger a costumer response", 	Callback = function()
-local args = {
-    [1] = workspace.Entities.Characters.Humans.Customers.Customer
+local Button = Tab:AddButton({
+  Name = "Open/Close Back Door",
+  Callback = function()
+    local args = {
+    [1] = "gameplay.interaction",
+    [2] = {
+        ["with"] = workspace.Restaurant.InteractiveDoor,
+        ["side"] = -90
+    }
 }
 
-game:GetService("ReplicatedStorage").Systems.NetworkOwnershipsSystem.Network3:InvokeServer(unpack(args))
-end})
+game:GetService("ReplicatedStorage").Libs.Events.RemoteEvent:FireServer(unpack(args))
 
-Tab:AddButton({ 	Name = "trigger all fire extinguishers", 	Callback = function()
-workspace.Entities.Items:GetChildren()[5].Extinguisher.ContextAction:FireServer()
+  end
+})
 
-workspace.Entities.Items.Extinguisher.Extinguisher.ContextAction:FireServer()
+local Button = Tab:AddButton({
+  Name = "Open/CloseMicrowave Door",
+  Callback = function()
+   workspace.Entities.Items.Microwave.Body.ContextAction:FireServer()
+  end
+})
+local Button = Tab:AddButton({
+  Name = "Open/Close Frige Door",
+  Callback = function()
+    workspace.Restaurant.Fridge.Door.FridgeDoor.ContextAction:FireServer()
+  end
+})
+local Button = Tab:AddButton({
+  Name = "Open/Close Freezer Door",
+  Callback = function()
+    workspace.Restaurant.Freezer.Door.FreezerDoor.ContextAction:FireServer()
+  end
+})
 
-workspace.Entities.Items:GetChildren()[6].Extinguisher.ContextAction:FireServer()
 
-workspace.Entities.Items:GetChildren()[4].Extinguisher.ContextAction:FireServer()
+local Section = Tab:AddSection({"GamePasses"})
 
-workspace.Restaurant.IngredientsOrderScreens.FreezerScreen.OrderButton4.ContextAction:FireServer()
-end})
-Tab:AddButton({ 	Name = "open all boxs", 	Callback = function()
-workspace.Entities.Items.Box.ContextAction:FireServer()
-end})
+local Button = Tab:AddButton({
+  Name = "Manager",
+  Callback = function()
+    local player = game:GetService("Players").LocalPlayer
+player.Gamepasses.ManagerAccess.Value = true
+
+game.StarterGui:SetCore("SendNotification", {
+    Title = "About The Game Passes";
+ 
+   
+})
+wait(1)
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Not Working ";
+    Text = "some game passes don't work because of certain restrictions from server";
+    Duration = 60;
+})
+  end
+})
+local Button = Tab:AddButton({
+  Name = "Instant Cat",
+  Callback = function()
+    local player = game:GetService("Players").LocalPlayer
+player.Gamepasses.InstantCat.Value = true
+
+  end
+})
+local Button = Tab:AddButton({
+  Name = "X27Prototype",
+  Callback = function()
+    local player = game:GetService("Players").LocalPlayer
+player.Gamepasses.X27Prototype.Value = true
+
+  end
+})
+local Button = Tab:AddButton({
+  Name = "Royal Rate",
+  Callback = function()
+    local player = game:GetService("Players").LocalPlayer
+player.Gamepasses.RoyalRat.Value = true
+  end
+})
+local Button = Tab:AddButton({
+  Name = "Elite Rate",
+  Callback = function()
+    local player = game:GetService("Players").LocalPlayer
+player.Gamepasses.EliteRat.Value = true
+  end
+})
+
+local Section = Tab:AddSection({"Bring"})
+
+local Button = Tab:AddButton({
+  Name = "bring all bottom buns",
+  Callback = function()
+    local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+if character then
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    local offset = Vector3.new(0, 0, 0) -- Adjust this to set the distance in front of the player
+
+    -- First, anchor all BottomBuns to prevent movement
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v.Name == "Bottom Bun" and v:IsA("BasePart") then
+            v.Anchored = true
+        end
+    end
+
+    -- Then, teleport all BottomBuns at once
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v.Name == "Bottom Bun" and v:IsA("BasePart") then
+            v.CFrame = rootPart.CFrame * CFrame.new(offset)
+            offset = offset + Vector3.new(0, v.Size.Y, 0) -- Stack vertically
+        end
+    end
+
+    -- Finally, re-enable physics for all BottomBuns
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v.Name == "Bottom Bun" and v:IsA("BasePart") then
+            v.Anchored = false
+        end
+    end
+end
+
+  end
+})
+
+local Button = Tab:AddButton({
+  Name = "Button",
+  Callback = function()
+        local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+if character then
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    local offset = Vector3.new(0, 0, 5) -- Adjust this to set the distance in front of the player
+
+    -- First, anchor all BottomBuns to prevent movement
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v.Name == "Bottom Bun" and v:IsA("BasePart") then
+            v.Anchored = true
+        end
+    end
+
+    -- Then, teleport all BottomBuns at once
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v.Name == "Bottom Bun" and v:IsA("BasePart") then
+            v.CFrame = rootPart.CFrame * CFrame.new(offset)
+            offset = offset + Vector3.new(0, v.Size.Y, 0) -- Stack vertically
+        end
+    end
+
+    -- Finally, re-enable physics for all BottomBuns
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v.Name == "Bottom Bun" and v:IsA("BasePart") then
+            v.Anchored = false
+        end
+    end
+end
+
+  
+  end
+})
+local Button = Tab:AddButton({
+  Name = "crate",
+  Callback = function()
+        local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+if character then
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    local offset = Vector3.new(0, 0, 5) -- Adjust this to set the distance in front of the player
+
+    -- First, anchor all BottomBuns to prevent movement
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v.Name == "Crate" and v:IsA("BasePart") then
+            v.Anchored = true
+        end
+    end
+
+    -- Then, teleport all BottomBuns at once
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v.Name == "Crate" and v:IsA("BasePart") then
+            v.CFrame = rootPart.CFrame * CFrame.new(offset)
+            offset = offset + Vector3.new(0, v.Size.Y, 0) -- Stack vertically
+        end
+    end
+
+    -- Finally, re-enable physics for all BottomBuns
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v.Name == "Crate" and v:IsA("BasePart") then
+            v.Anchored = false
+        end
+    end
+end
+
+ 
+  end
+})
+local Button = Tab:AddButton({
+  Name = "Cargo",
+  Callback = function()
+        local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+if character then
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    local offset = Vector3.new(0, 0, 5) -- Adjust this to set the distance in front of the player
+
+    -- First, anchor all BottomBuns to prevent movement
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v.Name == "Bottom Bun" and v:IsA("BasePart") then
+            v.Anchored = true
+        end
+    end
+
+    -- Then, teleport all BottomBuns at once
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v.Name == "Bottom Bun" and v:IsA("BasePart") then
+            v.CFrame = rootPart.CFrame * CFrame.new(offset)
+            offset = offset + Vector3.new(0, v.Size.Y, 0) -- Stack vertically
+        end
+    end
+
+    -- Finally, re-enable physics for all BottomBuns
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v.Name == "Bottom Bun" and v:IsA("BasePart") then
+            v.Anchored = false
+        end
+    end
+end
+
+ 
+  end
+})
 
 
+local Section = Tab:AddSection({"Soon"})
 
-Tab:AddButton({ 	Name = "soon", 	Callback = function()
-end})
+local Section = Tab:AddSection({"Soon"})
 
 local Tab = Window:MakeTab({"pop it trading"})
 
@@ -2134,7 +2378,7 @@ local Toggle = Tab:AddToggle({
         if Value then
             -- Start the loop when the toggle is enabled
             Toggle.Loop = RunService.RenderStepped:Connect(function()
-                         game:GetService("ReplicatedStorage").Events.InventoryEvent:FireServer("Equip", "Super Luck Potion", "Usable")
+               game:GetService("ReplicatedStorage").Events.InventoryEvent:FireServer("Equip","Super Luck Potion","Usable")
             end)
         else
             -- Stop the loop when the toggle is disabled
@@ -2145,5 +2389,4 @@ local Toggle = Tab:AddToggle({
         end
     end
 })
-
 
