@@ -1,6 +1,9 @@
 
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/RedzLibV5/main/Source.lua"))()
 
+
+
+
 local Window = redzlib:MakeWindow({
   Title = "Admin-X",
   SubTitle = "Dont expect it to be perfect",
@@ -133,6 +136,8 @@ local Toggle = Tab:AddToggle({
 
 
 local Tab = Window:MakeTab({"Main"})
+
+
 
 local Section = Tab:AddSection({"Teleport To Select Player"})
 -- Local Script
@@ -371,7 +376,7 @@ end })
 
 Tab:AddButton({ 	Name  = "remote spy", 	Callback = function()
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RS/main/SimpleSpyMobile"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/RS/main/SimpleSpyMobile"))()
 
 
 end })
@@ -387,7 +392,7 @@ end })
 local Button = Tab:AddButton({
   Name = "dex explorer keyless",
   Callback = function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/DEX-Explorer/main/Mobile.lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/DEX-Explorer/main/Mobile.lua"))()
   end
 })
 
@@ -723,9 +728,42 @@ end
 
 end})
 
-Tab:AddButton({ Name = "bring mob other", Callback = function()
+Tab:AddButton({ Name = "tween cart to you made by ai", Callback = function()
 
-print("script here")
+local TweenService = game:GetService("TweenService")
+local Players = game:GetService("Players")
+
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local playerPosition = character.PrimaryPart.Position
+
+-- Change "Carts" to the name of your folder
+local cartsFolder = workspace:WaitForChild("Carts")
+
+-- Define the tween info (duration, easing style, etc.)
+local tweenInfo = TweenInfo.new(
+    2, -- Duration (2 seconds)
+    Enum.EasingStyle.Linear, -- Easing style
+    Enum.EasingDirection.Out, -- Easing direction
+    0, -- Number of times to repeat
+    false, -- Should it reverse
+    0 -- Delay time before the tween starts
+)
+
+for _, desc in ipairs(cartsFolder:GetDescendants()) do
+    if desc:IsA("BasePart") then
+        -- Define the goal (the final position of the part)
+        local goal = {}
+        goal.Position = playerPosition
+
+        -- Create the tween
+        local tween = TweenService:Create(desc, tweenInfo, goal)
+        
+        -- Play the tween
+        tween:Play()
+    end
+end
+
 
 end})
 
