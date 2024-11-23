@@ -2379,7 +2379,6 @@ local Toggle = Tab:AddToggle({
             -- Start the loop when the toggle is enabled
             Toggle.Loop = RunService.RenderStepped:Connect(function()
                game:GetService("ReplicatedStorage").Events.InventoryEvent:FireServer("Equip","Super Luck Potion","Usable")
-            end)
         else
             -- Stop the loop when the toggle is disabled
             if Toggle.Loop then
