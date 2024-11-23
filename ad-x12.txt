@@ -2372,13 +2372,14 @@ local Tab = Window:MakeTab({"Horrors RNG"})
 
 local RunService = game:GetService("RunService")
 local Toggle = Tab:AddToggle({
-    Name = "Auto Luck",
+    Name = "Auto Spawn Plates",
     Default = false,
     Callback = function(Value)
         if Value then
             -- Start the loop when the toggle is enabled
             Toggle.Loop = RunService.RenderStepped:Connect(function()
-               game:GetService("ReplicatedStorage").Events.InventoryEvent:FireServer("Equip","Super Luck Potion","Usable")
+          print('soon')
+            end)
         else
             -- Stop the loop when the toggle is disabled
             if Toggle.Loop then
@@ -2388,4 +2389,3 @@ local Toggle = Tab:AddToggle({
         end
     end
 })
-
