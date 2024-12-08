@@ -341,8 +341,21 @@ local GravityToggle = Tab:AddToggle({
 })
 
 
+local Section = Tab:AddSection({
+	Name = "Afk Section"
+})
 
-
+local Toggle = Tab:AddToggle({
+    Name = "Anti-Afk",
+    Default = false,
+    Callback = function(Value)
+        if (value) then getconnections(game:GetService("Players").LocalPlayer.Idled) do
+        v:Disable()
+     end
+ else
+  print('Anti-Afk Script Not Active');
+ end
+end})
 
 local Section = Tab:AddSection({
 	Name = "Tools"
@@ -374,9 +387,9 @@ Tab:AddButton({ 	Name  = "Teleoport tool", 	Callback = function()
 
 end })
 
-Tab:AddButton({ 	Name  = "remote spy", 	Callback = function()
+Tab:AddButton({ 	Name  = "Remote spy", 	Callback = function()
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/RS/main/SimpleSpyMobile"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/SimpleSpy/main/Mobile.lua"))()
 
 
 end })
@@ -390,7 +403,7 @@ loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Dex%20Explorer.txt"))
 end })
 
 local Button = Tab:AddButton({
-  Name = "dex explorer keyless",
+  Name = "Dex explorer keyless",
   Callback = function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/DEX-Explorer/main/Mobile.lua"))()
   end
@@ -896,19 +909,44 @@ end})
 
 local Tab = Window:MakeTab({"other hubs"})
 
+Tab:AddButton({ name = "soon!", Callback = function()
+
+print("script here")
+
+end})
+
+Tab:AddButton({ name = "soon!", Callback = function()
+
+print("script here")
+
+end})
+
+Tab:AddButton({ name = "soon!", Callback = function()
+
+print("script here")
+
+end})
+
+Tab:AddButton({ name = "soon!", Callback = function()
+
+print("script here")
+
+end})
+
+
 Tab:AddButton({ Name = "Sky Hub", Callback = function()
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/SkyHub.txt"))()
 
 end})
-Tab:AddButton({ Name = "soon!", Callback = function()
+Tab:AddButton({ Name = "Speed Hub", Callback = function()
 
-print("script here")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()
 
 end})
-Tab:AddButton({ Name = "soon!", Callback = function()
+Tab:AddButton({ Name = "Zap Hub", Callback = function()
 
-print("script here")
+loadstring(game:HttpGet('https://zaphub.xyz/Exec'))()
 
 end})
 
@@ -918,9 +956,9 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/GamerScripter/Game-Hu
 
 end})
 
-Tab:AddButton({ Name = "soon!", Callback = function()
+Tab:AddButton({ Name = "HoHo Hub", Callback = function()
 
-print("script here")
+loadstring(game:HttpGet('https://raw.githubusercontent.com/ascn123/HOHO_H/main/Loading_UI'))()
 
 end})
 
@@ -2427,3 +2465,5 @@ local Toggle = Tab:AddToggle({
         end
     end
 })
+
+
