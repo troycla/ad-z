@@ -344,25 +344,89 @@ local Section = Tab:AddSection({
 	Name = "Pet Simulator Games"
 })
 
-local Toggle = Tab:AddToggle({
-    Name = "Auto Collect Drops",
+-- Variables to store toggle states
+local autoCollectOrbs = false
+local autoCollectLootbags = false
+
+-- Create the toggle for Auto Collect Orbs
+local ToggleOrbs = Tab:AddToggle({
+    Name = "Auto Collect Orbs",
     Default = false,
     Callback = function(Value)
-local a = game.Players.LocalPlayer.Character.HumanoidRootPart
-local b = workspace.__THINGS
+        autoCollectOrbs = Value
+        if autoCollectOrbs then
+            collectOrbs()
+        end
+    end
+})
 
-if Value then
-    local cf = a.CFrame
-    for i,v in pairs(b.Lootbags:GetChildren()) do
-    v:PivotTo(cf)
+-- Function to auto collect orbs
+local function collectOrbs()
+    while autoCollectOrbs do
+        local fororbs = workspace.__THINGS.Orbs:GetChildren()
+        local MyOrbs = {}
+
+        if #fororbs > 0 then
+            for i, v in next, fororbs do
+                MyOrbs[i] = tonumber(v.Name)
+                v:Destroy()
+            end
+        end
+
+        RE("Orbs: Collect"):FireServer(MyOrbs)
+        wait(1) -- Adjust the wait time as needed
     end
-    for i,v in pairs(b.Orbs:GetChildren()) do
-    v:PivotTo(cf)
+end
+
+-- Create the toggle for Auto Collect Lootbags
+local ToggleLootbags = Tab:AddToggle({
+    Name = "Auto Collect Lootbags",
+    Default = false,
+    Callback = function(Value)
+        autoCollectLootbags = Value
+        if autoCollectLootbags then
+            collectLootbags()
+        end
     end
-     else
-       print('auto collect orbs')
-     end
-   end})
+})
+
+-- Function to auto collect lootbags
+local function collectLootbags()
+    while autoCollectLootbags do
+        local forlootbags = workspace.__THINGS.Lootbags:GetChildren()
+        local MyLootbags = {}
+
+        if #forlootbags > 0 then
+            for i, v in next, forlootbags do
+                MyLootbags[i] = tonumber(v.Name)
+                v:Destroy()
+            end
+        end
+
+        RE("Lootbags: Collect"):FireServer(MyLootbags)
+        wait(1) -- Adjust the wait time as needed
+    end
+end
+
+-- Run the orb and lootbag collection in separate threads
+spawn(function()
+    while true do
+        if autoCollectOrbs then
+            collectOrbs()
+        end
+        wait(1)
+    end
+end)
+
+spawn(function()
+    while true do
+        if autoCollectLootbags then
+            collectLootbags()
+        end
+        wait(1)
+    end
+end)
+
 
     local Toggle = Tab:AddToggle({
     Name = "Auto Collect Ranked Rewards",
