@@ -340,6 +340,48 @@ local GravityToggle = Tab:AddToggle({
     end
 })
 
+local Section = Tab:AddSection({
+	Name = "Pet Simulator Games"
+})
+
+local a = game.Players.LocalPlayer.Character.HumanoidRootPart
+local b = workspace.__THINGS
+
+local Toggle = Tab:AddToggle({
+    Name = "Auto Collect Drops",
+    Default = false,
+    Callback = function(Value)
+      
+    local function get()
+    local cf = a.CFrame
+    for i,v in pairs(b.Lootbags:GetChildren()) do
+    v:PivotTo(cf)
+    end
+    for i,v in pairs(b.Orbs:GetChildren()) do
+    v:PivotTo(cf)
+
+    end
+end
+
+
+while (value) do
+get()
+end
+
+end})
+
+    local Toggle = Tab:AddToggle({
+    Name = "Auto Collect Ranked Rewards",
+    Default = false,
+    Callback = function(Value)
+  local ClaimRanks = Value
+    for _,v in Player.PlayerGui.Rank.Frame.Rewards.Items.Unlocks:GetChildren() do
+        if v.Name == "ClaimSlot" then
+            RE("Ranks_ClaimReward"):FireServer(tonumber(v.Title.Text))
+        end
+    end
+end})
+
 
 local Section = Tab:AddSection({
 	Name = "Afk Section"
