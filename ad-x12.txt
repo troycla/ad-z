@@ -5,8 +5,8 @@ local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/realr
 
 
 local Window = redzlib:MakeWindow({
-  Title = "Admin-X",
-  SubTitle = "Dont expect it to be perfect",
+  Title = "Admin-X Beta",
+  SubTitle = "Dont expect it to be perfect ",
   SaveFolder = "Admin-x 1 Config"
 })
 
@@ -721,6 +721,178 @@ local Section = Tab:AddSection({"Soon"})
 
 
 
+local Tab = Window:MakeTab({"Blox Fruits BVG"})
+
+
+local Section = Tab:AddSection({"Fruit Mastery"})
+
+
+local RunService = game:GetService("RunService")
+local Toggle = Tab:AddToggle({
+    Name = "Auto Farm Dragon (East) Mastery",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+         local args = {
+    [1] = "EMMFOSS__!ZCNSJNXCSDWQSANBX",
+    [2] = "GiveMasteryEXPTO__Smthh",
+    [3] = {
+        [1] = game:GetService("Players").LocalPlayer,
+        [2] = "Dragon (East)",
+        [3] = 85,
+        [4] = true
+    }
+}
+
+game:GetService("ReplicatedStorage").ALLREMBINDS.MainRemoteEvent:FireServer(unpack(args)) 
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
+
+local RunService = game:GetService("RunService")
+local Toggle = Tab:AddToggle({
+    Name = "Auto Farm Dragon (West) Mastery",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+         local args = {
+    [1] = "EMMFOSS__!ZCNSJNXCSDWQSANBX",
+    [2] = "GiveMasteryEXPTO__Smthh",
+    [3] = {
+        [1] = game:GetService("Players").LocalPlayer,
+        [2] = "Dragon (West)",
+        [3] = 85,
+        [4] = true
+    }
+}
+
+game:GetService("ReplicatedStorage").ALLREMBINDS.MainRemoteEvent:FireServer(unpack(args)) 
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
+
+local Section = Tab:AddSection({" Get Stored Fruit:aka dupe"})
+Tab:AddButton({ 	Name  = "Dragon (West) Fruit", 	Callback = function()
+
+ local args = {
+        [1] = "EMMFOSS__!ZCNSJNXCSDWQSANBX",
+        [2] = "AddToolToBackpackKKK",
+        [3] = {
+            [1] = "Dragon (West) Fruit",
+            [2] = game:GetService("Players").LocalPlayer.Backpack,
+            [3] = true,
+            [4] = true
+        }
+    }
+
+    game:GetService("ReplicatedStorage").ALLREMBINDS.MainRemoteEvent:FireServer(unpack(args))
+
+
+end })
+
+Tab:AddButton({ 	Name  = "Dragon (East) Fruit", 	Callback = function()
+
+
+ local args = {
+        [1] = "EMMFOSS__!ZCNSJNXCSDWQSANBX",
+        [2] = "AddToolToBackpackKKK",
+        [3] = {
+            [1] = "Dragon (East) Fruit",
+            [2] = game:GetService("Players").LocalPlayer.Backpack,
+            [3] = true,
+            [4] = true
+        }
+    }
+
+    game:GetService("ReplicatedStorage").ALLREMBINDS.MainRemoteEvent:FireServer(unpack(args))
+
+end })
+
+local Section = Tab:AddSection({"Auto Get Stored Fruit:aka dupe"})
+local Toggle = Tab:AddToggle({
+    Name = "Auto Get Dragon (West) Fruit ",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+      
+ local args = {
+        [1] = "EMMFOSS__!ZCNSJNXCSDWQSANBX",
+        [2] = "AddToolToBackpackKKK",
+        [3] = {
+            [1] = "Dragon (West) Fruit",
+            [2] = game:GetService("Players").LocalPlayer.Backpack,
+            [3] = true,
+            [4] = true
+        }
+    }
+
+    game:GetService("ReplicatedStorage").ALLREMBINDS.MainRemoteEvent:FireServer(unpack(args))
+
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
+
+local Toggle = Tab:AddToggle({
+    Name = "Auto Get Dragon (East) Fruit ",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+      
+ local args = {
+        [1] = "EMMFOSS__!ZCNSJNXCSDWQSANBX",
+        [2] = "AddToolToBackpackKKK",
+        [3] = {
+            [1] = "Dragon (East) Fruit",
+            [2] = game:GetService("Players").LocalPlayer.Backpack,
+            [3] = true,
+            [4] = true
+        }
+    }
+
+    game:GetService("ReplicatedStorage").ALLREMBINDS.MainRemoteEvent:FireServer(unpack(args))
+
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
+
+
+local Section = Tab:AddSection({"credit : Touka arbix hub"})
 
 local Tab = Window:MakeTab({"Broken Bones"})
 
@@ -2548,7 +2720,7 @@ local Tab = Window:MakeTab({"Horrors RNG"})
 
 local RunService = game:GetService("RunService")
 local Toggle = Tab:AddToggle({
-    Name = "Auto Spawn Plates",
+    Name = "Auto Luck",
     Default = false,
     Callback = function(Value)
         if Value then
