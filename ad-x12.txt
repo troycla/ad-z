@@ -44,7 +44,7 @@ Tab:AddToggle({
         moveCurtains = Value
         if moveCurtains and selectedItem then
             if selectedItem:FindFirstChild("Curtain") and selectedItem.Curtain:FindFirstChild("ClickDetector") then
-                selectedItem.Curtain.ClickDetector:FireClickDetector()
+                selectedItem.Curtain.ClickDetector:fireclickdetector()
                 print("Curtain's ClickDetector fired.")
             else
                 warn("Curtain or ClickDetector not found!")
