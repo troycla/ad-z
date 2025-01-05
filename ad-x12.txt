@@ -303,17 +303,8 @@ local function moveBoatAroundServer(boat)
             wait(1) -- Adjust the wait time as needed
 
             -- Move towards the player
-            local targetPosition = character.HumanoidRootPart.Position + Vector3.new(0, 0, 0)
+            local targetPosition = character.HumanoidRootPart.Position + Vector3.new(0, 10, 0)
             moveBoatToLocation(boat, targetPosition, 2) -- Adjust the duration as needed
-
-            -- Move to a random position after reaching the player
-            wait(2) -- Wait for the boat to reach the player
-            local randomPosition = Vector3.new(
-                math.random(-100, 100),
-                math.random(5, 20),
-                math.random(-100, 100)
-            )
-            moveBoatToLocation(boat, randomPosition, 3) -- Adjust the duration as needed
 
             -- Wait before moving to the next player
             wait(3)
@@ -337,7 +328,6 @@ end
 
 -- Start the process if conditions are met
 checkAndMoveBoat()
-
 
 local folder = game.Workspace:FindFirstChild("YourFolderName") -- Replace 'YourFolderName' with the name of your folder
 local items = {}
