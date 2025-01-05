@@ -12,6 +12,49 @@ local Window = redzlib:MakeWindow({
 
 
 local Tab = Window:MakeTab({"testing"})
+-- Get the Rooms folder
+local RoomsFolder = game.Workspace:FindFirstChild("Rooms")
+local items = {}
+
+if RoomsFolder then
+    for _, item in pairs(RoomsFolder:GetChildren()) do
+        table.insert(items, item.Name)
+    end
+end
+
+local selectedItem
+local moveCurtains = false
+
+Tab:AddDropdown({
+    Name = "Dropdown",
+    Default = items[1] or "",
+    Options = items,
+    Callback = function(Value)
+        selectedItem = RoomsFolder:FindFirstChild(Value)
+        print("Selected item:", Value)
+    end    
+})
+
+Tab:AddToggle({
+    Name = "Move Curtains",
+    Default = false,
+    Callback = function(Value)
+        moveCurtains = Value
+        if moveCurtains and selectedItem then
+            for _, descendant in pairs(selectedItem:GetDescendants()) do
+                if descendant:IsA("ClickDetector") and descendant.Name == "Curtain" then
+                    descendant:FireClickDetector()
+                    print("Curtain's ClickDetector fired.")
+                end
+            end
+        elseif not moveCurtains then
+            print("Move Curtains toggle is off!")
+        end
+    end    
+})
+
+print("Script ready. Select a room and toggle 'Move Curtains' to start.")
+
 Tab:AddButton({ 	Name  = "ai blox fruits wired ass boat", 	Callback = function()
 
 local TweenService = game:GetService("TweenService")
