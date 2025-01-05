@@ -12,6 +12,74 @@ local Window = redzlib:MakeWindow({
 
 
 local Tab = Window:MakeTab({"testing"})
+Tab:AddButton({ 	Name  = "ai blox fruits wired ass boat", 	Callback = function()
+
+local TweenService = game:GetService("TweenService")
+local Players = game:GetService("Players")
+
+-- Get the boat entity
+local MyBoat = game.Workspace:FindFirstChild("MyBoat")
+
+-- Get the player's character (assuming the owner is the LocalPlayer)
+local owner = Players.LocalPlayer
+local ownerCharacter = owner.Character or owner.CharacterAdded:Wait()
+
+-- Function to move the boat using tween
+local function moveBoatToLocation(targetPosition, duration)
+    if MyBoat then
+        local tweenInfo = TweenInfo.new(
+            duration, -- Duration in seconds
+            Enum.EasingStyle.Linear,
+            Enum.EasingDirection.InOut
+        )
+        local tweenGoal = { Position = targetPosition }
+        local boatTween = TweenService:Create(MyBoat, tweenInfo, tweenGoal)
+        boatTween:Play()
+    else
+        warn("Boat not found!")
+    end
+end
+
+-- Function to make the boat look at a player
+local function lookAtPlayer(playerPosition)
+    if MyBoat then
+        local direction = (playerPosition - MyBoat.Position).unit
+        local lookAtPosition = MyBoat.Position + direction
+        MyBoat.CFrame = CFrame.lookAt(MyBoat.Position, lookAtPosition)
+    end
+end
+
+-- Function to move the boat around the server and look at players
+local function moveBoatAroundServer()
+    for _, player in pairs(Players:GetPlayers()) do
+        local character = player.Character or player.CharacterAdded:Wait()
+        if character and character:FindFirstChild("HumanoidRootPart") and player ~= owner then
+            -- Look at the player
+            lookAtPlayer(character.HumanoidRootPart.Position)
+            wait(1) -- Adjust the wait time as needed
+
+            -- Move towards the player
+            local targetPosition = character.HumanoidRootPart.Position + Vector3.new(0, 0, 0)
+            moveBoatToLocation(targetPosition, 2) -- Adjust the duration as needed
+
+            -- Move to a random position after reaching the player
+            wait(2) -- Wait for the boat to reach the player
+            local randomPosition = Vector3.new(
+                math.random(-100, 100),
+                math.random(5, 20),
+                math.random(-100, 100)
+            )
+            moveBoatToLocation(randomPosition, 3) -- Adjust the duration as needed
+
+            -- Wait before moving to the next player
+            wait(3)
+        end
+    end
+end
+
+-- Start the process of moving the boat around the server
+moveBoatAroundServer()
+end})
 Tab:AddButton({ 	Name  = "ai blox fruits auto farm", 	Callback = function()
 
 
