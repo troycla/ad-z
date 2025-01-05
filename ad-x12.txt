@@ -43,9 +43,12 @@ Tab:AddToggle({
         moveCurtains = Value
         if moveCurtains and selectedItem then
             for _, descendant in pairs(selectedItem:GetDescendants()) do
-                if descendant:IsA("Curtain") and descendant:FindFirstChild("ClickDetector") then
-                    fireclickdetector(descendant.ClickDetector)
-                    print("Curtain's ClickDetector fired.")
+                if descendant:IsA("Model") and descendant.Name == "Curtain" then
+                    local clickDetector = descendant:FindFirstChildOfClass("ClickDetector")
+                    if clickDetector then
+                        clickDetector:FireClickDetector()
+                        print("Curtain's ClickDetector fired.")
+                    end
                 end
             end
         elseif not moveCurtains then
@@ -55,6 +58,7 @@ Tab:AddToggle({
 })
 
 print("Script ready. Select a room and toggle 'Move Curtains' to start.")
+
 
 
 Tab:AddButton({ 	Name  = "ai blox fruits wired ass boat", 	Callback = function()
