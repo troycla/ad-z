@@ -13,6 +13,7 @@ local Window = redzlib:MakeWindow({
 
 local Tab = Window:MakeTab({"testing"})
 
+
 -- Get the Rooms folder
 local RoomsFolder = game.Workspace:FindFirstChild("Rooms")
 local items = {}
@@ -42,14 +43,11 @@ Tab:AddToggle({
     Callback = function(Value)
         moveCurtains = Value
         if moveCurtains and selectedItem then
-            for _, descendant in pairs(selectedItem:GetDescendants()) do
-                if descendant:IsA("Model") and descendant.Name == "Curtain" then
-                    local clickDetector = descendant:FindFirstChildOfClass("ClickDetector")
-                    if clickDetector then
-                        clickDetector:FireClickDetector()
-                        print("Curtain's ClickDetector fired.")
-                    end
-                end
+            if selectedItem:FindFirstChild("Curtain") and selectedItem.Curtain:FindFirstChild("ClickDetector") then
+                selectedItem.Curtain.ClickDetector:FireClickDetector()
+                print("Curtain's ClickDetector fired.")
+            else
+                warn("Curtain or ClickDetector not found!")
             end
         elseif not moveCurtains then
             print("Move Curtains toggle is off!")
