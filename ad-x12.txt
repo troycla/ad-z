@@ -12,7 +12,138 @@ local Window = redzlib:MakeWindow({
 
 
 local Tab = Window:MakeTab({"testing"})
+Tab:AddButton({ 	Name  = "ai blox fruits auto farm", 	Callback = function()
 
+
+local Players = game:GetService("Players")
+local PathfindingService = game:GetService("PathfindingService")
+local EnemiesFolder = game.Workspace:WaitForChild("Enemies")
+
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+-- Assume player has an attribute called "Level"
+local playerLevel = player:WaitForChild("Level").Value
+
+-- Define a table to hold quests
+local Quests = {}
+local currentQuestIndex = 1
+local defeatedMobs = {}
+
+-- Function to add a quest
+local function addQuest(levelReq, name, tasks, reward)
+    table.insert(Quests, {
+        LevelReq = levelReq,
+        Name = name,
+        Task = tasks,
+        Reward = reward
+    })
+
+    -- Initialize defeated mobs count for the new quest
+    for mob, count in pairs(tasks) do
+        defeatedMobs[mob] = 0
+    end
+end
+
+-- Example quest added for testing --not tested so far
+addQuest(0, "Trainee", {["Trainee"] = 5}, {Exp = 300, Beli = 350})
+addQuest(0, "Bandit", {["Bandit"] = 5}, {Exp = 300, Beli = 350})
+addQuest(10, "Monkeys", {["Monkeys"] = 6}, {Exp = 2300, Beli = 800})
+addQuest(15, "Gorilla", {["Gorilla"] = 8}, {Exp = 4500, Beli = 1200})
+
+
+
+
+
+-- Function to find the closest enemy within level and quest requirements
+local function getClosestEnemy()
+    local quest = Quests[currentQuestIndex]
+    local closestEnemy = nil
+    local shortestDistance = math.huge
+
+    for _, enemy in pairs(EnemiesFolder:GetChildren()) do
+        local enemyHumanoid = enemy:FindFirstChild("Humanoid")
+        local enemyLevel = enemy:FindFirstChild("Level") and enemy.Level.Value
+        local enemyType = enemy.Name
+
+        if enemyHumanoid and enemyHumanoid.Health > 0 and enemyLevel then
+            -- Only consider enemies within level range and quest requirements
+            if math.abs(playerLevel - enemyLevel) <= 5 and quest.Task[enemyType] then
+                local distance = (enemy.PrimaryPart.Position - character.PrimaryPart.Position).Magnitude
+                if distance < shortestDistance then
+                    closestEnemy = enemy
+                    shortestDistance = distance
+                end
+            end
+        end
+    end
+
+    return closestEnemy
+end
+
+-- Function to move to an enemy
+local function moveToEnemy(enemy)
+    local path = PathfindingService:CreatePath({
+        AgentRadius = 2,
+        AgentHeight = 5,
+        AgentCanJump = true,
+        AgentJumpHeight = humanoid.JumpHeight,
+        AgentMaxSlope = humanoid.MaxSlope,
+    })
+
+    path:ComputeAsync(character.PrimaryPart.Position, enemy.PrimaryPart.Position)
+    path:MoveTo(character.PrimaryPart)
+end
+
+-- Function to attack an enemy
+local function attackEnemy(enemy)
+    humanoid:MoveTo(enemy.PrimaryPart.Position)
+    humanoid.MoveToFinished:Wait()
+
+    -- Implement your melee attack logic here
+    print("Attacking enemy:", enemy.Name)
+
+    -- Update defeated mobs count
+    if defeatedMobs[enemy.Name] then
+        defeatedMobs[enemy.Name] = defeatedMobs[enemy.Name] + 1
+    end
+end
+
+-- Function to check quest completion
+local function checkQuestCompletion()
+    local quest = Quests[currentQuestIndex]
+    for mob, count in pairs(quest.Task) do
+        if defeatedMobs[mob] < count then
+            return false
+        end
+    end
+    return true
+end
+
+-- Main loop
+while true do
+    local enemy = getClosestEnemy()
+    if enemy then
+        moveToEnemy(enemy)
+        attackEnemy(enemy)
+
+        -- Check quest completion
+        if checkQuestCompletion() and currentQuestIndex < #Quests then
+            currentQuestIndex = currentQuestIndex + 1
+            print("Quest completed. Moving to the next quest: " .. Quests[currentQuestIndex].Name)
+
+            -- Reset defeated mobs count for the new quest
+            defeatedMobs = {}
+            for mob, count in pairs(Quests[currentQuestIndex].Task) do
+                defeatedMobs[mob] = 0
+            end
+        end
+    end
+    wait(1)
+end
+
+end })
 local folder = game.Workspace:FindFirstChild("YourFolderName") -- Replace 'YourFolderName' with the name of your folder
 local items = {}
 
