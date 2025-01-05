@@ -11,6 +11,57 @@ local Window = redzlib:MakeWindow({
 })
 
 
+local Tab = Window:MakeTab({"testing"})
+
+local folder = game.Workspace:FindFirstChild("YourFolderName") -- Replace 'YourFolderName' with the name of your folder
+local items = {}
+
+if folder then
+    for _, item in pairs(folder:GetChildren()) do
+        table.insert(items, item.Name)
+    end
+end
+
+local selectedItem
+
+Tab:AddDropdown({
+    Name = "Dropdown",
+    Default = items[1] or "",
+    Options = items,
+    Callback = function(Value)
+        selectedItem = folder:FindFirstChild(Value)
+        print("Selected item:", Value)
+    end    
+})
+
+Tab:AddToggle({
+    Name = "Use Pathfinding",
+    Default = false,
+    Callback = function(Value)
+        if Value and selectedItem then
+            local humanoid = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+            local humanoidRootPart = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+            
+            if humanoid and humanoidRootPart then
+                local pathfindingService = game:GetService("PathfindingService")
+                local path = pathfindingService:CreatePath({
+                    AgentRadius = 2,
+                    AgentHeight = 5,
+                    AgentCanJump = true,
+                    AgentMaxSlope = 45,
+                })
+                
+                path:ComputeAsync(humanoidRootPart.Position, selectedItem.Position)
+                path:MoveTo(humanoidRootPart)
+                
+                path.Blocked:Connect(function()
+                    humanoid:MoveTo(selectedItem.Position)
+                end)
+            end
+        end
+    end    
+})
+
 
 local Tab = Window:MakeTab({"Ai made"})
 
