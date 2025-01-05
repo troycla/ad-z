@@ -43,11 +43,17 @@ Tab:AddToggle({
     Callback = function(Value)
         moveCurtains = Value
         if moveCurtains and selectedItem then
-            if selectedItem:FindFirstChild("Curtain") and selectedItem.Curtain:FindFirstChild("ClickDetector") then
-                selectedItem.Curtain.ClickDetector:fireclickdetector()
-                print("Curtain's ClickDetector fired.")
+            local curtain = selectedItem:FindFirstChild("Curtain")
+            if curtain then
+                local clickDetector = curtain:FindFirstChild("ClickDetector")
+                if clickDetector then
+                    clickDetector:FireClickDetector()
+                    print("Curtain's ClickDetector fired.")
+                else
+                    warn("ClickDetector not found!")
+                end
             else
-                warn("Curtain or ClickDetector not found!")
+                warn("Curtain not found!")
             end
         elseif not moveCurtains then
             print("Move Curtains toggle is off!")
