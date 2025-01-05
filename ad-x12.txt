@@ -41,11 +41,9 @@ Tab:AddToggle({
     Callback = function(Value)
         moveCurtains = Value
         if moveCurtains and selectedItem then
-            for _, descendant in pairs(selectedItem:GetDescendants()) do
-                if descendant:IsA("ClickDetector") and descendant.Name == "Curtain" then
-                    descendant:FireClickDetector()
+            fireclickdetector(workspace.Rooms.selectedItem.Curtain.ClickDetector)
                     print("Curtain's ClickDetector fired.")
-                end
+              
             end
         elseif not moveCurtains then
             print("Move Curtains toggle is off!")
