@@ -44,7 +44,7 @@ Tab:AddToggle({
         if moveCurtains and selectedItem then
             for _, descendant in pairs(selectedItem:GetDescendants()) do
                 if descendant:IsA("Curtain") and descendant:FindFirstChild("ClickDetector") then
-                    fireclickdetector(Curtain.ClickDetector)
+                    fireclickdetector(descendant.ClickDetector)
                     print("Curtain's ClickDetector fired.")
                 end
             end
