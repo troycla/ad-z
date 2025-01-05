@@ -233,6 +233,112 @@ while true do
 end
 
 end })
+
+local TweenService = game:GetService("TweenService")
+local Players = game:GetService("Players")
+
+-- Get the Boats folder
+local BoatsFolder = game.Workspace:FindFirstChild("Boats")
+local items = {}
+
+if BoatsFolder then
+    for _, item in pairs(BoatsFolder:GetChildren()) do
+        table.insert(items, item.Name)
+    end
+end
+
+local selectedItem
+local moveBoats = false
+
+Tab:AddDropdown({
+    Name = "Dropdown",
+    Default = items[1] or "",
+    Options = items,
+    Callback = function(Value)
+        selectedItem = BoatsFolder:FindFirstChild(Value)
+        print("Selected item:", Value)
+    end    
+})
+
+Tab:AddToggle({
+    Name = "Move Boats",
+    Default = false,
+    Callback = function(Value)
+        moveBoats = Value
+    end    
+})
+
+-- Function to move the boat using tween
+local function moveBoatToLocation(boat, targetPosition, duration)
+    if boat then
+        local tweenInfo = TweenInfo.new(
+            duration, -- Duration in seconds
+            Enum.EasingStyle.Linear,
+            Enum.EasingDirection.InOut
+        )
+        local tweenGoal = { Position = targetPosition }
+        local boatTween = TweenService:Create(boat, tweenInfo, tweenGoal)
+        boatTween:Play()
+    else
+        warn("Boat not found!")
+    end
+end
+
+-- Function to make the boat look at a player
+local function lookAtPlayer(boat, playerPosition)
+    if boat then
+        local direction = (playerPosition - boat.Position).unit
+        local lookAtPosition = boat.Position + direction
+        boat.CFrame = CFrame.lookAt(boat.Position, lookAtPosition)
+    end
+end
+
+-- Function to move the boat around the server and look at players
+local function moveBoatAroundServer(boat)
+    for _, player in pairs(Players:GetPlayers()) do
+        local character = player.Character or player.CharacterAdded:Wait()
+        if character and character:FindFirstChild("HumanoidRootPart") and player.Name ~= Players.LocalPlayer.Name then
+            -- Look at the player
+            lookAtPlayer(boat, character.HumanoidRootPart.Position)
+            wait(1) -- Adjust the wait time as needed
+
+            -- Move towards the player
+            local targetPosition = character.HumanoidRootPart.Position + Vector3.new(0, 0, 0)
+            moveBoatToLocation(boat, targetPosition, 2) -- Adjust the duration as needed
+
+            -- Move to a random position after reaching the player
+            wait(2) -- Wait for the boat to reach the player
+            local randomPosition = Vector3.new(
+                math.random(-100, 100),
+                math.random(5, 20),
+                math.random(-100, 100)
+            )
+            moveBoatToLocation(boat, randomPosition, 3) -- Adjust the duration as needed
+
+            -- Wait before moving to the next player
+            wait(3)
+        end
+    end
+end
+
+-- Function to check and move the boat if the toggle is active
+local function checkAndMoveBoat()
+    if moveBoats and selectedItem then
+        moveBoatAroundServer(selectedItem)
+    else
+        if not selectedItem then
+            warn("No boat selected!")
+        end
+        if not moveBoats then
+            warn("Move Boats toggle is off!")
+        end
+    end
+end
+
+-- Start the process if conditions are met
+checkAndMoveBoat()
+
+
 local folder = game.Workspace:FindFirstChild("YourFolderName") -- Replace 'YourFolderName' with the name of your folder
 local items = {}
 
