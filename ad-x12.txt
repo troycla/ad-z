@@ -39,7 +39,7 @@ for _, boat in pairs(boatsFolder:GetChildren()) do
         end
     end
 end
-
+end})
 
 
 -- Get the Rooms folder
