@@ -12,6 +12,34 @@ local Window = redzlib:MakeWindow({
 
 
 local Tab = Window:MakeTab({"testing"})
+Tab:AddButton({ 	Name  = "ai blox boat exeploit", 	Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local boatsFolder = game.Workspace:WaitForChild("Boats")
+local TweenService = game:GetService("TweenService")
+
+for _, boat in pairs(boatsFolder:GetChildren()) do
+    if boat:IsA("Model") then
+        local primaryPart = boat.PrimaryPart or boat:FindFirstChildOfClass("BasePart")
+        if primaryPart then
+            local tweenInfo = TweenInfo.new(
+                2, -- Time
+                Enum.EasingStyle.Quad, -- EasingStyle
+                Enum.EasingDirection.Out, -- EasingDirection
+                0, -- RepeatCount (when less than zero the tween will loop indefinitely)
+                false, -- Reverses (tween will not reverse once reaching its goal)
+                0 -- DelayTime
+            )
+
+            local goal = {}
+            goal.Position = character.HumanoidRootPart.Position
+
+            local tween = TweenService:Create(primaryPart, tweenInfo, goal)
+            tween:Play()
+        end
+    end
+end
+
 
 
 -- Get the Rooms folder
