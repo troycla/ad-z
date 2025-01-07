@@ -1242,6 +1242,46 @@ game:GetService("ReplicatedStorage").ALLREMBINDS.MainRemoteEvent:FireServer(unpa
 })
 
 local Section = Tab:AddSection({" Get Stored Fruit:aka dupe"})
+Tab:AddDropdown({
+	Name = "Select Fruit",
+	Default = "None",
+	Options = {"None", "Dragon (West) Fruit", "Dragon (East) Fruit"},
+	Callback = function(Value)
+	 local bfbvg = Value
+	end    
+})
+
+local Toggle = Tab:AddToggle({
+    Name = "Auto Get Fruit",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+      
+ local args = {
+        [1] = "EMMFOSS__!ZCNSJNXCSDWQSANBX",
+        [2] = "AddToolToBackpackKKK",
+        [3] = {
+            [1] = bfbvg,
+            [2] = game:GetService("Players").LocalPlayer.Backpack,
+            [3] = true,
+            [4] = true
+        }
+    }
+
+    game:GetService("ReplicatedStorage").ALLREMBINDS.MainRemoteEvent:FireServer(unpack(args))
+
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
 Tab:AddButton({ 	Name  = "Dragon (West) Fruit", 	Callback = function()
 
  local args = {
