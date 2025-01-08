@@ -591,82 +591,6 @@ local Tab = Window:MakeTab({"Main"})
 
 
 
-local Section = Tab:AddSection({"Teleport To Select Player"})
--- Local Script
-local Players = game:GetService("Players")
-local dropdown
-
--- Function to update the dropdown options
-local function updateDropdown()
-    local playerNames = {}
-    for _, player in ipairs(Players:GetPlayers()) do
-        table.insert(playerNames, player.Name)
-    end
-
-    if not dropdown then
-        dropdown = Tab:AddDropdown({
-            Name = "Players",
-            Default = playerNames[1] or "",
-            Options = playerNames,
-            Callback = function(Value)
-                local selectedPlayer = Players:FindFirstChild(Value)
-                if selectedPlayer and selectedPlayer.Character and selectedPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = selectedPlayer.Character.HumanoidRootPart.CFrame
-                end
-            end
-        })
-    else
-        dropdown:SetOptions(playerNames)
-    end
-end
-
--- Connect the function to player added and removed events
-Players.PlayerAdded:Connect(updateDropdown)
-Players.PlayerRemoving:Connect(updateDropdown)
-
--- Initial update
-updateDropdown()
-local Section = Tab:AddSection({"Tween To Select Player"})
-local Players = game:GetService("Players")
-local TweenService = game:GetService("TweenService")
-local dropdown
-
--- Function to update the dropdown options
-local function updateDropdown()
-    local playerNames = {}
-    for _, player in ipairs(Players:GetPlayers()) do
-        table.insert(playerNames, player.Name)
-    end
-
-    if not dropdown then
-        dropdown = Tab:AddDropdown({
-            Name = "Players",
-            Default = playerNames[1] or "",
-            Options = playerNames,
-            Callback = function(Value)
-                local selectedPlayer = Players:FindFirstChild(Value)
-                if selectedPlayer and selectedPlayer.Character and selectedPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                    local targetCFrame = selectedPlayer.Character.HumanoidRootPart.CFrame
-                    local humanoidRootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
-                    local tweenInfo = TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
-                    local tween = TweenService:Create(humanoidRootPart, tweenInfo, {CFrame = targetCFrame})
-                    tween:Play()
-                end
-            end
-        })
-    else
-        dropdown:SetOptions(playerNames)
-    end
-end
-
--- Connect the function to player added and removed events
-Players.PlayerAdded:Connect(updateDropdown)
-Players.PlayerRemoving:Connect(updateDropdown)
-
--- Initial update
-updateDropdown()
-
-
 
 local Section = Tab:AddSection({
 	Name = "Local Player"
@@ -1165,6 +1089,82 @@ end
 
 
 local Tab = Window:MakeTab({"Teleports"})
+local Section = Tab:AddSection({"Teleport To Select Player"})
+-- Local Script
+local Players = game:GetService("Players")
+local dropdown
+
+-- Function to update the dropdown options
+local function updateDropdown()
+    local playerNames = {}
+    for _, player in ipairs(Players:GetPlayers()) do
+        table.insert(playerNames, player.Name)
+    end
+
+    if not dropdown then
+        dropdown = Tab:AddDropdown({
+            Name = "Players",
+            Default = playerNames[1] or "",
+            Options = playerNames,
+            Callback = function(Value)
+                local selectedPlayer = Players:FindFirstChild(Value)
+                if selectedPlayer and selectedPlayer.Character and selectedPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = selectedPlayer.Character.HumanoidRootPart.CFrame
+                end
+            end
+        })
+    else
+        dropdown:SetOptions(playerNames)
+    end
+end
+
+-- Connect the function to player added and removed events
+Players.PlayerAdded:Connect(updateDropdown)
+Players.PlayerRemoving:Connect(updateDropdown)
+
+-- Initial update
+updateDropdown()
+local Section = Tab:AddSection({"Tween To Select Player"})
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local dropdown
+
+-- Function to update the dropdown options
+local function updateDropdown()
+    local playerNames = {}
+    for _, player in ipairs(Players:GetPlayers()) do
+        table.insert(playerNames, player.Name)
+    end
+
+    if not dropdown then
+        dropdown = Tab:AddDropdown({
+            Name = "Players",
+            Default = playerNames[1] or "",
+            Options = playerNames,
+            Callback = function(Value)
+                local selectedPlayer = Players:FindFirstChild(Value)
+                if selectedPlayer and selectedPlayer.Character and selectedPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    local targetCFrame = selectedPlayer.Character.HumanoidRootPart.CFrame
+                    local humanoidRootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+                    local tweenInfo = TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
+                    local tween = TweenService:Create(humanoidRootPart, tweenInfo, {CFrame = targetCFrame})
+                    tween:Play()
+                end
+            end
+        })
+    else
+        dropdown:SetOptions(playerNames)
+    end
+end
+
+-- Connect the function to player added and removed events
+Players.PlayerAdded:Connect(updateDropdown)
+Players.PlayerRemoving:Connect(updateDropdown)
+
+-- Initial update
+updateDropdown()
+
+
 
 
 
