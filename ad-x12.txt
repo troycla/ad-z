@@ -1175,6 +1175,8 @@ local Section = Tab:AddSection({"Soon"})
 
 local Tab = Window:MakeTab({"Blox Fruits BVG"})
 
+local Fruits = {"None", "Dragon (West) Fruit", "Dragon (East) Fruit", "Dough Fruit", "Leopard Fruit", "Flame Fruit"}
+
 
 local Section = Tab:AddSection({"Fruit Mastery"})
 
@@ -1183,7 +1185,7 @@ local afms = "None"
 Tab:AddDropdown({
     Name = "Select Fruit",
     Default = "None",
-    Options = {"None", "Dragon (West) Fruit", "Dragon (East) Fruit"},
+    Options = Fruits,
     Callback = function(Value)
         afms = Value 
     end    
@@ -1289,7 +1291,7 @@ local bfbvg = "None" -- Declare bfbvg outside to make it accessible
 Tab:AddDropdown({
     Name = "Select Fruit",
     Default = "None",
-    Options = {"None", "Dragon (West) Fruit", "Dragon (East) Fruit"},
+    Options = Fruits,
     Callback = function(Value)
         bfbvg = Value -- Update bfbvg when a new option is selected
     end    
