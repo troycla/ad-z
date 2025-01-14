@@ -1178,6 +1178,47 @@ local Tab = Window:MakeTab({"Blox Fruits BVG"})
 
 local Section = Tab:AddSection({"Fruit Mastery"})
 
+local afms = "None" 
+
+Tab:AddDropdown({
+    Name = "Select Fruit",
+    Default = "None",
+    Options = {"None", "Dragon (West) Fruit", "Dragon (East) Fruit"},
+    Callback = function(Value)
+        afms = Value 
+    end    
+})
+
+local Toggle = Tab:AddToggle({
+    Name = "Auto Fruit Mastery",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+                local args = {
+    [1] = "EMMFOSS__!ZCNSJNXCSDWQSANBX",
+    [2] = "GiveMasteryEXPTO__Smthh",
+    [3] = {
+        [1] = game:GetService("Players").LocalPlayer,
+        [2] = afms,
+        [3] = 85,
+        [4] = true
+    }
+}
+
+game:GetService("ReplicatedStorage").ALLREMBINDS.MainRemoteEvent:FireServer(unpack(args)) 
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
+
 
 local RunService = game:GetService("RunService")
 local Toggle = Tab:AddToggle({
@@ -1283,6 +1324,8 @@ local Toggle = Tab:AddToggle({
         end
     end
 })
+
+
 
 Tab:AddButton({ 	Name  = "Dragon (West) Fruit", 	Callback = function()
 
