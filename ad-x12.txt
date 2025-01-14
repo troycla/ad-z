@@ -1243,13 +1243,15 @@ game:GetService("ReplicatedStorage").ALLREMBINDS.MainRemoteEvent:FireServer(unpa
 
 
 local Section = Tab:AddSection({" Get Stored Fruit:aka dupe"})
+local bfbvg = "None" -- Declare bfbvg outside to make it accessible
+
 Tab:AddDropdown({
-	Name = "Select Fruit",
-	Default = "None",
-	Options = {"None", "Dragon (West) Fruit", "Dragon (East) Fruit"},
-	Callback = function(Value)
-	 local bfbvg = Value
-	end    
+    Name = "Select Fruit",
+    Default = "None",
+    Options = {"None", "Dragon (West) Fruit", "Dragon (East) Fruit"},
+    Callback = function(Value)
+        bfbvg = Value -- Update bfbvg when a new option is selected
+    end    
 })
 
 local Toggle = Tab:AddToggle({
@@ -1259,20 +1261,18 @@ local Toggle = Tab:AddToggle({
         if Value then
             -- Start the loop when the toggle is enabled
             Toggle.Loop = RunService.RenderStepped:Connect(function()
-      
- local args = {
-        [1] = "EMMFOSS__!ZCNSJNXCSDWQSANBX",
-        [2] = "AddToolToBackpackKKK",
-        [3] = {
-            [1] = bfbvg,
-            [2] = game:GetService("Players").LocalPlayer.Backpack,
-            [3] = true,
-            [4] = true
-        }
-    }
+                local args = {
+                    [1] = "EMMFOSS__!ZCNSJNXCSDWQSANBX",
+                    [2] = "AddToolToBackpackKKK",
+                    [3] = {
+                        [1] = bfbvg,
+                        [2] = game:GetService("Players").LocalPlayer.Backpack,
+                        [3] = true,
+                        [4] = true
+                    }
+                }
 
-    game:GetService("ReplicatedStorage").ALLREMBINDS.MainRemoteEvent:FireServer(unpack(args))
-
+                game:GetService("ReplicatedStorage").ALLREMBINDS.MainRemoteEvent:FireServer(unpack(args))
             end)
         else
             -- Stop the loop when the toggle is disabled
@@ -1283,6 +1283,7 @@ local Toggle = Tab:AddToggle({
         end
     end
 })
+
 Tab:AddButton({ 	Name  = "Dragon (West) Fruit", 	Callback = function()
 
  local args = {
