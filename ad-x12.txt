@@ -1175,9 +1175,9 @@ local Section = Tab:AddSection({"Soon"})
 
 local Tab = Window:MakeTab({"Blox Fruits BVG"})
 
-local Fruits = {"None", "Dragon (West) Fruit", "Dragon (East) Fruit", "Dough Fruit", "Leopard Fruit", "Flame Fruit"}
+local Fruits = {"None", "Dragon (West) Fruit", "Dragon (East) Fruit", "Dough Fruit", "Leopard Fruit", "Flame Fruit", "Light Fruit", "Kitsune Fruit", "Hito Fruit", "Magma Fruit", "Venom Fruit", "Control Fruit"}
 
-local Fruits1 = {"None", "Dragon (West)", "Dragon (East)", "Dough", "Leopard", "Flame"}
+local Fruits1 = {"None", "Dragon (West)", "Dragon (East)", "Dough", "Leopard", "Flame","Light", "Kitsune", "Hito", "Magma", "Venom", "Control"}
 
 
 local Section = Tab:AddSection({"Fruit Mastery"})
