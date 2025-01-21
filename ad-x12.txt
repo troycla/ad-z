@@ -12,6 +12,44 @@ local Window = redzlib:MakeWindow({
 
 
 local Tab = Window:MakeTab({"testing"})
+
+
+local Button = Tab:AddButton({
+  Name = "blox fruits bring all chest",
+  Callback = function()
+    local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+if character then
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    local offset = Vector3.new(0, 0, 0) -- Adjust this to set the distance in front of the player
+
+    -- First, anchor all BottomBuns to prevent movement
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v.Name == "ChestModels" and v:IsA("BasePart") then
+            v.Anchored = true
+        end
+    end
+
+    -- Then, teleport all BottomBuns at once
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v.Name == "ChestModels" and v:IsA("BasePart") then
+            v.CFrame = rootPart.CFrame * CFrame.new(offset)
+            offset = offset + Vector3.new(0, v.Size.Y, 0) -- Stack vertically
+        end
+    end
+
+    -- Finally, re-enable physics for all BottomBuns
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v.Name == "ChestModels" and v:IsA("BasePart") then
+            v.Anchored = false
+        end
+    end
+end
+
+  end
+})
+
 Tab:AddButton({ 	Name  = "ai blox boat exeploit", 	Callback = function()
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
