@@ -2833,27 +2833,20 @@ Tab:AddButton({ 	Name = "Legends Of Speed", 	Callback = function() loadstring(ga
 
 Tab:AddParagraph("imformation","is a legend of speed gui")
 
-local RunService = game:GetService("RunService")
+
 local Toggle = Tab:AddToggle({
-    Name = "Auto Hoops",
+    Name = "auto hoop",
     Default = false,
     Callback = function(Value)
+        Toggle.Enabled = Value
         if Value then
-            -- Start the loop when the toggle is enabled
-            Toggle.Loop = RunService.RenderStepped:Connect(function()
-         for i,v in pairs(game:GetService("Workspace").Hoops:GetChildren()) do
+                   for i,v in pairs(game:GetService("Workspace").Hoops:GetChildren()) do
             v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-
         else
-            -- Stop the loop when the toggle is disabled
-            if Toggle.Loop then
-                Toggle.Loop:Disconnect()
-                Toggle.Loop = nil
-            end
+            
         end
     end
 })
-
 
 
 Tab:AddParagraph("LegendsOfSpeedkey","key:SUBSCRIBERELZBLOX")
