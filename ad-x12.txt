@@ -14,42 +14,6 @@ local Window = redzlib:MakeWindow({
 local Tab = Window:MakeTab({"testing"})
 
 
-local RunService = game:GetService("RunService")
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoid = character:WaitForChild("Humanoid")
-local dodgeDistance = 2
-local moveRight = true -- Toggle to switch direction
-
-local Toggle = Tab:AddToggle({
-    Name = "Auto Dodge",
-    Default = false,
-    Callback = function(Value)
-        if Value then
-            -- Start the loop when the toggle is enabled
-            Toggle.Loop = RunService.RenderStepped:Connect(function()
-                local dodgeDirection
-                if moveRight then
-                    dodgeDirection = Vector3.new(1, 2, 0) -- Move right
-                else
-                    dodgeDirection = Vector3.new(-1, 2, 0) -- Move left
-                    
-                    
-                end
-                
-                moveRight = not moveRight -- Switch direction for next dodge
-                local dodgePosition = character.PrimaryPart.Position + dodgeDirection * dodgeDistance
-                character:SetPrimaryPartCFrame(CFrame.new(dodgePosition))
-            end)
-        else
-            -- Stop the loop when the toggle is disabled
-            if Toggle.Loop then
-                Toggle.Loop:Disconnect()
-                Toggle.Loop = nil
-            end
-        end
-    end
-})
 
 
 local Button = Tab:AddButton({
