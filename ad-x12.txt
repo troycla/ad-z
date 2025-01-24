@@ -2843,7 +2843,7 @@ local Toggle = Tab:AddToggle({
             Toggle.Loop = RunService.RenderStepped:Connect(function()
          for i,v in pairs(game:GetService("Workspace").Hoops:GetChildren()) do
             v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-            end)
+
         else
             -- Stop the loop when the toggle is disabled
             if Toggle.Loop then
