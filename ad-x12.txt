@@ -18,7 +18,7 @@ local RunService = game:GetService("RunService")
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
-local dodgeDistance = 1+2
+local dodgeDistance = 2
 local moveRight = true -- Toggle to switch direction
 
 local Toggle = Tab:AddToggle({
