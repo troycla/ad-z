@@ -2834,19 +2834,7 @@ Tab:AddButton({ 	Name = "Legends Of Speed", 	Callback = function() loadstring(ga
 Tab:AddParagraph("imformation","is a legend of speed gui")
 
 
-local Toggle = Tab:AddToggle({
-    Name = "auto hoop",
-    Default = false,
-    Callback = function(Value)
-        Toggle.Enabled = Value
-        if Value then
-                   for i,v in pairs(game:GetService("Workspace").Hoops:GetChildren()) do
-            v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-        else
-            
-        end
-    end
-})
+
 
 
 Tab:AddParagraph("LegendsOfSpeedkey","key:SUBSCRIBERELZBLOX")
