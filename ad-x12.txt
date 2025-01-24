@@ -1,4 +1,4 @@
-
+I
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/RedzLibV5/main/Source.lua"))()
 
 
@@ -2832,6 +2832,29 @@ local Tab = Window:MakeTab({"legends of speed"})
 Tab:AddButton({ 	Name = "Legends Of Speed", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/fareljr1/Hub/main/Loader"))()	end })
 
 Tab:AddParagraph("imformation","is a legend of speed gui")
+
+local RunService = game:GetService("RunService")
+local Toggle = Tab:AddToggle({
+    Name = "Auto Hoops",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+         for i,v in pairs(game:GetService("Workspace").Hoops:GetChildren()) do
+            v.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
+
+
 
 Tab:AddParagraph("LegendsOfSpeedkey","key:SUBSCRIBERELZBLOX")
 
