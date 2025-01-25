@@ -2245,10 +2245,36 @@ Tab:AddDropdown({
     Default = "None",
     Options = folderNames,
     Callback = function(Value)
-        print("Selected City: " .. Value)
+        Local sc = Value
     end    
 })
 
+
+local RunService = game:GetService("RunService")
+local Toggle = Tab:AddToggle({
+    Name = "Auto orbs",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+         local args = {
+    [1] = "collectOrb",
+    [2] = "Blue Orbs",
+    [3] = sc
+}
+
+game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
 
 
 
