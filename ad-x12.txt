@@ -2287,18 +2287,16 @@ local Toggle = Tab:AddToggle({
 -- Define the 'sc' variable
 
 
-local Section = Tab:AddSection({"Crystal"})
-
 -- Define the 'crystaltype' variable
 
 local Section = Tab:AddSection({Name = "Crystal"})
 
 local crystaltype = "None"
 
--- Function to get the part names
-local function getPartNames(folder)
+-- Function to get the direct children part names
+local function getDirectPartNames(folder)
     local names = {}
-    for _, item in pairs(folder:GetDescendants()) do
+    for _, item in pairs(folder:GetChildren()) do
         if item:IsA("Part") then
             table.insert(names, item.Name)
         end
@@ -2308,7 +2306,7 @@ end
 
 -- Get the part names from Workspace.mapCrystalsFolder
 local crystalsFolder = game.Workspace:WaitForChild("mapCrystalsFolder")
-local partNames = getPartNames(crystalsFolder)
+local partNames = getDirectPartNames(crystalsFolder)
 
 -- Create the dropdown menu with part names as options
 Tab:AddDropdown({
@@ -2347,6 +2345,7 @@ local Toggle = Tab:AddToggle({
         end
     end
 })
+
 
 
 local Tab = Window:MakeTab({"area 51"})
