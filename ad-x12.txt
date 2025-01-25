@@ -2290,30 +2290,28 @@ local Section = Tab:AddSection({Name = "Crystal"})
 
 local crystaltype = "None"
 
--- Function to get the direct part names
-local function getPartNames(folder)
+-- Function to get the descendants' names
+local function getDescendantNames(folder)
     local names = {}
-    for _, item in pairs(folder:GetChildren()) do
-        if item:IsA("Part") then
-            table.insert(names, item.Name)
-            print(item.Name) -- Debug statement to print each part's name
-        end
+    for _, item in pairs(folder:GetDescendants()) do
+        table.insert(names, item.Name)
+        print(item.Name) -- Debug statement to print each descendant's name
     end
     return names
 end
 
--- Get the part names from Workspace.mapCrystalsFolder
+-- Get the descendants' names from Workspace.mapCrystalsFolder
 local crystalsFolder = game.Workspace:WaitForChild("mapCrystalsFolder")
-local partNames = getPartNames(crystalsFolder)
-print("Part names: ", partNames) -- Debug statement to print the collected names
+local descendantNames = getDescendantNames(crystalsFolder)
+print("Descendant names: ", descendantNames) -- Debug statement to print the collected names
 
--- Create the dropdown menu with part names as options
+-- Create the dropdown menu with descendants' names as options
 Tab:AddDropdown({
     Name = "Select Crystal Type",
     Default = "None",
-    Options = partNames,
+    Options = descendantNames,
     Callback = function(Value)
-        crystaltype = Value -- Corrected the scope issue with 'crystaltype'
+        crystaltype = Value -- Set the selected crystal type
     end    
 })
 
@@ -2327,7 +2325,6 @@ local Toggle = Tab:AddToggle({
         if Value then
             -- Start the loop when the toggle is enabled
             Toggle.Loop = RunService.RenderStepped:Connect(function()
-                
                 local args = {
                     [1] = "openCrystal",
                     [2] = crystaltype
@@ -2344,6 +2341,7 @@ local Toggle = Tab:AddToggle({
         end
     end
 })
+
 
 
 local Tab = Window:MakeTab({"area 51"})
