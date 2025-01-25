@@ -2224,6 +2224,8 @@ Tab:AddButton({ 	Name = "Legends Of Speed", 	Callback = function() loadstring(ga
 
 Tab:AddParagraph("imformation","is a legend of speed gui")
 
+local sc = "None"
+
 -- Function to get the folder names
 local function getFolderNames(folder)
     local names = {}
@@ -2250,7 +2252,7 @@ Tab:AddDropdown({
 })
 
 
-local RunService = game:GetService("RunService")
+
 local Toggle = Tab:AddToggle({
     Name = "Auto orbs",
     Default = false,
@@ -2261,10 +2263,11 @@ local Toggle = Tab:AddToggle({
          local args = {
     [1] = "collectOrb",
     [2] = "Blue Orbs",
-    [3] = sc,
+    [3] = sc
 }
 
 game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
+
             end)
         else
             -- Stop the loop when the toggle is disabled
