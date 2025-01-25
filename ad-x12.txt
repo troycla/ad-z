@@ -2341,6 +2341,47 @@ local Toggle = Tab:AddToggle({
     end
 })
 
+-- Get necessary services
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+
+-- Get the Workspace and Hoops folder
+local workspace = game:GetService("Workspace")
+local hoopsFolder = workspace:WaitForChild("Hoops")
+
+-- Get the local player and their character
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+-- Get the HumanoidRootPart
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+-- Toggle functionality
+local Toggle = Tab:AddToggle({
+    Name = "Auto Get Hoops",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+                -- Get all the Hoops from the Hoops folder
+                local hoops = hoopsFolder:GetChildren()
+
+                -- Loop through each Hoop and bring it to the HumanoidRootPart
+                for _, hoop in ipairs(hoops) do
+                    hoop.CFrame = humanoidRootPart.CFrame
+                end
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
+
 
 
 local Tab = Window:MakeTab({"area 51"})
