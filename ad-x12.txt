@@ -2290,28 +2290,28 @@ local Section = Tab:AddSection({Name = "Crystal"})
 
 local crystaltype = "None"
 
--- Function to get the contents' names of each folder
-local function getFolderContentsNames(folder)
+-- Function to get the direct part names
+local function getPartNames(folder)
     local names = {}
     for _, item in pairs(folder:GetChildren()) do
-        if item:IsA("Folder") then
-            for _, content in pairs(item:GetChildren()) do
-                table.insert(names, content.Name)
-            end
+        if item:IsA("Part") then
+            table.insert(names, item.Name)
+            print(item.Name) -- Debug statement to print each part's name
         end
     end
     return names
 end
 
--- Get the contents' names of each folder from Workspace.mapCrystalsFolder
+-- Get the part names from Workspace.mapCrystalsFolder
 local crystalsFolder = game.Workspace:WaitForChild("mapCrystalsFolder")
-local folderContentsNames = getFolderContentsNames(crystalsFolder)
+local partNames = getPartNames(crystalsFolder)
+print("Part names: ", partNames) -- Debug statement to print the collected names
 
--- Create the dropdown menu with contents' names as options
+-- Create the dropdown menu with part names as options
 Tab:AddDropdown({
     Name = "Select Crystal Type",
     Default = "None",
-    Options = folderContentsNames,
+    Options = partNames,
     Callback = function(Value)
         crystaltype = Value -- Corrected the scope issue with 'crystaltype'
     end    
@@ -2344,8 +2344,6 @@ local Toggle = Tab:AddToggle({
         end
     end
 })
-
-
 
 
 local Tab = Window:MakeTab({"area 51"})
