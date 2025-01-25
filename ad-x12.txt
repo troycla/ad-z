@@ -2223,6 +2223,7 @@ local Tab = Window:MakeTab({"legends of speed"})
 Tab:AddButton({ 	Name = "Legends Of Speed", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/fareljr1/Hub/main/Loader"))()	end })
 
 -- Define the 'sc' variable
+local Section = Tab:AddSection({"Auto Selection"})
 
 local orbs = {"Blue Orb", "Red Orb", "Gem", "Yellow Orb", "Orange Orb"}
 
@@ -2272,6 +2273,66 @@ local Toggle = Tab:AddToggle({
 
                     game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
                 end
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
+
+-- Define the 'sc' variable
+
+
+local Section = Tab:AddSection({"Crystal"})
+
+local crystaltype = "None"
+
+-- Function to get the descendants' names
+local function getDescendantNames(folder)
+    local names = {}
+    for _, item in pairs(folder:GetDescendants()) do
+        if item:IsA("Folder") then
+            table.insert(names, item.Name)
+        end
+    end
+    return names
+end
+
+-- Get the descendants' names from Workspace.mapCrystalsFolder
+local crystalsFolder = game.Workspace:WaitForChild("mapCrystalsFolder")
+local descendantNames = getDescendantNames(crystalsFolder)
+
+-- Create the dropdown menu with descendants' names as options
+Tab:AddDropdown({
+    Name = "Select Crystal Type",
+    Default = "None",
+    Options = descendantNames,
+    Callback = function(Value)
+        crystaltype = Value -- Corrected the scope issue with 'sc'
+    end    
+})
+
+-- Adding RunService to ensure it works
+local RunService = game:GetService("RunService")
+
+local Toggle = Tab:AddToggle({
+    Name = "Auto open Crystal",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+                
+                    local args = {
+                        [1] = "openCrystal",
+                        [2] = crystaltype
+                    }
+
+                    game:GetService("ReplicatedStorage").rEvents.openCrystalRemote:InvokeServer(unpack(args))
             end)
         else
             -- Stop the loop when the toggle is disabled
