@@ -2247,7 +2247,7 @@ Tab:AddDropdown({
     Default = "None",
     Options = folderNames,
     Callback = function(Value)
-        Local sc = Value
+         sc = Value
     end    
 })
 
