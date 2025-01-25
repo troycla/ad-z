@@ -2224,6 +2224,31 @@ Tab:AddButton({ 	Name = "Legends Of Speed", 	Callback = function() loadstring(ga
 
 Tab:AddParagraph("imformation","is a legend of speed gui")
 
+-- Function to get the folder names
+local function getFolderNames(folder)
+    local names = {}
+    for _, item in pairs(folder:GetChildren()) do
+        if item:IsA("Folder") then
+            table.insert(names, item.Name)
+        end
+    end
+    return names
+end
+
+-- Get the base folder names from Workspace.orbFolder
+local orbFolder = game.Workspace:WaitForChild("orbFolder")
+local folderNames = getFolderNames(orbFolder)
+
+-- Create the dropdown menu with folder names as options
+Tab:AddDropdown({
+    Name = "Select City",
+    Default = "None",
+    Options = folderNames,
+    Callback = function(Value)
+        print("Selected City: " .. Value)
+    end    
+})
+
 
 
 
