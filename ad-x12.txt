@@ -2261,7 +2261,7 @@ local Toggle = Tab:AddToggle({
          local args = {
     [1] = "collectOrb",
     [2] = "Blue Orbs",
-    [3] = sc
+    [3] = sc,
 }
 
 game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
