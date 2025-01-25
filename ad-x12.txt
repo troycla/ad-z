@@ -2284,32 +2284,31 @@ local Toggle = Tab:AddToggle({
     end
 })
 
--- Define the 'crystaltype' variable
 
 local Section = Tab:AddSection({Name = "Crystal"})
 
 local crystaltype = "None"
 
--- Function to get the descendants' names
-local function getDescendantNames(folder)
+-- Function to get the names of direct children
+local function getContentNames(folder)
     local names = {}
-    for _, item in pairs(folder:GetDescendants()) do
+    for _, item in pairs(folder:GetChildren()) do
         table.insert(names, item.Name)
-        print(item.Name) -- Debug statement to print each descendant's name
+        print(item.Name) -- Debug statement to print each item's name
     end
     return names
 end
 
--- Get the descendants' names from Workspace.mapCrystalsFolder
+-- Get the names of the content in Workspace.mapCrystalsFolder
 local crystalsFolder = game.Workspace:WaitForChild("mapCrystalsFolder")
-local descendantNames = getDescendantNames(crystalsFolder)
-print("Descendant names: ", descendantNames) -- Debug statement to print the collected names
+local contentNames = getContentNames(crystalsFolder)
+print("Content names: ", contentNames) -- Debug statement to print the collected names
 
--- Create the dropdown menu with descendants' names as options
+-- Create the dropdown menu with content names as options
 Tab:AddDropdown({
     Name = "Select Crystal Type",
     Default = "None",
-    Options = descendantNames,
+    Options = contentNames,
     Callback = function(Value)
         crystaltype = Value -- Set the selected crystal type
     end    
