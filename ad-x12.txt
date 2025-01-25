@@ -2223,6 +2223,9 @@ local Tab = Window:MakeTab({"legends of speed"})
 Tab:AddButton({ 	Name = "Legends Of Speed", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/fareljr1/Hub/main/Loader"))()	end })
 
 -- Define the 'sc' variable
+
+local orbs = {"Blue Orb", "Red Orb", "Gem", "Yellow Orb", "Orange Orb"}
+
 local sc = "None"
 
 -- Function to get the folder names
@@ -2262,7 +2265,7 @@ local Toggle = Tab:AddToggle({
             Toggle.Loop = RunService.RenderStepped:Connect(function()
                 local args = {
                     [1] = "collectOrb",
-                    [2] = "Blue Orbs",
+                    [2] = orbs,
                     [3] = sc
                 }
 
