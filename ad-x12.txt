@@ -2289,30 +2289,34 @@ local Toggle = Tab:AddToggle({
 
 local Section = Tab:AddSection({"Crystal"})
 
+-- Define the 'crystaltype' variable
+
+local Section = Tab:AddSection({Name = "Crystal"})
+
 local crystaltype = "None"
 
--- Function to get the descendants' names
-local function getDescendantNames(folder)
+-- Function to get the part names
+local function getPartNames(folder)
     local names = {}
     for _, item in pairs(folder:GetDescendants()) do
-        if item:IsA("Folder") then
+        if item:IsA("Part") then
             table.insert(names, item.Name)
         end
     end
     return names
 end
 
--- Get the descendants' names from Workspace.mapCrystalsFolder
+-- Get the part names from Workspace.mapCrystalsFolder
 local crystalsFolder = game.Workspace:WaitForChild("mapCrystalsFolder")
-local folderNames = getFolderNames(crystalsFolder)
+local partNames = getPartNames(crystalsFolder)
 
--- Create the dropdown menu with descendants' names as options
+-- Create the dropdown menu with part names as options
 Tab:AddDropdown({
     Name = "Select Crystal Type",
     Default = "None",
-    Options = folderNames,
+    Options = partNames,
     Callback = function(Value)
-        crystaltype = Value -- Corrected the scope issue with 'sc'
+        crystaltype = Value -- Corrected the scope issue with 'crystaltype'
     end    
 })
 
@@ -2327,12 +2331,12 @@ local Toggle = Tab:AddToggle({
             -- Start the loop when the toggle is enabled
             Toggle.Loop = RunService.RenderStepped:Connect(function()
                 
-                    local args = {
-                        [1] = "openCrystal",
-                        [2] = crystaltype
-                    }
+                local args = {
+                    [1] = "openCrystal",
+                    [2] = crystaltype
+                }
 
-                    game:GetService("ReplicatedStorage").rEvents.openCrystalRemote:InvokeServer(unpack(args))
+                game:GetService("ReplicatedStorage").rEvents.openCrystalRemote:InvokeServer(unpack(args))
             end)
         else
             -- Stop the loop when the toggle is disabled
@@ -2343,7 +2347,6 @@ local Toggle = Tab:AddToggle({
         end
     end
 })
-
 
 
 local Tab = Window:MakeTab({"area 51"})
