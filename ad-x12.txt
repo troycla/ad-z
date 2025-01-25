@@ -2222,8 +2222,7 @@ local Tab = Window:MakeTab({"legends of speed"})
 
 Tab:AddButton({ 	Name = "Legends Of Speed", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/fareljr1/Hub/main/Loader"))()	end })
 
-Tab:AddParagraph("imformation","is a legend of speed gui")
-
+-- Define the 'sc' variable
 local sc = "None"
 
 -- Function to get the folder names
@@ -2247,11 +2246,12 @@ Tab:AddDropdown({
     Default = "None",
     Options = folderNames,
     Callback = function(Value)
-         sc = Value
+        sc = Value -- Corrected the scope issue with 'sc'
     end    
 })
 
-
+-- Adding RunService to ensure it works
+local RunService = game:GetService("RunService")
 
 local Toggle = Tab:AddToggle({
     Name = "Auto orbs",
@@ -2260,14 +2260,13 @@ local Toggle = Tab:AddToggle({
         if Value then
             -- Start the loop when the toggle is enabled
             Toggle.Loop = RunService.RenderStepped:Connect(function()
-         local args = {
-    [1] = "collectOrb",
-    [2] = "Blue Orbs",
-    [3] = sc
-}
+                local args = {
+                    [1] = "collectOrb",
+                    [2] = "Blue Orbs",
+                    [3] = sc
+                }
 
-game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
-
+                game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
             end)
         else
             -- Stop the loop when the toggle is disabled
