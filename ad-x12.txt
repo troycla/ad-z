@@ -2263,13 +2263,15 @@ local Toggle = Tab:AddToggle({
         if Value then
             -- Start the loop when the toggle is enabled
             Toggle.Loop = RunService.RenderStepped:Connect(function()
-                local args = {
-                    [1] = "collectOrb",
-                    [2] = orbs,
-                    [3] = sc
-                }
+                for _, orbType in ipairs(orbs) do
+                    local args = {
+                        [1] = "collectOrb",
+                        [2] = orbType,
+                        [3] = sc
+                    }
 
-                game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
+                    game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
+                end
             end)
         else
             -- Stop the loop when the toggle is disabled
