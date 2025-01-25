@@ -2304,13 +2304,13 @@ end
 
 -- Get the descendants' names from Workspace.mapCrystalsFolder
 local crystalsFolder = game.Workspace:WaitForChild("mapCrystalsFolder")
-local descendantNames = getDescendantNames(crystalsFolder)
+local folderNames = getFolderNames(crystalsFolder)
 
 -- Create the dropdown menu with descendants' names as options
 Tab:AddDropdown({
     Name = "Select Crystal Type",
     Default = "None",
-    Options = descendantNames,
+    Options = folderNames,
     Callback = function(Value)
         crystaltype = Value -- Corrected the scope issue with 'sc'
     end    
