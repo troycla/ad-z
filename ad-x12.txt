@@ -19,6 +19,9 @@ local Toggle = Tab:AddToggle({
     Default = false,
     Callback = function(Value)
         toggle = Value
+        if toggle then
+            findUnanchoredParts() -- Update list of unanchored parts when toggle is activated
+        end
         bringPartsToPlayer()
     end
 })
@@ -30,6 +33,7 @@ local toggle = false -- Your toggle variable
 
 -- Function to detect unanchored parts
 local function findUnanchoredParts()
+    unanchoredParts = {} -- Clear previous list of unanchored parts
     for _, part in pairs(workspace:GetDescendants()) do
         if part:IsA("BasePart") and not part.Anchored then
             table.insert(unanchoredParts, part)
@@ -58,7 +62,9 @@ local function bringPartsToPlayer()
     end
 end
 
-findUnanchoredParts() -- Initial call to detect unanchored parts
+-- Optional: Call findUnanchoredParts initially to prepare the list, if needed
+findUnanchoredParts()
+
 
 local Tab = Window:MakeTab({"Main"})
 
