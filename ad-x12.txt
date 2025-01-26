@@ -60,22 +60,43 @@ local toggle = false -- Your toggle variable
 
 -- Function to move the selected boat to the player using TweenService
 local function moveSelectedBoatToPlayer()
-    if selectedBoat == "None" then return end
+    if selectedBoat == "None" then 
+        print("No boat selected")
+        return 
+    end
 
     local boatsFolder = workspace:FindFirstChild("Boats")
-    if not boatsFolder then return end
+    if not boatsFolder then 
+        print("Boats folder not found")
+        return 
+    end
 
     local boat = boatsFolder:FindFirstChild(selectedBoat)
-    if not boat then return end
+    if not boat then 
+        print("Selected boat not found")
+        return 
+    end
 
-    local bodyPart = boat:FindFirstChild("Body") or boat:FindFirstChild("Hull") -- Adjust to your boat's primary part name
-    if not bodyPart then return end
+    local bodyPart = boat:FindFirstChild("Body") 
+    if not bodyPart then 
+        print("Body part not found")
+        return 
+    end
 
-    if toggle then
-        local goal = {Position = player.Character.Head.Position + Vector3.new(0, 5, 0)} -- Adjust position as needed
-        local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out) -- Adjust tween settings as needed
-        local tween = tweenService:Create(bodyPart, tweenInfo, goal)
-        tween:Play()
+    if bodyPart:IsA("BasePart") then
+        if toggle then
+            print("Moving boat: " .. boat.Name)
+            local goal = {Position = player.Character.Head.Position + Vector3.new(0, 5, 0)} -- Adjust position as needed
+            local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out) -- Adjust tween settings as needed
+            local tween = tweenService:Create(bodyPart, tweenInfo, goal)
+            tween:Play()
+        else
+            bodyPart.Anchored = false
+            local impulse = Vector3.new(math.random(-50, 50), math.random(50, 100), math.random(-50, 50))
+            bodyPart:ApplyImpulse(impulse) -- Fling parts
+        end
+    else
+        print("Body is not a BasePart")
     end
 end
 
