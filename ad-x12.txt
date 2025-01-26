@@ -13,63 +13,40 @@ local Window = redzlib:MakeWindow({
 
 local Tab = Window:MakeTab({"testing"})
 
--- Get necessary services
-local RunService = game:GetService("RunService")
-local Players = game:GetService("Players")
-
--- Get the Workspace and Hoops folder
-local workspace = game:GetService("Workspace")
-local hoopsFolder = workspace:WaitForChild("MiningPads")
-
--- Function to start the loop
-local function startLoop()
-    -- Get the local player and their character
-    local player = Players.LocalPlayer
-    local character = player.Character or player.CharacterAdded:Wait()
-    
-    -- Get the HumanoidRootPart
-    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-    
-    -- Start the loop
-    Toggle.Loop = RunService.RenderStepped:Connect(function()
-        -- Get all the Hoops from the Hoops folder
-        local hoops = hoopsFolder:GetChildren()
-        
-        -- Loop through each Hoop and bring it to the HumanoidRootPart
-        for _, hoop in ipairs(hoops) do
-            hoop.CFrame = humanoidRootPart.CFrame
-        end
-    end)
-end
-
-
-
--- Toggle functionality
 local Toggle = Tab:AddToggle({
-    Name = "Auto Get Mineing pads",
+    Name = "Move Mining Pads",
     Default = false,
     Callback = function(Value)
-        if Value then
-            -- Start the loop when the toggle is enabled
-            startLoop()
-            
-            -- Listen for character respawn and restart the loop
-            Players.LocalPlayer.CharacterAdded:Connect(function()
-                if Toggle.Loop then
-                    Toggle.Loop:Disconnect()
-                    Toggle.Loop = nil
-                end
-                startLoop()
-            end)
-        else
-            -- Stop the loop when the toggle is disabled
-            if Toggle.Loop then
-                Toggle.Loop:Disconnect()
-                Toggle.Loop = nil
-            end
+        toggle = Value
+        if toggle then
+            moveMiningPadsToPlayer()
         end
     end
 })
+
+local player = game.Players.LocalPlayer
+local toggle = false -- Your toggle variable
+
+-- Function to move all parts in MiningPads to the player's HumanoidRootPart
+local function moveMiningPadsToPlayer()
+    local miningPadsFolder = workspace:FindFirstChild("MiningPads")
+    if not miningPadsFolder then
+        print("MiningPads folder not found")
+        return
+    end
+
+    local humanoidRootPart = player.Character:FindFirstChild("HumanoidRootPart")
+    if not humanoidRootPart then
+        print("HumanoidRootPart not found")
+        return
+    end
+
+    for _, part in pairs(miningPadsFolder:GetChildren()) do
+        if part:IsA("BasePart") then
+            part.CFrame = humanoidRootPart.CFrame + Vector3.new(0, 5, 0) -- Adjust position as needed
+        end
+    end
+end
 
 
 
