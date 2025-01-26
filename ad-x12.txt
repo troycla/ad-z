@@ -13,6 +13,63 @@ local Window = redzlib:MakeWindow({
 
 local Tab = Window:MakeTab({"testing"})
 
+-- Get necessary services
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+
+-- Get the Workspace and Hoops folder
+local workspace = game:GetService("Workspace")
+local hoopsFolder = workspace:WaitForChild("MiningPads")
+
+-- Function to start the loop
+local function startLoop()
+    -- Get the local player and their character
+    local player = Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    
+    -- Get the HumanoidRootPart
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+    
+    -- Start the loop
+    Toggle.Loop = RunService.RenderStepped:Connect(function()
+        -- Get all the Hoops from the Hoops folder
+        local hoops = hoopsFolder:GetChildren()
+        
+        -- Loop through each Hoop and bring it to the HumanoidRootPart
+        for _, hoop in ipairs(hoops) do
+            hoop.CFrame = humanoidRootPart.CFrame
+        end
+    end)
+end
+
+
+
+-- Toggle functionality
+local Toggle = Tab:AddToggle({
+    Name = "Auto Get Mineing pads",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            startLoop()
+            
+            -- Listen for character respawn and restart the loop
+            Players.LocalPlayer.CharacterAdded:Connect(function()
+                if Toggle.Loop then
+                    Toggle.Loop:Disconnect()
+                    Toggle.Loop = nil
+                end
+                startLoop()
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
 
 
 
@@ -2216,190 +2273,6 @@ Tab:AddButton({ 	Name = "Brookhaven", 	Callback = function() loadstring(game:Htt
 
 Tab:AddParagraph("imformation","is a brookhaven script")
 
-local Tab = Window:MakeTab({"legends of speed"})
-
-Tab:AddButton({ 	Name = "Legends Of Speed", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/fareljr1/Hub/main/Loader"))()	end })
-
--- Define the 'sc' variable
-local Section = Tab:AddSection({"Orb Selection"})
-
-local orbs = {"Blue Orb", "Red Orb", "Gem", "Yellow Orb", "Orange Orb"}
-
-local sc = "None"
-
--- Function to get the folder names
-local function getFolderNames(folder)
-    local names = {}
-    for _, item in pairs(folder:GetChildren()) do
-        if item:IsA("Folder") then
-            table.insert(names, item.Name)
-        end
-    end
-    return names
-end
-
--- Get the base folder names from Workspace.orbFolder
-local orbFolder = game.Workspace:WaitForChild("orbFolder")
-local folderNames = getFolderNames(orbFolder)
-
--- Create the dropdown menu with folder names as options
-Tab:AddDropdown({
-    Name = "Select City",
-    Default = "None",
-    Options = folderNames,
-    Callback = function(Value)
-        sc = Value -- Corrected the scope issue with 'sc'
-    end    
-})
-
--- Adding RunService to ensure it works
-local RunService = game:GetService("RunService")
-
-
-
-local Toggle = Tab:AddToggle({
-    Name = "Auto orbs",
-    Default = false,
-    Callback = function(Value)
-        if Value then
-            -- Start the loop when the toggle is enabled
-            Toggle.Loop = RunService.RenderStepped:Connect(function()
-                for _, orbType in ipairs(orbs) do
-                    local args = {
-                        [1] = "collectOrb",
-                        [2] = orbType,
-                        [3] = sc
-                    }
-
-                    game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
-                end
-            end)
-        else
-            -- Stop the loop when the toggle is disabled
-            if Toggle.Loop then
-                Toggle.Loop:Disconnect()
-                Toggle.Loop = nil
-            end
-        end
-    end
-})
-
-
-local Section = Tab:AddSection({Name = "Crystal Section"})
-
-local crystaltype = "None"
-
--- Function to get the names of direct children
-local function getContentNames(folder)
-    local names = {}
-    for _, item in pairs(folder:GetChildren()) do
-        table.insert(names, item.Name)
-        print(item.Name) -- Debug statement to print each item's name
-    end
-    return names
-end
-
--- Get the names of the content in Workspace.mapCrystalsFolder
-local crystalsFolder = game.Workspace:WaitForChild("mapCrystalsFolder")
-local contentNames = getContentNames(crystalsFolder)
-print("Content names: ", contentNames) -- Debug statement to print the collected names
-
--- Create the dropdown menu with content names as options
-Tab:AddDropdown({
-    Name = "Select Crystal Type",
-    Default = "None",
-    Options = contentNames,
-    Callback = function(Value)
-        crystaltype = Value -- Set the selected crystal type
-    end    
-})
-
--- Adding RunService to ensure it works
-local RunService = game:GetService("RunService")
-
-local Toggle = Tab:AddToggle({
-    Name = "Auto open Crystal",
-    Default = false,
-    Callback = function(Value)
-        if Value then
-            -- Start the loop when the toggle is enabled
-            Toggle.Loop = RunService.RenderStepped:Connect(function()
-                local args = {
-                    [1] = "openCrystal",
-                    [2] = crystaltype
-                }
-
-                game:GetService("ReplicatedStorage").rEvents.openCrystalRemote:InvokeServer(unpack(args))
-            end)
-        else
-            -- Stop the loop when the toggle is disabled
-            if Toggle.Loop then
-                Toggle.Loop:Disconnect()
-                Toggle.Loop = nil
-            end
-        end
-    end
-})
-
--- Get necessary services
-local RunService = game:GetService("RunService")
-local Players = game:GetService("Players")
-
--- Get the Workspace and Hoops folder
-local workspace = game:GetService("Workspace")
-local hoopsFolder = workspace:WaitForChild("Hoops")
-
--- Function to start the loop
-local function startLoop()
-    -- Get the local player and their character
-    local player = Players.LocalPlayer
-    local character = player.Character or player.CharacterAdded:Wait()
-    
-    -- Get the HumanoidRootPart
-    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-    
-    -- Start the loop
-    Toggle.Loop = RunService.RenderStepped:Connect(function()
-        -- Get all the Hoops from the Hoops folder
-        local hoops = hoopsFolder:GetChildren()
-        
-        -- Loop through each Hoop and bring it to the HumanoidRootPart
-        for _, hoop in ipairs(hoops) do
-            hoop.CFrame = humanoidRootPart.CFrame
-        end
-    end)
-end
-
-local Section = Tab:AddSection({Name = "Hoop Section"})
-
--- Toggle functionality
-local Toggle = Tab:AddToggle({
-    Name = "Auto Get Hoops",
-    Default = false,
-    Callback = function(Value)
-        if Value then
-            -- Start the loop when the toggle is enabled
-            startLoop()
-            
-            -- Listen for character respawn and restart the loop
-            Players.LocalPlayer.CharacterAdded:Connect(function()
-                if Toggle.Loop then
-                    Toggle.Loop:Disconnect()
-                    Toggle.Loop = nil
-                end
-                startLoop()
-            end)
-        else
-            -- Stop the loop when the toggle is disabled
-            if Toggle.Loop then
-                Toggle.Loop:Disconnect()
-                Toggle.Loop = nil
-            end
-        end
-    end
-})
-
-
 
 local Tab = Window:MakeTab({"area 51"})
 
@@ -2884,5 +2757,191 @@ local Toggle = Tab:AddToggle({
         end
     end
 })
+
+local Tab = Window:MakeTab({"legends of speed"})
+
+Tab:AddButton({ 	Name = "Legends Of Speed", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/fareljr1/Hub/main/Loader"))()	end })
+
+-- Define the 'sc' variable
+local Section = Tab:AddSection({"Orb Selection"})
+
+local orbs = {"Blue Orb", "Red Orb", "Gem", "Yellow Orb", "Orange Orb", "Ethereal Orb", "Infernal Gem"}
+
+local sc = "None"
+
+-- Function to get the folder names
+local function getFolderNames(folder)
+    local names = {}
+    for _, item in pairs(folder:GetChildren()) do
+        if item:IsA("Folder") then
+            table.insert(names, item.Name)
+        end
+    end
+    return names
+end
+
+-- Get the base folder names from Workspace.orbFolder
+local orbFolder = game.Workspace:WaitForChild("orbFolder")
+local folderNames = getFolderNames(orbFolder)
+
+-- Create the dropdown menu with folder names as options
+Tab:AddDropdown({
+    Name = "Select City",
+    Default = "None",
+    Options = folderNames,
+    Callback = function(Value)
+        sc = Value -- Corrected the scope issue with 'sc'
+    end    
+})
+
+-- Adding RunService to ensure it works
+local RunService = game:GetService("RunService")
+
+
+
+local Toggle = Tab:AddToggle({
+    Name = "Auto orbs",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+                for _, orbType in ipairs(orbs) do
+                    local args = {
+                        [1] = "collectOrb",
+                        [2] = orbType,
+                        [3] = sc
+                    }
+
+                    game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
+                end
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
+
+
+local Section = Tab:AddSection({Name = "Crystal Section"})
+
+local crystaltype = "None"
+
+-- Function to get the names of direct children
+local function getContentNames(folder)
+    local names = {}
+    for _, item in pairs(folder:GetChildren()) do
+        table.insert(names, item.Name)
+        print(item.Name) -- Debug statement to print each item's name
+    end
+    return names
+end
+
+-- Get the names of the content in Workspace.mapCrystalsFolder
+local crystalsFolder = game.Workspace:WaitForChild("mapCrystalsFolder")
+local contentNames = getContentNames(crystalsFolder)
+print("Content names: ", contentNames) -- Debug statement to print the collected names
+
+-- Create the dropdown menu with content names as options
+Tab:AddDropdown({
+    Name = "Select Crystal Type",
+    Default = "None",
+    Options = contentNames,
+    Callback = function(Value)
+        crystaltype = Value -- Set the selected crystal type
+    end    
+})
+
+-- Adding RunService to ensure it works
+local RunService = game:GetService("RunService")
+
+local Toggle = Tab:AddToggle({
+    Name = "Auto open Crystal",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+                local args = {
+                    [1] = "openCrystal",
+                    [2] = crystaltype
+                }
+
+                game:GetService("ReplicatedStorage").rEvents.openCrystalRemote:InvokeServer(unpack(args))
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
+
+-- Get necessary services
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+
+-- Get the Workspace and Hoops folder
+local workspace = game:GetService("Workspace")
+local hoopsFolder = workspace:WaitForChild("Hoops")
+
+-- Function to start the loop
+local function startLoop()
+    -- Get the local player and their character
+    local player = Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    
+    -- Get the HumanoidRootPart
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+    
+    -- Start the loop
+    Toggle.Loop = RunService.RenderStepped:Connect(function()
+        -- Get all the Hoops from the Hoops folder
+        local hoops = hoopsFolder:GetChildren()
+        
+        -- Loop through each Hoop and bring it to the HumanoidRootPart
+        for _, hoop in ipairs(hoops) do
+            hoop.CFrame = humanoidRootPart.CFrame
+        end
+    end)
+end
+
+local Section = Tab:AddSection({Name = "Hoop Section"})
+
+-- Toggle functionality
+local Toggle = Tab:AddToggle({
+    Name = "Auto Get Hoops",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            startLoop()
+            
+            -- Listen for character respawn and restart the loop
+            Players.LocalPlayer.CharacterAdded:Connect(function()
+                if Toggle.Loop then
+                    Toggle.Loop:Disconnect()
+                    Toggle.Loop = nil
+                end
+                startLoop()
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
+
+
+
 
 
