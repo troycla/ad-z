@@ -77,26 +77,16 @@ local function moveSelectedBoatToPlayer()
         return 
     end
 
-    local bodyPart = boat:FindFirstChild("Body") 
-    if not bodyPart then 
-        print("Body part not found")
-        return 
-    end
-
-    if bodyPart:IsA("BasePart") then
-        if toggle then
-            print("Moving boat: " .. boat.Name)
-            local goal = {Position = player.Character.Head.Position + Vector3.new(0, 5, 0)} -- Adjust position as needed
-            local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out) -- Adjust tween settings as needed
-            local tween = tweenService:Create(bodyPart, tweenInfo, goal)
-            tween:Play()
-        else
-            bodyPart.Anchored = false
-            local impulse = Vector3.new(math.random(-50, 50), math.random(50, 100), math.random(-50, 50))
-            bodyPart:ApplyImpulse(impulse) -- Fling parts
+    if toggle then
+        print("Moving boat: " .. boat.Name)
+        for _, part in pairs(boat:GetChildren()) do
+            if part:IsA("BasePart") then
+                local goal = {Position = player.Character.Head.Position + Vector3.new(0, 5, 0)} -- Adjust position as needed
+                local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out) -- Adjust tween settings as needed
+                local tween = tweenService:Create(part, tweenInfo, goal)
+                tween:Play()
+            end
         end
-    else
-        print("Body is not a BasePart")
     end
 end
 
