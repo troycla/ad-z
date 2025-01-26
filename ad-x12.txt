@@ -2221,7 +2221,7 @@ local Tab = Window:MakeTab({"legends of speed"})
 Tab:AddButton({ 	Name = "Legends Of Speed", 	Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/fareljr1/Hub/main/Loader"))()	end })
 
 -- Define the 'sc' variable
-local Section = Tab:AddSection({"Auto Selection"})
+local Section = Tab:AddSection({"Orb Selection"})
 
 local orbs = {"Blue Orb", "Red Orb", "Gem", "Yellow Orb", "Orange Orb"}
 
@@ -2255,6 +2255,8 @@ Tab:AddDropdown({
 -- Adding RunService to ensure it works
 local RunService = game:GetService("RunService")
 
+
+
 local Toggle = Tab:AddToggle({
     Name = "Auto orbs",
     Default = false,
@@ -2283,7 +2285,7 @@ local Toggle = Tab:AddToggle({
 })
 
 
-local Section = Tab:AddSection({Name = "Crystal"})
+local Section = Tab:AddSection({Name = "Crystal Section"})
 
 local crystaltype = "None"
 
@@ -2367,6 +2369,8 @@ local function startLoop()
         end
     end)
 end
+
+local Section = Tab:AddSection({Name = "Hoop Section"})
 
 -- Toggle functionality
 local Toggle = Tab:AddToggle({
