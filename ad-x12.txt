@@ -1184,6 +1184,9 @@ Tab:AddButton({
 				game:GetService("ReplicatedStorage").RemoteEvents.OutsideRole:FireServer("Book", true, false)
 			end
 		})
+local bloxburgid = 185655149
+
+if game.PlaceId ==  bloxburgid then
 
 local tab = Window:MakeTab({"Blox Burg"})
 
@@ -1192,6 +1195,8 @@ Tab:AddButton({ name = "soon!", Callback = function()
 print("script here")
 
 end})
+
+end
 
 
 local Tab = Window:MakeTab({"other hubs"})
@@ -1349,7 +1354,7 @@ end
 
 local bedid1 = 6872265039
 
-if game.PlaceId == bedid1 them
+if game.PlaceId == bedid1 then
 
 local Tab = Window:MakeTab({"Bed Wars"})
 
@@ -1395,7 +1400,7 @@ Tab:AddParagraph("imformation","old but steal works")
 end
 
 local pets99 = 8737899170 
-if game.PlaceId == pets99
+if game.PlaceId == pets99 then
 local Tab = Window:MakeTab({"Pet Simulator 99"})
 
 
