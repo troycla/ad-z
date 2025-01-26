@@ -1291,6 +1291,9 @@ Tab:AddButton({ 	Name = "server sound", 	Callback = function() loadstring(game:H
 end})
 Tab:AddParagraph("imformation","only works in some games")
 
+local cc2id = 654732683
+
+if game.PlaceId == cc2id then
 local Tab = Window:MakeTab({"Car Crushers 2"})
 
 Tab:AddButton({ 	Name  = "Car Crushers 2 script", 	Callback = function()
@@ -1299,7 +1302,7 @@ loadstring(game:HttpGet('https://whimper.xyz/kitty'))()
 
 end })
 Tab:AddParagraph("imformation","is a car crusher script")
-
+end
 local Tab = Window:MakeTab({"guis"})
 
 
@@ -1332,13 +1335,21 @@ end })
 Tab:AddParagraph("imformation","work but on some people")
 
 
+local adoptmeid = 920587237
 
+if game.PlaceId == adoptmeid then
 local Tab = Window:MakeTab({"Adopt me"})
 
 Tab:AddButton({ 	Name = "AdoptMe luner event auto farm", 	Callback = function() loadstring(game:HttpGet('https://raw.githubusercontent.com/KodaLINEN/LFAM/main/auto'))()
 
 end})
+
 Tab:AddParagraph("imformation","just an adopt me hub")
+end
+
+local bedid1 = 6872265039
+
+if game.PlaceId == bedid1 them
 
 local Tab = Window:MakeTab({"Bed Wars"})
 
@@ -1380,6 +1391,11 @@ Tab:AddButton({ 	Name = "bed wars flame", 	Callback = function() loadstring(game
 end})
 
 Tab:AddParagraph("imformation","old but steal works")
+
+end
+
+local pets99 = 8737899170 
+if game.PlaceId == pets99
 local Tab = Window:MakeTab({"Pet Simulator 99"})
 
 
@@ -1414,7 +1430,14 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/EasyPSX/pet-simulator
 
 end})
 
+
 Tab:AddParagraph("imformation","does not work proprely")
+
+end
+
+local titen = 6125809531
+
+if game.PlaceId == titen then
 
 local Tab = Window:MakeTab({"U Attack on Titens"})
 
@@ -1424,6 +1447,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/zhanzheng666/Roblox/m
 end })
 
 Tab:AddParagraph("imformation","Is an Untitled Attack on titen script")
+end
 
 local Tab = Window:MakeTab({"Blox fruits"})
 
