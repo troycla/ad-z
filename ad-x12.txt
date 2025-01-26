@@ -14,56 +14,71 @@ local Window = redzlib:MakeWindow({
 local Tab = Window:MakeTab({"testing"})
 
 
-local Toggle = Tab:AddToggle({
-    Name = "Name",
+local selectedBoat = "None"
+
+local function getBoatNames()
+    local boatNames = {}
+    local boatsFolder = workspace:FindFirstChild("Boats")
+    if boatsFolder then
+        for _, boat in pairs(boatsFolder:GetChildren()) do
+            table.insert(boatNames, boat.Name)
+        end
+    end
+    return boatNames
+end
+
+local boatNames = getBoatNames()
+
+local Dropdown = Tab:AddDropdown({
+    Name = "Select Boat",
+    Default = "None",
+    Options = boatNames,
+    Callback = function(Value)
+        selectedBoat = Value
+        onBoatSelected(Value)
+    end    
+})
+
+function onBoatSelected(Value)
+    print("Selected Boat: " .. Value)
+    -- Add logic here to handle the selected boat if necessary
+end
+
+local JumpToggle = Tab:AddToggle({
+    Name = "t",
     Default = false,
     Callback = function(Value)
         toggle = Value
         if toggle then
-            findUnanchoredParts() -- Update list of unanchored parts when toggle is activated
+            moveSelectedBoatToPlayer()
         end
-        bringPartsToPlayer()
     end
 })
 
 local player = game.Players.LocalPlayer
 local tweenService = game:GetService("TweenService")
-local unanchoredParts = {}
 local toggle = false -- Your toggle variable
 
--- Function to detect unanchored parts
-local function findUnanchoredParts()
-    unanchoredParts = {} -- Clear previous list of unanchored parts
-    for _, part in pairs(workspace:GetDescendants()) do
-        if part:IsA("BasePart") and not part.Anchored then
-            table.insert(unanchoredParts, part)
-        end
-    end
-end
+-- Function to move the selected boat to the player using TweenService
+local function moveSelectedBoatToPlayer()
+    if selectedBoat == "None" then return end
 
--- Function to bring parts to the player using TweenService
-local function bringPartsToPlayer()
+    local boatsFolder = workspace:FindFirstChild("Boats")
+    if not boatsFolder then return end
+
+    local boat = boatsFolder:FindFirstChild(selectedBoat)
+    if not boat then return end
+
+    local bodyPart = boat:FindFirstChild("Body") or boat:FindFirstChild("Hull") -- Adjust to your boat's primary part name
+    if not bodyPart then return end
+
     if toggle then
-        for _, part in pairs(unanchoredParts) do
-            local goal = {Position = player.Character.Head.Position + Vector3.new(0, 5, 0)} -- Adjust position as needed
-            local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out) -- Adjust tween settings as needed
-            local tween = tweenService:Create(part, tweenInfo, goal)
-            tween:Play()
-            tween.Completed:Connect(function()
-                part.Anchored = true -- Hold parts in place after tween
-            end)
-        end
-    else
-        for _, part in pairs(unanchoredParts) do
-            part.Anchored = false
-            local impulse = Vector3.new(math.random(-50, 50), math.random(50, 100), math.random(-50, 50))
-            part:ApplyImpulse(impulse) -- Fling parts
-        end
+        local goal = {Position = player.Character.Head.Position + Vector3.new(0, 5, 0)} -- Adjust position as needed
+        local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out) -- Adjust tween settings as needed
+        local tween = tweenService:Create(bodyPart, tweenInfo, goal)
+        tween:Play()
     end
 end
-
--- Optional: Call findUnanchoredParts initially to prepare the list, if needed
-findUnanchoredParts()
 
 
 local Tab = Window:MakeTab({"Main"})
