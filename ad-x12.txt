@@ -13,7 +13,6 @@ local Window = redzlib:MakeWindow({
 
 local Tab = Window:MakeTab({"testing"})
 
-
 local selectedBoat = "None"
 
 local function getBoatNames()
