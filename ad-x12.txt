@@ -635,7 +635,9 @@ local Section = Tab:AddSection({"Soon"})
 
 
 
+local bfbvgid = 91055075407627 
 
+if game.PlaceId == bfbvgid then
 local Tab = Window:MakeTab({"Blox Fruits BVG"})
 
 local Fruits = {"None", "Dragon (West) Fruit", "Dragon (East) Fruit", "Dough Fruit", "Leopard Fruit", "Flame Fruit", "Light Fruit", "Kitsune Fruit", "Hito Fruit", "Magma Fruit", "Venom Fruit", "Control Fruit"}
@@ -897,7 +899,11 @@ local Toggle = Tab:AddToggle({
 
 
 local Section = Tab:AddSection({"credit : Touka arbix hub"})
+end
 
+local bbid = 2551991523
+
+if game.PlaceId == bbid then
 local Tab = Window:MakeTab({"Broken Bones"})
 
 local Section = Tab:AddSection({"Tween Exploit"})
@@ -945,7 +951,11 @@ flyToTarget()
         end
     end
 })
+end
 
+local zu1id = 12312313121312
+
+if game.PlaceId == zu1id then
 
 local Tab = Window:MakeTab({"Zombie Uprising"})
 
@@ -954,6 +964,7 @@ Tab:AddButton({ 	Name  = "Unknowen Hub", 	Callback = function()
 loadstring(game:HttpGet('https://raw.githubusercontent.com/Unknownproooolucky/Unknown-Hub-X-Universal-Games/main/Games/Zombie-Uprising'))()
 
 end })
+end
 
 local Tab = Window:MakeTab({"Scripts"})
 local Section = Tab:AddSection({
