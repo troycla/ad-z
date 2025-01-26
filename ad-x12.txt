@@ -15,6 +15,44 @@ local Tab = Window:MakeTab({"testing"})
 
 
 
+local Toggle = Tab:AddToggle({
+    Name = "Name",
+    Default = false,
+    Callback = function(Value)
+        toggle = Value
+        bringPartsToPlayer()
+    end
+})
+
+local player = game.Players.LocalPlayer
+local unanchoredParts = {}
+local toggle = false -- Your toggle variable
+
+-- Function to detect unanchored parts
+local function findUnanchoredParts()
+    for _, part in pairs(workspace:GetDescendants()) do
+        if part:IsA("BasePart") and not part.Anchored then
+            table.insert(unanchoredParts, part)
+        end
+    end
+end
+
+-- Function to bring parts to the player
+local function bringPartsToPlayer()
+    if toggle then
+        for _, part in pairs(unanchoredParts) do
+            part.Position = player.Character.Head.Position + Vector3.new(0, 5, 0) -- Adjust position as needed
+            part.Anchored = true -- Hold parts in place
+        end
+    else
+        for _, part in pairs(unanchoredParts) do
+            part.Anchored = false
+            part:ApplyImpulse(Vector3.new(math.random(-50, 50), math.random(50, 100), math.random(-50, 50))) -- Fling parts
+        end
+    end
+end
+
+findUnanchoredParts() -- Initial call to detect unanchored parts
 
 
 
