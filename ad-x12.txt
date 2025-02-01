@@ -10,25 +10,6 @@ local Window = redzlib:MakeWindow({
   SaveFolder = "Admin-x 1 Config"
 })
 
-
-local Tab = Window:MakeTab({"Game info"})
-
-local Section = Tab:AddSection({
-    Name = "Game Id:"
-})
-
-local gameIdis = game.PlaceId
-
-Tab:AddParagraph({
-    Title = "Current Game ID",
-    Content = tostring(gameIdis)
-})
-
-
-Tab:AddButton({ 	Name  = "Copy Game Id", 	Callback = function()
-
-end })
-
 local Tab = Window:MakeTab({"testing"})
 
 local Toggle = Tab:AddToggle({
