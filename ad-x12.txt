@@ -2813,7 +2813,6 @@ if game.PlaceId == legendsOfSpeedPlaceId then
     Tab:AddDropdown({
         Name = "Select City",
         Default = "None",
-        MultiSelect = true,
         Options = folderNames,
         Callback = function(Value)
             sc = Value -- Corrected the scope issue with 'sc'
