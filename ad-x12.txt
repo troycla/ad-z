@@ -11,6 +11,32 @@ local Window = redzlib:MakeWindow({
 })
 
 
+local Tab = Window:MakeTab({"Game info"})
+
+local Section = Tab:AddSection({
+	Name = "Game Id:"
+})
+local currentgameId = game.PlaceId
+
+Tab:AddParagraph({currentgameId})
+
+Tab:AddButton({ 	Name  = "Copy Game Id", 	Callback = function()
+-- Function to copy text to the clipboard
+function copyTextToClipboard(text)
+    if system.getClipboard then
+        system.setClipboard(text)
+        print("Text copied to clipboard: " .. text)
+    else
+        print("Clipboard functionality is not available.")
+    end
+end
+
+-- Example usage
+local textToCopy = curremtgameId
+copyTextToClipboard(textToCopy)
+
+end })
+
 local Tab = Window:MakeTab({"testing"})
 
 local Toggle = Tab:AddToggle({
