@@ -16,9 +16,9 @@ local Tab = Window:MakeTab({"Game info"})
 local Section = Tab:AddSection({
 	Name = "Game Id:"
 })
-local gameId = game.PlaceId
+local gameIdis = game.PlaceId
 
-Tab:AddParagraph({gameId})
+Tab:AddParagraph({gameIdis})
 
 Tab:AddButton({ 	Name  = "Copy Game Id", 	Callback = function()
 
