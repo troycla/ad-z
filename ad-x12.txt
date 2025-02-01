@@ -14,11 +14,16 @@ local Window = redzlib:MakeWindow({
 local Tab = Window:MakeTab({"Game info"})
 
 local Section = Tab:AddSection({
-	Name = "Game Id:"
+    Name = "Game Id:"
 })
+
 local gameIdis = game.PlaceId
 
-Tab:AddParagraph({gameIdis})
+Tab:AddParagraph({
+    Title = "Current Game ID",
+    Content = tostring(gameIdis)
+})
+
 
 Tab:AddButton({ 	Name  = "Copy Game Id", 	Callback = function()
 
