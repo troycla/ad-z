@@ -10,7 +10,7 @@ local Window = redzlib:MakeWindow({
   SaveFolder = "Admin-x 1 Config"
 })
 
-local Tab = Window:MakeTab({"testing"})
+local Tab = Window:MakeTab({"Spin"})
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
@@ -19,43 +19,44 @@ local RunService = game:GetService("RunService")
 
 local lastSpeed = 16 -- Default speed
 local isSpinning = false
+local isVisible = true
 
-local CoolSlider = Tab:AddSlider({
-    Name = "Player Walk Speed",
+local SpinSpeedSlider = Tab:AddSlider({
+    Name = "Spin Speed",
     Min = 0,
-    Max = 759,
+    Max = 1999,
     Default = 16,
     Color = Color3.fromRGB(255, 255, 255),
     Increment = 1,
     ValueName = "Speed",
     Callback = function(value)
         lastSpeed = value
-        if Toggle.Enabled then
-            humanoid.WalkSpeed = value
-        end
     end,
 })
 
-local Toggle = Tab:AddToggle({
-    Name = "Set Speed",
+local SpinToggle = Tab:AddToggle({
+    Name = "Toggle Spin",
     Default = false,
     Callback = function(Value)
-        Toggle.Enabled = Value
+        isSpinning = Value
         if Value then
-            humanoid.WalkSpeed = lastSpeed
+            humanoidRootPart.RotVelocity = Vector3.new(0, lastSpeed, 0) -- Start spinning at set speed
         else
-            humanoid.WalkSpeed = 16 -- Reset to default speed
+            humanoidRootPart.RotVelocity = Vector3.new(0, 0, 0) -- Stop spinning
         end
     end
 })
 
-local SpinToggle = Tab:AddToggle({
-    Name = "Spin Character",
-    Default = false,
+local VisibilityToggle = Tab:AddToggle({
+    Name = "Set Visibility",
+    Default = true,
     Callback = function(Value)
-        isSpinning = Value
-        if not Value then
-            humanoidRootPart.RotVelocity = Vector3.new(0, 0, 0) -- Stop spinning
+        isVisible = Value
+        for _, part in pairs(character:GetDescendants()) do
+            if part:IsA("BasePart") then
+                part.Transparency = isVisible and 0 or 1 -- Set visibility
+                part.CanCollide = isVisible
+            end
         end
     end
 })
@@ -67,31 +68,8 @@ RunService.RenderStepped:Connect(function()
     end
 end)
 
--- Ensure other players can't see the spinning effect
-local function onCharacterAdded(character)
-    if character ~= player.Character then
-        local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
-        if humanoidRootPart then
-            humanoidRootPart.AncestryChanged:Connect(function(_, parent)
-                if not parent then
-                    humanoidRootPart.AncestryChanged:Disconnect()
-                    humanoidRootPart:Destroy()
-                end
-            end)
-        end
-    end
-end
+local Tab = Window:MakeTab({"testing"})
 
-game.Players.PlayerAdded:Connect(function(player)
-    player.CharacterAdded:Connect(onCharacterAdded)
-end)
-
-game.Players.PlayerRemoving:Connect(function(player)
-    local character = player.Character
-    if character then
-        onCharacterAdded(character)
-    end
-end)
 
 Tab:AddButton({ 	Name  = "Death Counter", 	Callback = function()
 local player = game.Players.LocalPlayer
