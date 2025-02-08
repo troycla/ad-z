@@ -10,6 +10,90 @@ local Window = redzlib:MakeWindow({
   SaveFolder = "Admin-x 1 Config"
 })
 
+
+local Tab = Window:MakeTab({"Weight"})
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local RunService = game:GetService("RunService")
+
+local lastWeight = 16 -- Default weight
+local isWeightSet = false
+local isVisible = true
+
+local function resetCharacter()
+    character = player.Character or player.CharacterAdded:Wait()
+    humanoid = character:WaitForChild("Humanoid")
+    humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+    -- Set the player's weight (mass)
+    humanoidRootPart.CustomPhysicalProperties = PhysicalProperties.new(lastWeight, 0.5, 0.5)
+end
+
+local WeightSlider = Tab:AddSlider({
+    Name = "Player Weight",
+    Min = 0,
+    Max = 1000000,
+    Default = 16,
+    Color = Color3.fromRGB(255, 255, 255),
+    Increment = 1,
+    ValueName = "Weight",
+    Callback = function(value)
+        lastWeight = value
+        humanoidRootPart.CustomPhysicalProperties = PhysicalProperties.new(lastWeight, 0.5, 0.5)
+    end,
+})
+
+local WeightToggle = Tab:AddToggle({
+    Name = "Toggle Weight",
+    Default = false,
+    Callback = function(Value)
+        isWeightSet = Value
+        if Value then
+            humanoidRootPart.CustomPhysicalProperties = PhysicalProperties.new(lastWeight, 0.5, 0.5) -- Set weight to the selected value
+        else
+            humanoidRootPart.CustomPhysicalProperties = PhysicalProperties.new(16, 0.5, 0.5) -- Reset to default weight
+        end
+    end
+})
+
+local VisibilityToggle = Tab:AddToggle({
+    Name = "Set Visibility",
+    Default = true,
+    Callback = function(Value)
+        isVisible = Value
+        for _, part in pairs(character:GetDescendants()) do
+            if part:IsA("BasePart") then
+                part.Transparency = isVisible and 0 or 1 -- Set visibility
+                part.CanCollide = isVisible
+            end
+        end
+    end
+})
+
+RunService.RenderStepped:Connect(function()
+    if isWeightSet then
+        humanoidRootPart.CustomPhysicalProperties = PhysicalProperties.new(lastWeight, 0.5, 0.5) -- Maintain set weight
+        humanoidRootPart.Velocity = Vector3.new(0, 0, 0) -- Keep from leaving the ground
+    end
+end)
+
+player.CharacterAdded:Connect(function()
+    resetCharacter()
+    if isWeightSet then
+        humanoidRootPart.CustomPhysicalProperties = PhysicalProperties.new(lastWeight, 0.5, 0.5) -- Continue with set weight after reset
+    end
+    if not isVisible then
+        for _, part in pairs(character:GetDescendants()) do
+            if part:IsA("BasePart") then
+                part.Transparency = 1 -- Maintain invisibility
+                part.CanCollide = false
+            end
+        end
+    end
+end)
+
+
 local Tab = Window:MakeTab({"Spin"})
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
