@@ -21,6 +21,12 @@ local lastSpeed = 16 -- Default speed
 local isSpinning = false
 local isVisible = true
 
+local function resetCharacter()
+    character = player.Character or player.CharacterAdded:Wait()
+    humanoid = character:WaitForChild("Humanoid")
+    humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+end
+
 local SpinSpeedSlider = Tab:AddSlider({
     Name = "Spin Speed",
     Min = 0,
@@ -67,6 +73,22 @@ RunService.RenderStepped:Connect(function()
         humanoidRootPart.Velocity = Vector3.new(0, 0, 0) -- Keep from leaving the ground
     end
 end)
+
+player.CharacterAdded:Connect(function()
+    resetCharacter()
+    if isSpinning then
+        humanoidRootPart.RotVelocity = Vector3.new(0, lastSpeed, 0) -- Continue spinning after reset
+    end
+    if not isVisible then
+        for _, part in pairs(character:GetDescendants()) do
+            if part:IsA("BasePart") then
+                part.Transparency = 1 -- Maintain invisibility
+                part.CanCollide = false
+            end
+        end
+    end
+end)
+
 
 local Tab = Window:MakeTab({"testing"})
 
