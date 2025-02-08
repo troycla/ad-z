@@ -12,6 +12,43 @@ local Window = redzlib:MakeWindow({
 
 local Tab = Window:MakeTab({"testing"})
 
+Tab:AddButton({ 	Name  = "The Diffrentce", 	Callback = function()
+local TweenService = game:GetService("TweenService")
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local function createTween(part, properties, duration, easingStyle, easingDirection)
+    local tweenInfo = TweenInfo.new(duration, easingStyle, easingDirection)
+    local tween = TweenService:Create(part, tweenInfo, properties)
+    return tween
+end
+
+local function tweenCharacter()
+    local tween1 = createTween(humanoidRootPart, {CFrame = humanoidRootPart.CFrame * CFrame.new(5, 0, 0)}, 0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
+    local tween2 = createTween(humanoidRootPart, {CFrame = humanoidRootPart.CFrame * CFrame.new(-10, 0, 0)}, 0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
+    local tween3 = createTween(humanoidRootPart, {CFrame = humanoidRootPart.CFrame * CFrame.new(5, 0, 0)}, 0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
+    local tween4 = createTween(humanoidRootPart, {CFrame = humanoidRootPart.CFrame * CFrame.new(0, 50, 0)}, 1, Enum.EasingStyle.Bounce, Enum.EasingDirection.Out)
+
+    tween1:Play()
+    tween1.Completed:Connect(function()
+        tween2:Play()
+    end)
+    tween2.Completed:Connect(function()
+        tween3:Play()
+    end)
+    tween3.Completed:Connect(function()
+        tween4:Play()
+    end)
+end
+
+tweenCharacter()
+
+end })
+
+
+
+
 local Toggle = Tab:AddToggle({
     Name = "Move Mining Pads",
     Default = false,
