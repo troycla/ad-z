@@ -11,6 +11,87 @@ local Window = redzlib:MakeWindow({
 })
 
 local Tab = Window:MakeTab({"testing"})
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local RunService = game:GetService("RunService")
+
+local lastSpeed = 16 -- Default speed
+local isSpinning = false
+
+local CoolSlider = Tab:AddSlider({
+    Name = "Player Walk Speed",
+    Min = 0,
+    Max = 759,
+    Default = 16,
+    Color = Color3.fromRGB(255, 255, 255),
+    Increment = 1,
+    ValueName = "Speed",
+    Callback = function(value)
+        lastSpeed = value
+        if Toggle.Enabled then
+            humanoid.WalkSpeed = value
+        end
+    end,
+})
+
+local Toggle = Tab:AddToggle({
+    Name = "Set Speed",
+    Default = false,
+    Callback = function(Value)
+        Toggle.Enabled = Value
+        if Value then
+            humanoid.WalkSpeed = lastSpeed
+        else
+            humanoid.WalkSpeed = 16 -- Reset to default speed
+        end
+    end
+})
+
+local SpinToggle = Tab:AddToggle({
+    Name = "Spin Character",
+    Default = false,
+    Callback = function(Value)
+        isSpinning = Value
+        if not Value then
+            humanoidRootPart.RotVelocity = Vector3.new(0, 0, 0) -- Stop spinning
+        end
+    end
+})
+
+RunService.RenderStepped:Connect(function()
+    if isSpinning then
+        humanoidRootPart.RotVelocity = Vector3.new(0, lastSpeed, 0) -- Spin character
+        humanoidRootPart.Velocity = Vector3.new(0, 0, 0) -- Keep from leaving the ground
+    end
+end)
+
+-- Ensure other players can't see the spinning effect
+local function onCharacterAdded(character)
+    if character ~= player.Character then
+        local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+        if humanoidRootPart then
+            humanoidRootPart.AncestryChanged:Connect(function(_, parent)
+                if not parent then
+                    humanoidRootPart.AncestryChanged:Disconnect()
+                    humanoidRootPart:Destroy()
+                end
+            end)
+        end
+    end
+end
+
+game.Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(onCharacterAdded)
+end)
+
+game.Players.PlayerRemoving:Connect(function(player)
+    local character = player.Character
+    if character then
+        onCharacterAdded(character)
+    end
+end)
 
 Tab:AddButton({ 	Name  = "Death Counter", 	Callback = function()
 local player = game.Players.LocalPlayer
