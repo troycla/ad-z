@@ -12,6 +12,42 @@ local Window = redzlib:MakeWindow({
 
 local Tab = Window:MakeTab({"testing"})
 
+Tab:AddButton({ 	Name  = "Death Counter", 	Callback = function()
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local function onTouch(otherPart)
+    local otherCharacter = otherPart.Parent
+    if otherCharacter and otherCharacter:IsA("Model") and otherCharacter:FindFirstChild("Humanoid") then
+        local otherHumanoidRootPart = otherCharacter:FindFirstChild("HumanoidRootPart")
+        if otherHumanoidRootPart then
+            local direction = otherHumanoidRootPart.CFrame.LookVector
+            local newPosition = otherHumanoidRootPart.CFrame * CFrame.new(-direction.X * 5, 0, -direction.Z * 5)
+            humanoidRootPart.CFrame = newPosition
+        end
+    end
+end
+
+humanoidRootPart.Touched:Connect(onTouch)
+
+end })
+Tab:AddButton({ 	Name  = "Arceus x", 	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/Arceus%20X%20V3"))()
+end })
+Tab:AddButton({ 	Name  = "Arceus x", 	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/Arceus%20X%20V3"))()
+end })
+Tab:AddButton({ 	Name  = "Arceus x", 	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/Arceus%20X%20V3"))()
+end })
+Tab:AddButton({ 	Name  = "Arceus x", 	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/Arceus%20X%20V3"))()
+end })
+Tab:AddButton({ 	Name  = "Arceus x", 	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/Arceus%20X%20V3"))()
+end })
+
 Tab:AddButton({ 	Name  = "The Diffrentce", 	Callback = function()
 local TweenService = game:GetService("TweenService")
 local player = game.Players.LocalPlayer
