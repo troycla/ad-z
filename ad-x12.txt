@@ -11,7 +11,6 @@ local Window = redzlib:MakeWindow({
 })
 
 local Tab = Window:MakeTab({"Player"})
-
 -- Variables
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
@@ -3370,8 +3369,3 @@ if game.PlaceId == legendsOfSpeedPlaceId then
         end
     })
 end
-
-
-
-
-
