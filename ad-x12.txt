@@ -10,6 +10,82 @@ local Window = redzlib:MakeWindow({
   SaveFolder = "Admin-x 1 Config"
 })
 
+local Tab = Window:MakeTab({"Player"})
+-- Variables
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local Camera = workspace.CurrentCamera
+local ESPColor = Color3.fromRGB(255, 0, 0)
+local ESPEnabled = false
+local ESPConnections = {}
+
+-- Function to create a box around a player
+local function createESP(player)
+    local character = player.Character
+    if character and character:FindFirstChild("HumanoidRootPart") then
+        local box = Drawing.new("Square")
+        box.Color = ESPColor
+        box.Thickness = 1
+        box.Transparency = 1
+
+        local runService = game:GetService("RunService")
+        local connection
+
+        connection = runService.RenderStepped:Connect(function()
+            if ESPEnabled and character and character:FindFirstChild("HumanoidRootPart") then
+                local rootPart = character.HumanoidRootPart
+                local rootPartPosition, onScreen = Camera:WorldToViewportPoint(rootPart.Position)
+                if onScreen then
+                    box.Size = Vector2.new(2000 / rootPartPosition.Z, 2000 / rootPartPosition.Z)
+                    box.Position = Vector2.new(rootPartPosition.X - box.Size.X / 2, rootPartPosition.Y - box.Size.Y / 2)
+                    box.Visible = true
+                else
+                    box.Visible = false
+                end
+            else
+                box.Visible = false
+                connection:Disconnect()
+                box:Remove()
+            end
+        end)
+
+        table.insert(ESPConnections, connection)
+    end
+end
+
+-- Add ESP to all players
+local function addESPToAllPlayers()
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer then
+            createESP(player)
+        end
+    end
+
+    Players.PlayerAdded:Connect(function(player)
+        if player ~= LocalPlayer then
+            player.CharacterAdded:Connect(function(character)
+                createESP(player)
+            end)
+        end
+    end)
+end
+
+-- Toggle function
+local Toggle = Tab:AddToggle({
+    Name = "Turn On Player ESP",
+    Default = false,
+    Callback = function(Value)
+        ESPEnabled = Value
+        if ESPEnabled then
+            addESPToAllPlayers()
+        else
+            for _, connection in ipairs(ESPConnections) do
+                connection:Disconnect()
+            end
+            ESPConnections = {}
+        end
+    end
+})
 
 local Tab = Window:MakeTab({"Weight"})
 local player = game.Players.LocalPlayer
