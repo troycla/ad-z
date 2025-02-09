@@ -1,5 +1,5 @@
 
-local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/troycla/redui/main/Source.lua"))()
+local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/RedzLibV5/main/Source.lua"))()
 
 
 
@@ -2202,7 +2202,29 @@ game:GetService("ReplicatedStorage").Remotes.CommE:FireServer(unpack(args))
 })
 local Tab = Window:MakeTab({"Cart Ride Into Rite"})
 
-local Section = Tab:AddSection({"Cart Regen"})
+local Section = Tab:AddSection({"Cart Regin"})
+
+local RunService = game:GetService("RunService")
+
+local AutoRegenToggle = Tab:AddToggle({
+    Name = "Auto regen one",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            AutoRegenToggle.Loop = RunService.RenderStepped:Connect(function()
+                fireclickdetector(workspace.Carts["1Regen"].Click)
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if AutoRegenToggle.Loop then
+                AutoRegenToggle.Loop:Disconnect()
+                AutoRegenToggle.Loop = nil
+            end
+        end
+    end
+})
+
 
 
 
