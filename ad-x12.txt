@@ -168,10 +168,13 @@ local HitboxToggle = Tab:AddToggle({
     Name = "Enable Hitbox",
     Default = false,
     Callback = function(Value)
-        _G.Disabled = not Value
-        print("Hitbox adjustment " .. (Value and "enabled" or "disabled"))
         if Value then
+            _G.Disabled = false
+            print("Hitbox adjustment enabled")
             adjustHitbox()
+        else
+            _G.Disabled = true
+            print("Hitbox adjustment disabled")
         end
     end    
 })
