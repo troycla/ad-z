@@ -2200,17 +2200,6 @@ game:GetService("ReplicatedStorage").Remotes.CommE:FireServer(unpack(args))
         end
     end
 })
-local Tab = Window:MakeTab({"Cart Ride Into Rite"})
-
-local Section = Tab:AddSection({"Cart Regen"})
-
-
-
-
-
-
-
-
 
 local Tab = Window:MakeTab({"lumber tycoon 2"})
 
