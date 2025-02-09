@@ -11,6 +11,9 @@ local Window = redzlib:MakeWindow({
 })
 
 local Tab = Window:MakeTab({"Player"})
+
+local Section = Tab:AddSection({Name = "Player Esp"})
+
 -- Variables
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
@@ -119,6 +122,63 @@ local Toggle = Tab:AddToggle({
         end
     end
 })
+
+local Section = Tab:AddSection({Name = "Player Hit Box"})
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local RunService = game:GetService('RunService')
+
+_G.HeadSize = 20
+_G.Disabled = false
+
+-- Function to adjust hitbox size
+local function adjustHitbox()
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player.Name ~= LocalPlayer.Name then
+            pcall(function()
+                player.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize, _G.HeadSize, _G.HeadSize)
+                player.Character.HumanoidRootPart.Transparency = 0.7
+                player.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really black")
+                player.Character.HumanoidRootPart.Material = "Neon"
+                player.Character.HumanoidRootPart.CanCollide = false
+            end)
+        end
+    end
+end
+
+-- Slider to adjust hitbox size
+local Slider = Tab:AddSlider({
+    Name = "Hitbox Size",
+    Min = 1,
+    Max = 20,
+    Default = 5,
+    Color = Color3.fromRGB(255, 255, 255),
+    Increment = 1,
+    ValueName = "units",
+    Callback = function(Value)
+        _G.HeadSize = Value
+        print("Hitbox size set to " .. Value)
+        adjustHitbox()
+    end    
+})
+
+-- Toggle to enable/disable hitbox adjustment
+local Toggle = Tab:AddToggle({
+    Name = "Enable Hitbox",
+    Default = false,
+    Callback = function(Value)
+        _G.Disabled = not Value
+        print("Hitbox adjustment " .. (Value and "enabled" or "disabled"))
+    end    
+})
+
+-- Adjust hitbox on RenderStepped
+RunService.RenderStepped:Connect(function()
+    if not _G.Disabled then
+        adjustHitbox()
+    end
+end)
+
 
 local Tab = Window:MakeTab({"Weight"})
 local player = game.Players.LocalPlayer
@@ -1376,12 +1436,6 @@ local Tab = Window:MakeTab({"Scripts"})
 local Section = Tab:AddSection({
 	Name = "Local Player"
 })
-Tab:AddButton({ 	Name  = "player Esp Script", 	Callback = function()
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/main/TbaoHubEsp"))()
-
-
-end })
 
 Tab:AddParagraph("imformation","some what usfull but buggy")
 
