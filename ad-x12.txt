@@ -120,6 +120,64 @@ local Toggle = Tab:AddToggle({
     end
 })
 
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+_G.HeadSize = 20
+_G.Disabled = false
+
+-- Function to adjust hitbox size
+local function adjustHitbox()
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player.Name ~= LocalPlayer.Name then
+            pcall(function()
+                player.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize, _G.HeadSize, _G.HeadSize)
+                player.Character.HumanoidRootPart.Transparency = 0.7
+                player.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really black")
+                player.Character.HumanoidRootPart.Material = "Neon"
+                player.Character.HumanoidRootPart.CanCollide = false
+            end)
+        end
+    end
+end
+
+-- Slider to adjust hitbox size
+local HitboxSlider = Tab:AddSlider({
+    Name = "Hitbox Size",
+    Min = 1,
+    Max = 20,
+    Default = 5,
+    Color = Color3.fromRGB(255, 255, 255),
+    Increment = 1,
+    ValueName = "units",
+    Callback = function(Value)
+        _G.HeadSize = Value
+        print("Hitbox size set to " .. Value)
+        if not _G.Disabled then
+            adjustHitbox()
+        end
+    end    
+})
+
+-- Toggle to enable/disable hitbox adjustment
+local HitboxToggle = Tab:AddToggle({
+    Name = "Enable Hitbox",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            _G.Disabled = false
+            print("Hitbox adjustment enabled")
+            adjustHitbox()
+        else
+            _G.Disabled = true
+            print("Hitbox adjustment disabled")
+        end
+    end    
+})
+
+
+
 local Tab = Window:MakeTab({"Weight"})
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
@@ -2201,6 +2259,8 @@ game:GetService("ReplicatedStorage").Remotes.CommE:FireServer(unpack(args))
     end
 })
 
+
+
 local Tab = Window:MakeTab({"lumber tycoon 2"})
 
 Tab:AddButton({ 	Name = "lumber tycoon 2 butter", 	Callback = function()
@@ -3369,3 +3429,8 @@ if game.PlaceId == legendsOfSpeedPlaceId then
         end
     })
 end
+
+
+
+
+
