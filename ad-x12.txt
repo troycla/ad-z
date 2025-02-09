@@ -2200,6 +2200,30 @@ game:GetService("ReplicatedStorage").Remotes.CommE:FireServer(unpack(args))
         end
     end
 })
+local Tab = Window:MakeTab({"Cart Ride Into Rite"})
+
+local Section = Tab:AddSection({"Cart Regen"})
+
+local Toggle = Tab:AddToggle({
+    Name = "Auto Spawn Cart One",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Start the loop when the toggle is enabled
+            Toggle.Loop = RunService.RenderStepped:Connect(function()
+             fireclickdetector(workspace.Carts["1Regen"].Click)
+            end)
+        else
+            -- Stop the loop when the toggle is disabled
+            if Toggle.Loop then
+                Toggle.Loop:Disconnect()
+                Toggle.Loop = nil
+            end
+        end
+    end
+})
+
+
 
 local Tab = Window:MakeTab({"lumber tycoon 2"})
 
@@ -3367,9 +3391,7 @@ if game.PlaceId == legendsOfSpeedPlaceId then
                 end
             end
         end
-    })
-end
-
+    end})
 
 
 
