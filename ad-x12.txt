@@ -3375,8 +3375,3 @@ if game.PlaceId == legendsOfSpeedPlaceId then
         end
     })
 end
-
-
-
-
-
