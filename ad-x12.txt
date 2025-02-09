@@ -12,7 +12,7 @@ local Window = redzlib:MakeWindow({
 
 local Tab = Window:MakeTab({"Player"})
 
-local Section = Tab:AddSection({Name = "Player Esp"})
+local Section = Tab:AddSection({"Player Esp"})
 
 -- Variables
 local Players = game:GetService("Players")
