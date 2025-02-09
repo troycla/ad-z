@@ -147,7 +147,7 @@ local function adjustHitbox()
 end
 
 -- Slider to adjust hitbox size
-local Slider = Tab:AddSlider({
+local HitboxSlider = Tab:AddSlider({
     Name = "Hitbox Size",
     Min = 1,
     Max = 20,
@@ -163,7 +163,7 @@ local Slider = Tab:AddSlider({
 })
 
 -- Toggle to enable/disable hitbox adjustment
-local Toggle = Tab:AddToggle({
+local HitboxToggle = Tab:AddToggle({
     Name = "Enable Hitbox",
     Default = false,
     Callback = function(Value)
