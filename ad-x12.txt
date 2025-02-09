@@ -126,7 +126,6 @@ local Toggle = Tab:AddToggle({
 
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
-local RunService = game:GetService('RunService')
 
 _G.HeadSize = 20
 _G.Disabled = false
@@ -161,7 +160,7 @@ local HitboxSlider = Tab:AddSlider({
         if not _G.Disabled then
             adjustHitbox()
         end
-    end,    
+    end    
 })
 
 -- Toggle to enable/disable hitbox adjustment
@@ -171,18 +170,11 @@ local HitboxToggle = Tab:AddToggle({
     Callback = function(Value)
         _G.Disabled = not Value
         print("Hitbox adjustment " .. (Value and "enabled" or "disabled"))
+        if Value then
+            adjustHitbox()
+        end
     end    
 })
-
--- Adjust hitbox on RenderStepped if enabled
-local function onRenderStepped()
-    if not _G.Disabled then
-        adjustHitbox()
-    end
-end
-
--- Connect the unique function to RenderStepped
-RunService.RenderStepped:Connect(onRenderStepped)
 
 
 
