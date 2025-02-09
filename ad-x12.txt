@@ -411,6 +411,8 @@ local Section = Tab:AddSection({
 local Section = Tab:AddSection({
 	Name = "Set Speed"
 })
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 local lastSpeed = 16 -- Default speed
 
 local CoolSlider = Tab:AddSlider({
@@ -424,7 +426,7 @@ local CoolSlider = Tab:AddSlider({
     Callback = function(value)
         lastSpeed = value
         if Toggle.Enabled then
-            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = value
+            LocalPlayer.Character.Humanoid.WalkSpeed = value
         end
     end,
 })
@@ -435,12 +437,29 @@ local Toggle = Tab:AddToggle({
     Callback = function(Value)
         Toggle.Enabled = Value
         if Value then
-            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = lastSpeed
+            if LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass("Humanoid") then
+                LocalPlayer.Character.Humanoid.WalkSpeed = lastSpeed
+            end
         else
-            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16 -- Reset to default speed
+            if LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass("Humanoid") then
+                LocalPlayer.Character.Humanoid.WalkSpeed = 16 -- Reset to default speed
+            end
         end
     end
 })
+
+-- Ensure speed is set correctly when the character respawns
+LocalPlayer.CharacterAdded:Connect(function(character)
+    character:WaitForChild("Humanoid").WalkSpeed = Toggle.Enabled and lastSpeed or 16
+end)
+
+-- Ensure speed is set correctly if humanoid is added later
+LocalPlayer.Character:WaitForChild("Humanoid").AncestryChanged:Connect(function(child, parent)
+    if parent and child:IsA("Humanoid") then
+        child.WalkSpeed = Toggle.Enabled and lastSpeed or 16
+    end
+end)
+
 
 
 local Section = Tab:AddSection({
