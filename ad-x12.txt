@@ -161,7 +161,7 @@ local HitboxSlider = Tab:AddSlider({
         if not _G.Disabled then
             adjustHitbox()
         end
-    end    
+    end,    
 })
 
 -- Toggle to enable/disable hitbox adjustment
