@@ -123,10 +123,10 @@ local Toggle = Tab:AddToggle({
     end
 })
 
-local Section = Tab:AddSection({Name = "Player Hit Box"})
+
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
-local RunService = RunService
+local RunService = game:GetService('RunService')
 
 _G.HeadSize = 20
 _G.Disabled = false
@@ -178,6 +178,8 @@ RunService.RenderStepped:Connect(function()
         adjustHitbox()
     end
 end)
+
+
 
 
 local Tab = Window:MakeTab({"Weight"})
