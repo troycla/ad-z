@@ -158,7 +158,9 @@ local HitboxSlider = Tab:AddSlider({
     Callback = function(Value)
         _G.HeadSize = Value
         print("Hitbox size set to " .. Value)
-        adjustHitbox()
+        if not _G.Disabled then
+            adjustHitbox()
+        end
     end    
 })
 
@@ -172,12 +174,15 @@ local HitboxToggle = Tab:AddToggle({
     end    
 })
 
--- Adjust hitbox on RenderStepped
-RunService.RenderStepped:Connect(function()
+-- Adjust hitbox on RenderStepped if enabled
+local function onRenderStepped()
     if not _G.Disabled then
         adjustHitbox()
     end
-end)
+end
+
+-- Connect the unique function to RenderStepped
+RunService.RenderStepped:Connect(onRenderStepped)
 
 
 
