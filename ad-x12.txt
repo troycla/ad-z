@@ -126,7 +126,7 @@ local Toggle = Tab:AddToggle({
 local Section = Tab:AddSection({Name = "Player Hit Box"})
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
-local RunService = game:GetService('RunService')
+local RunService = RunService
 
 _G.HeadSize = 20
 _G.Disabled = false
