@@ -2203,7 +2203,7 @@ game:GetService("ReplicatedStorage").Remotes.CommE:FireServer(unpack(args))
 local Tab = Window:MakeTab({"Cart Ride Into Rite"})
 
 local Section = Tab:AddSection({"Cart Regen"})
-
+local RunService = game:GetService("RunService")
 local Toggle = Tab:AddToggle({
     Name = "Auto Spawn Cart One",
     Default = false,
