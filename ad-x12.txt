@@ -467,8 +467,9 @@ local Section = Tab:AddSection({
 })
 
 
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 local lastJumpHeight = 7.2 -- Default jump height
-
 
 -- Jump Height Slider
 local JumpSlider = Tab:AddSlider({
@@ -483,7 +484,7 @@ local JumpSlider = Tab:AddSlider({
         lastJumpHeight = value
         -- Apply jump height immediately if toggle is enabled
         if JumpToggle.Enabled then
-            game.Players.LocalPlayer.Character.Humanoid.JumpHeight = value
+            LocalPlayer.Character.Humanoid.JumpHeight = value
         end
     end,
 })
@@ -496,18 +497,37 @@ local JumpToggle = Tab:AddToggle({
         JumpToggle.Enabled = Value
         if Value then
             -- Apply the last chosen jump height when enabled
-            game.Players.LocalPlayer.Character.Humanoid.JumpHeight = lastJumpHeight
+            if LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass("Humanoid") then
+                LocalPlayer.Character.Humanoid.JumpHeight = lastJumpHeight
+            end
         else
             -- Reset to default jump height when disabled
-            game.Players.LocalPlayer.Character.Humanoid.JumpHeight = 7.2
+            if LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass("Humanoid") then
+                LocalPlayer.Character.Humanoid.JumpHeight = 7.2
+            end
         end
     end
 })
+
+-- Ensure jump height is set correctly when the character respawns
+LocalPlayer.CharacterAdded:Connect(function(character)
+    character:WaitForChild("Humanoid").JumpHeight = JumpToggle.Enabled and lastJumpHeight or 7.2
+end)
+
+-- Ensure jump height is set correctly if humanoid is added later
+LocalPlayer.Character:WaitForChild("Humanoid").AncestryChanged:Connect(function(child, parent)
+    if parent and child:IsA("Humanoid") then
+        child.JumpHeight = JumpToggle.Enabled and lastJumpHeight or 7.2
+    end
+end)
+
 
 local Section = Tab:AddSection({
 	Name = "Set Gravity"
 })
 
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 local lastGravity = 54 -- Default gravity
 
 -- Gravity Slider
@@ -530,7 +550,7 @@ local GravitySlider = Tab:AddSlider({
 
 -- Gravity Toggle
 local GravityToggle = Tab:AddToggle({
-    Name = "Set Gravity",
+    Name = "Set Player Gravity",
     Default = false,
     Callback = function(Value)
         GravityToggle.Enabled = Value
@@ -543,6 +563,27 @@ local GravityToggle = Tab:AddToggle({
         end
     end
 })
+
+-- Ensure gravity is set correctly when the character respawns
+LocalPlayer.CharacterAdded:Connect(function(character)
+    if GravityToggle.Enabled then
+        game.Workspace.Gravity = lastGravity
+    else
+        game.Workspace.Gravity = 54
+    end
+end)
+
+-- Ensure gravity is set correctly if humanoid is added later
+LocalPlayer.Character:WaitForChild("Humanoid").AncestryChanged:Connect(function(child, parent)
+    if parent and child:IsA("Humanoid") then
+        if GravityToggle.Enabled then
+            game.Workspace.Gravity = lastGravity
+        else
+            game.Workspace.Gravity = 54
+        end
+    end
+end)
+
 
 local Section = Tab:AddSection({
 	Name = "Pet Simulator Games"
