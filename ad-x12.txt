@@ -2207,19 +2207,7 @@ local Section = Tab:AddSection({"Cart Regen"})
 
 
 
--- Toggle function regen
-local Toggle = Tab:AddToggle({
-    Name = "Auto Spawn Cart One",
-    Default = false,
-    Callback = function(Value)
-        regen1 = Value
-        if regen1 then
-          
-        else
-        
-        end
-    end
-})
+
 
 
 
