@@ -10,7 +10,72 @@ local Window = redzlib:MakeWindow({
   SaveFolder = "Admin-x 1 Config"
 })
 
-local Tab = Window:MakeTab({"Player"})
+local Tab = Window:MakeTab({"Ui"})
+
+
+local Tab = Window:MakeTab({"Npc"})
+
+local Tab = Window:MakeTab({"Tools"})
+
+local Section = Tab:AddSection({
+	Name = "Client Side"
+})
+Tab:AddButton({ 	Name  = "Teleoport tool", 	Callback = function()
+
+    local plr = game:GetService("Players").LocalPlayer
+          local mouse = plr:GetMouse()
+          local tool = Instance.new("Tool")
+          tool.RequiresHandle = false
+          tool.Name = "[Teleport Tool]"
+          tool.Activated:Connect(function()
+          local root = plr.Character.HumanoidRootPart
+          local pos = mouse.Hit.Position+Vector3.new(0,2.5,0)
+          local offset = pos-root.Position
+          root.CFrame = root.CFrame+offset
+          end)
+          tool.Parent = plr.Backpack
+  
+  
+  end })
+
+local Section = Tab:AddSection({
+	Name = "Server Side"
+})
+Tab:AddDropdown({
+    Name = "ToolSelector",
+    Default = "None",
+    Options = {"None"},
+    Callback = function(Value)
+        if Value ~= "None" then
+            local player = game.Players.LocalPlayer
+            local tool = game.ServerStorage:FindFirstChild(Value)
+
+            if tool and player.Backpack then
+                local clonedTool = tool:Clone()
+                clonedTool.Parent = player.Backpack
+            end
+        end
+    end    
+})
+
+local tools = {"None"}
+for _, tool in pairs(game.ServerStorage:GetChildren()) do
+    if tool:IsA("Tool") then
+        table.insert(tools, tool.Name)
+    end
+end
+
+Tab:SetDropdownOptions("ToolSelector", tools)
+
+
+
+local Tab = Window:MakeTab({"Esp"})
+
+local Section = Tab:AddSection({
+	Name = "Player Esp"
+})
+
+
 -- Variables
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
@@ -237,7 +302,7 @@ end
 
 
 
-local Tab = Window:MakeTab({"Main"})
+local Tab = Window:MakeTab({"Local Player"})
 
 
 
@@ -555,23 +620,7 @@ Tab:AddButton({ 	Name  = "aim lock", 	Callback = function()
 loadstring(game:HttpGet("https://rentry.co/n55gmtpi/raw", true))()
 end })
 
-Tab:AddButton({ 	Name  = "Teleoport tool", 	Callback = function()
 
-  local plr = game:GetService("Players").LocalPlayer
-        local mouse = plr:GetMouse()
-        local tool = Instance.new("Tool")
-        tool.RequiresHandle = false
-        tool.Name = "[Teleport Tool]"
-        tool.Activated:Connect(function()
-        local root = plr.Character.HumanoidRootPart
-        local pos = mouse.Hit.Position+Vector3.new(0,2.5,0)
-        local offset = pos-root.Position
-        root.CFrame = root.CFrame+offset
-        end)
-        tool.Parent = plr.Backpack
-
-
-end })
 
 Tab:AddButton({ 	Name  = "Remote spy", 	Callback = function()
 
