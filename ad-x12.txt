@@ -42,8 +42,13 @@ local Section = Tab:AddSection({
 	Name = "Server Side"
 })
 local dropdownOptions = {"None"}
+local autoUpdateEnabled = false
 
 local function updateTools()
+    if not autoUpdateEnabled then
+        return
+    end
+
     for _, tool in pairs(game:GetDescendants()) do
         if tool:IsA("Tool") and not table.find(dropdownOptions, tool.Name) then
             table.insert(dropdownOptions, tool.Name)
@@ -51,6 +56,26 @@ local function updateTools()
         end
     end
 end
+
+Tab:AddToggle({
+    Name = "Auto Update",
+    Default = false,
+    Callback = function(Value)
+        autoUpdateEnabled = Value
+    end    
+})
+
+Tab:AddButton({
+    Name = "Update DropDown",
+    Callback = function()
+        for _, tool in pairs(game:GetDescendants()) do
+            if tool:IsA("Tool") and not table.find(dropdownOptions, tool.Name) then
+                table.insert(dropdownOptions, tool.Name)
+            end
+        end
+        Tab:SetDropdownOptions("ToolSelector", dropdownOptions)
+    end    
+})
 
 Tab:AddDropdown({
     Name = "ToolSelector",
@@ -70,8 +95,6 @@ Tab:AddDropdown({
 })
 
 game:GetService("RunService").Heartbeat:Connect(updateTools)
-
-
 
 
 local Tab = Window:MakeTab({"Esp"})
@@ -193,7 +216,6 @@ local Toggle = Tab:AddToggle({
 
 
 
-
 local Tab = Window:MakeTab({"testing"})
 
 
@@ -229,8 +251,8 @@ end })
 Tab:AddButton({ 	Name  = "Arceus x", 	Callback = function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/Arceus%20X%20V3"))()
 end })
-Tab:AddButton({ 	Name  = "Arceus x", 	Callback = function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/Arceus%20X%20V3"))()
+Tab:AddButton({ 	Name  = "Update DropDown", 	Callback = function()
+
 end })
 
 Tab:AddButton({ 	Name  = "The Diffrentce", 	Callback = function()
