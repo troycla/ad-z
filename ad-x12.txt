@@ -41,14 +41,25 @@ Tab:AddButton({ 	Name  = "Teleoport tool", 	Callback = function()
 local Section = Tab:AddSection({
 	Name = "Server Side"
 })
+local dropdownOptions = {"None"}
+
+local function updateTools()
+    for _, tool in pairs(game:GetDescendants()) do
+        if tool:IsA("Tool") and not table.find(dropdownOptions, tool.Name) then
+            table.insert(dropdownOptions, tool.Name)
+            Tab:SetDropdownOptions("ToolSelector", dropdownOptions)
+        end
+    end
+end
+
 Tab:AddDropdown({
     Name = "ToolSelector",
     Default = "None",
-    Options = {"None"},
+    Options = dropdownOptions,
     Callback = function(Value)
         if Value ~= "None" then
             local player = game.Players.LocalPlayer
-            local tool = game.ServerStorage:FindFirstChild(Value)
+            local tool = game:FindFirstChild(Value, true) -- Look for the tool anywhere in the game
 
             if tool and player.Backpack then
                 local clonedTool = tool:Clone()
@@ -58,14 +69,8 @@ Tab:AddDropdown({
     end    
 })
 
-local tools = {"None"}
-for _, tool in pairs(game.ServerStorage:GetChildren()) do
-    if tool:IsA("Tool") then
-        table.insert(tools, tool.Name)
-    end
-end
+game:GetService("RunService").Heartbeat:Connect(updateTools)
 
-Tab:SetDropdownOptions("ToolSelector", tools)
 
 
 
