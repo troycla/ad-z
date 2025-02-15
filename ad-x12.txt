@@ -57,26 +57,9 @@ local function updateTools()
     end
 end
 
-Tab:AddToggle({
-    Name = "Auto Update",
-    Default = false,
-    Callback = function(Value)
-        autoUpdateEnabled = Value
-    end    
+local Section = Tab:AddSection({
+	Name = "Select a Tool"
 })
-
-Tab:AddButton({
-    Name = "Update DropDown",
-    Callback = function()
-        for _, tool in pairs(game:GetDescendants()) do
-            if tool:IsA("Tool") and not table.find(dropdownOptions, tool.Name) then
-                table.insert(dropdownOptions, tool.Name)
-            end
-        end
-        Tab:SetDropdownOptions("ToolSelector", dropdownOptions)
-    end    
-})
-
 Tab:AddDropdown({
     Name = "ToolSelector",
     Default = "None",
@@ -95,6 +78,30 @@ Tab:AddDropdown({
 })
 
 game:GetService("RunService").Heartbeat:Connect(updateTools)
+local Section = Tab:AddSection({
+	Name = "Auto Update"
+})
+Tab:AddToggle({
+    Name = "Auto Update",
+    Default = false,
+    Callback = function(Value)
+        autoUpdateEnabled = Value
+    end    
+})
+local Section = Tab:AddSection({
+	Name = "Update"
+})
+Tab:AddButton({
+    Name = "Update DropDown",
+    Callback = function()
+        for _, tool in pairs(game:GetDescendants()) do
+            if tool:IsA("Tool") and not table.find(dropdownOptions, tool.Name) then
+                table.insert(dropdownOptions, tool.Name)
+            end
+        end
+        Tab:SetDropdownOptions("ToolSelector", dropdownOptions)
+    end    
+})
 
 
 local Tab = Window:MakeTab({"Esp"})
@@ -875,6 +882,36 @@ end
 
 
 local Tab = Window:MakeTab({"Teleports"})
+
+local parts = {} -- Table to store the names of parts
+
+-- Iterate through the workspace to find parts and add their names to the table
+for _, obj in ipairs(game.Workspace:GetChildren()) do
+    if obj:IsA("Part") then
+        table.insert(parts, obj.Name)
+    end
+end
+
+local Dropdown = Tab:AddDropdown({
+    Name = "Teleport",
+    Default = parts[1],
+    Options = parts,
+    Callback = function(Value)
+        teleportPlayer(Value)
+    end    
+})
+
+function teleportPlayer(Value)
+    local player = game.Players.LocalPlayer
+    if player and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+        local part = game.Workspace:FindFirstChild(Value)
+        if part then
+            player.Character.HumanoidRootPart.CFrame = part.CFrame
+        end
+    end
+end
+
+
 local Section = Tab:AddSection({"Teleport To Select Player"})
 -- Local Script
 local Players = game:GetService("Players")
